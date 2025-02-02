@@ -1,0 +1,95 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative; /* Ensure the navbar is a positioning context */
+}
+
+.navbarLeft {
+  display: flex;
+  align-items: center;
+}
+
+.champsText {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navbarRight {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between search bar and menu icon */
+}
+
+.searchBar {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  width: 200px; /* Default width */
+}
+
+.searchBar:focus {
+  border-color: #007bff; /* Highlight the search bar when focused */
+}
+
+.menuIcon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menuItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 50px; /* Adjust based on your navbar height */
+  right: 0; /* Align the dropdown to the right */
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10; /* Ensure the dropdown appears above other content */
+}
+
+.menuItems a {
+  text-decoration: none;
+  color: #333;
+}
+
+.menuItems a:hover {
+  color: #007bff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px; /* Reduce padding on smaller screens */
+  }
+
+  .searchBar {
+    width: 150px; /* Reduce search bar width on smaller screens */
+  }
+
+  .champsText {
+    font-size: 16px; /* Reduce font size for the Champs text */
+  }
+
+  .menuIcon {
+    font-size: 20px; /* Reduce menu icon size */
+  }
+}
+
+@media (max-width: 480px) {
+  .searchBar {
+    width: 120px; /* Further reduce search bar width on very small screens */
+  }
+
+  .champsText {
+    font-size: 14px; /* Further reduce font size for the Champs text */
+  }
+}

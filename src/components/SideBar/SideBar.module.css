@@ -1,0 +1,165 @@
+.sidebar {
+  width: 50px; /* Minimized width */
+  background-color: #f4f4f4;
+  padding: 20px 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease; /* Smooth transition for width */
+  overflow: hidden; /* Hide overflow when minimized */
+}
+
+.sidebar:hover {
+  width: 200px; /* Expanded width */
+}
+
+.accountIcon {
+  cursor: pointer;
+  text-align: center; /* Center the icon */
+  margin-bottom: 20px; /* Space below the account icon */
+  position: relative; /* For positioning the fallback icon */
+  width: 100%; /* Ensure the account icon takes full width when minimized */
+  font-size: 24px; /* Add font-size for the fallback icon */
+}
+
+.profilePicture {
+  width: 30px; /* Adjust the size of the profile picture */
+  height: 30px;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensure the image covers the space */
+  display: block; /* Ensure the image is displayed as a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+
+.accountMenu {
+  position: absolute;
+  top: 100%; /* Position the menu below the profile icon */
+  left: 50%; /* Center the menu horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10; /* Ensure the dropdown appears above other content */
+  min-width: 150px; /* Set a minimum width for the menu */
+  margin-top: 5px;
+}
+
+.accountMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.accountMenu li {
+  padding: 10px;
+}
+
+.accountMenu button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+.accountMenu button:hover {
+  background-color: #f0f0f0;
+}
+
+.fallbackIcon {
+  font-size: 24px;
+  display: none; /* Hide the fallback icon by default */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the fallback icon */
+}
+
+.accountIcon img[src=""] + .fallbackIcon,
+.accountIcon img:not([src]) + .fallbackIcon {
+  display: block; /* Show the fallback icon if the image fails to load */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.sidebarItem:hover {
+  background-color: #e0e0e0; /* Change background on hover */
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 20px;
+  flex-shrink: 0; /* Prevent the icon from shrinking */
+  width: 100%; /* Ensure the icon takes full width when minimized */
+  text-align: center; /* Center the icon when minimized */
+}
+
+.sidebar:hover .icon {
+  width: auto; /* Allow the icon to take its natural width when expanded */
+  margin-right: 10px; /* Add space between icon and text when expanded */
+}
+
+.itemName {
+  opacity: 0; /* Hide text when minimized */
+  transition: opacity 0.3s ease; /* Smooth transition for text */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.sidebar:hover .itemName {
+  opacity: 1; /* Show text when expanded */
+}
+
+.logoutContainer {
+  margin-top: auto; /* Push the logout button to the bottom */
+  padding: 10px;
+  border-top: 1px solid #e0e0e0; /* Optional: Add a separator */
+  display: flex;
+  justify-content: center; /* Center the button relative to the sidebar */
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #f0f0f0; /* Hover effect */
+}
+
+.logoutButton .icon {
+  font-size: 20px;
+  flex-shrink: 0; /* Prevent the icon from shrinking */
+  text-align: center; /* Center the icon */
+}
+
+.logoutButton .logoutText {
+  opacity: 0; /* Hide text when minimized */
+  transition: opacity 0.3s ease; /* Smooth transition for text */
+  white-space: nowrap; /* Prevent text from wrapping */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Show text when sidebar is hovered */
+.sidebar:hover .logoutButton .logoutText {
+  opacity: 1; /* Show text when expanded */
+}

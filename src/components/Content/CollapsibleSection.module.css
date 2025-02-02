@@ -1,0 +1,32 @@
+.section {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+  }
+  
+  .header h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .collapseButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #007bff;
+  }
+  
+  .content {
+    padding: 10px;
+    background-color: #fff;
+  }
