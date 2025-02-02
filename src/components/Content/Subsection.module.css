@@ -1,0 +1,76 @@
+.subsection {
+    margin-bottom: 20px;
+  }
+  
+  .subsection h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .files {
+    margin-bottom: 20px;
+  }
+  
+  .file {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .fileName {
+    flex: 1;
+    font-weight: bold;
+  }
+  
+  .fileSize {
+    margin: 0 10px;
+    color: #666;
+  }
+  
+  .downloadLink {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .downloadLink:hover {
+    text-decoration: underline;
+  }
+  
+  .graphs {
+    margin-bottom: 20px;
+  }
+  
+  .graph {
+    margin-bottom: 20px;
+  }
+  
+  .graph h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table th,
+  table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  table th {
+    background-color: #f4f4f4;
+  }
+  
+  .chartPlaceholder {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+  }
