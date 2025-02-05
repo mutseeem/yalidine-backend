@@ -1,5 +1,5 @@
-import Sidebar from './components/Sidebar/SideBar.jsx';
-import Navbar from './components/Navbar/NavBar.jsx';
+import Sidebar from './components/SideBar/SideBar.jsx';
+import Navbar from './components/NavBar/NavBar.jsx';
 import Content from './components/Content/Content.jsx';
 import './index.css';
 

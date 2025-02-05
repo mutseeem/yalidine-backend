@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import styles from './Navbar.module.css';
-
-      // this code here is what makes and handles the navigation bar also very minimal due to it just being a prototype
+import styles from './NavBar.module.css';
+import AppIcon from '../../assets/icons/apps.svg'; // Import as a regular image
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
@@ -20,19 +19,12 @@ export default function Navbar() {
   return (
     <div className={styles.navbar}>
       <div className={styles.navbarLeft}>
+        <img src={AppIcon} alt="App Icon" className={styles.appIcon} />
         <span className={styles.champsText}>Champs C1 | Politique D'ouverture International</span>
       </div>
       <div className={styles.navbarRight}>
-        <input
-          type="text"
-          placeholder="Search..."
-          className={styles.searchBar}
-          value={searchQuery} // Bind the input value to the state
-          onChange={handleSearch} // Handle input changes
-        />
-        <div className={styles.menuIcon} onClick={toggleMenu}>
-          ☰ {/* Hamburger icon */}
-        </div>
+        
+       
       </div>
       {isMenuOpen && ( // Conditionally render the menu items
         <div className={styles.menuItems}>
@@ -43,3 +35,13 @@ export default function Navbar() {
     </div>
   );
 }
+{/*           <span className={styles.itemName}>Overview</span> <input 
+          type="text"
+          placeholder="Search..."
+          className={styles.searchBar}
+          value={searchQuery} // Bind the input value to the state
+          onChange={handleSearch} // Handle input changes
+           <div className={styles.menuIcon} onClick={toggleMenu}>
+          ☰ 
+        </div>
+        />*/}
