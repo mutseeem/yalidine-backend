@@ -14,8 +14,21 @@
 }
 
 .champsText {
+  margin-top: -5gpx; /* Adjust alignment */
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 400; /* Make the font lighter */
+  display: flex;
+  align-items: center;
+  color: #1E1E1E; /* Change color */
+}
+
+.appIcon {
+  margin-top: -5px; 
+  margin-right: 10px; /* Add space between the icon and text */
+  margin-left: 10px; /* Add space between the icon and text */
+  width: 16px; /* Smaller size */
+  height: 16px; /* Smaller size */
+  fill: #1E1E1E; /* Change color */
 }
 
 .navbarRight {
