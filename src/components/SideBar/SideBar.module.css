@@ -1,61 +1,89 @@
 /* General Sidebar Styles */
 .sidebar {
   width: 50px; /* Minimized width */
-  background-color: #1e293b; /* Darker background for contrast */
-  color: #ffffff; /* Text color */
+  background-color: #00141B;
   padding: 20px 10px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease; /* Smooth transition for width */
   overflow: hidden; /* Hide overflow when minimized */
-  position: fixed; /* Fix the sidebar to the left */
-  top: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
+  position: relative; /* Needed for absolute positioning of the logout button */
 }
 
 .sidebar:hover {
-  width: 200px; /* Expanded width */
+  width: 322px; /* Expanded width */
+
 }
 
-/* Account Icon Section */
+/* --- Profile Section --- */
 .accountIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  gap : 10px;
+  flex-direction: row; /* Ensure icons are in the same line */
+  margin-left: -4px;
+}
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and name */
+  padding: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
   cursor: pointer;
-  text-align: center; /* Center the icon */
-  margin-bottom: 20px; /* Space below the account icon */
-  position: relative; /* For positioning the fallback icon */
-  width: 100%; /* Ensure the account icon takes full width when minimized */
-  font-size: 24px; /* Add font-size for the fallback icon */
+   /* Move the container a bit to the left */
 }
-
 .profilePicture {
-  width: 30px; /* Adjust the size of the profile picture */
-  height: 30px;
-  border-radius: 50%; /* Make the image circular */
-  object-fit: cover; /* Ensure the image covers the space */
-  display: block; /* Ensure the image is displayed as a block element */
-  margin: 0 auto; /* Center the image horizontally */
-  transition: transform 0.3s ease; /* Subtle hover effect */
+  display: flex;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: width 0.3s ease, height 0.3s ease;
+  background-color: #ffffff;
 }
 
-.profilePicture:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
+/* Expand Profile Picture when Sidebar Expands */
+.sidebar.expanded .profilePicture {
+  width: 60px; /* Adjust to desired size */
+  height: 60px;
 }
 
+/* Fallback Profile Icon */
+.fallbackIcon {
+  font-size: 24px;
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+/* Show fallback icon when image fails to load */
+.accountIcon img:empty + .fallbackIcon,
+.accountIcon img:not([src]) + .fallbackIcon {
+  display: block;
+
+}
+
+/* Account Dropdown */
 .accountMenu {
   position: absolute;
-  top: 60px; /* Position the menu slightly below the icon */
-  left: 100%; /* Position the menu to the right of the sidebar */
-  background-color: #ffffff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  z-index: 10; /* Ensure the dropdown appears above other content */
-  min-width: 150px; /* Set a minimum width for the menu */
-  display: none; /* Hide by default */
-}
-
-.sidebar:hover .accountMenu {
-  display: block; /* Show on hover */
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10;
+  min-width: 150px;
+  margin-top: 5px;
+  display: none;
 }
 
 .accountMenu ul {
@@ -83,21 +111,7 @@
   color: #333333;
 }
 
-.fallbackIcon {
-  font-size: 24px;
-  display: none; /* Hide the fallback icon by default */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center the fallback icon */
-}
-
-.accountIcon img[src=""] + .fallbackIcon,
-.accountIcon img:not([src]) + .fallbackIcon {
-  display: block; /* Show the fallback icon if the image fails to load */
-}
-
-/* Sidebar Items */
+/* --- Sidebar Items --- */
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -108,49 +122,67 @@
 .sidebarItem {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background-color 0.3s ease, opacity 0.3s ease;
+  padding: 10px 0;
+  transition: background-color 0.3s ease;
+  user-select: none; /* Prevent text selection */
+  gap: 10px; /* Add gap between icon and text */
 }
 
 .sidebarItem:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+  background-color: #41B8D5;
   cursor: pointer;
+  border-radius: 8px; /* Add rounded borders on hover */
 }
 
+/* Icon Handling */
 .icon {
   font-size: 20px;
-  flex-shrink: 0; /* Prevent the icon from shrinking */
-  width: 100%; /* Ensure the icon takes full width when minimized */
-  text-align: center; /* Center the icon when minimized */
-  transition: margin-right 0.3s ease;
+  flex-shrink: 0;
+  width: 100%;
+  text-align: center;
 }
 
+/* Expand icon and show text when hovered */
 .sidebar:hover .icon {
-  width: auto; /* Allow the icon to take its natural width when expanded */
-  margin-right: 16px; /* Add space between icon and text when expanded */
+  width: auto;
+  margin-right: 10px;
 }
 
+/* Hide text when minimized */
 .itemName {
-  opacity: 0; /* Hide text when minimized */
-  transition: opacity 0.3s ease, margin-left 0.3s ease;
-  white-space: nowrap; /* Prevent text from wrapping */
-  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.05s ease, visibility 0.05s ease; /* Super fast transition */
+  white-space: nowrap;
+  font-size: 14px; 
   font-weight: 500;
+  color: #f0f0f0;
+  margin-left: 5px; /* Reduce gap between itemName and icon */
+  min-width: 50px; /* Ensure the gap is maintained */
+  display: inline-block; /* Ensure the gap is maintained */
 }
 
+/* Show text on hover */
 .sidebar:hover .itemName {
-  opacity: 1; /* Show text when expanded */
-  margin-left: 8px; /* Add spacing between icon and text */
+  opacity: 1;
+  visibility: visible;
+  width: auto; /* Show text on hover */
 }
 
-/* Logout Button */
+/* --- Logout Button --- */
 .logoutContainer {
-  margin-top: auto; /* Push the logout button to the bottom */
-  padding: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
-  display: flex;
-  justify-content: center; /* Center the button relative to the sidebar */
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 1px solid #e0e0e0;
+  padding-top: 10px;
+  transition: width 0.3s ease; /* Smooth transition for width */
+}
+
+.sidebar:hover .logoutContainer {
+  width: 322px; /* Expanded width to match expanded sidebar */
+  
 }
 
 .logoutButton {
@@ -162,29 +194,107 @@
   border: none;
   color: #ffffff;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, filter 0.3s ease;
 }
 
 .logoutButton:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Hover effect */
-  color: #ff4d4d; /* Red color for logout */
+  background-color: #41B8D5;
+  border-radius: 8px;
 }
 
 .logoutButton .icon {
   font-size: 20px;
-  flex-shrink: 0; /* Prevent the icon from shrinking */
-  text-align: center; /* Center the icon */
+  text-align: center;
+  filter: brightness(0) invert(1); /* Always white */
+  transition: filter 0.3s ease;
 }
 
+.logoutText {
+  color: #e0e0e0;
+}
+
+/* Hide text when minimized */
 .logoutButton .logoutText {
-  opacity: 0; /* Hide text when minimized */
-  transition: opacity 0.3s ease, margin-left 0.3s ease;
-  white-space: nowrap; /* Prevent text from wrapping */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
   font-size: 14px;
   font-weight: 500;
 }
 
 .sidebar:hover .logoutButton .logoutText {
-  opacity: 1; /* Show text when expanded */
-  margin-left: 8px; /* Add spacing between icon and text */
+  opacity: 1;
+}
+
+/* Specific styles for FolderIcon, EyeIcon, and ExitIcon */
+.folderIcon, .eyeIcon, .exitIcon {
+  width: 30px; /* Keep size */
+  height: 30px;
+  filter: brightness(0) invert(1); /* Always white */
+  transition: filter 0.3s ease;
+}
+
+.folderIcon2, .eyeIcon2 {
+  filter: brightness(0) invert(1); /* Always white */
+  transition: filter 0.3s ease;
+}
+
+.sidebar:hover .folderIcon, .sidebar:hover .eyeIcon {
+  fill: #ffffff; /* Keep white color on hover */
+}
+
+.exitIcon {
+  width: 30px; /* Keep size */
+  height: 30px;
+  filter: brightness(0) invert(1); /* Always white */
+  transition: filter 0.3s ease;
+}
+
+.iconContainer {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px; /* Add gap between icon and text */
+  margin-left: 10px; /* Add margin-left to align with profile icon */
+}
+
+.folderIcon, .eyeIcon, .folderIcon2, .eyeIcon2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px; /* Keep size */
+  height: 30px;
+  transition: opacity 0.3s ease;
+}
+
+.folderIcon2, .eyeIcon2 {
+  opacity: 0; /* Initially hidden */
+}
+
+.folderIcon, .eyeIcon {
+  opacity: 1; /* Initially visible */
+}
+
+.sidebar:hover .folderIcon2, .sidebar:hover .eyeIcon2 {
+  opacity: 1; /* Show on hover */
+}
+
+.sidebar:hover .folderIcon, .sidebar:hover .eyeIcon {
+  opacity: 0; /* Hide on hover */
+}
+
+.eyeIcon2 {
+  opacity: 1; /* Initially visible */
+}
+
+.eyeIcon {
+  opacity: 0; /* Initially hidden */
+}
+
+.sidebar:hover .eyeIcon2 {
+  opacity: 0; /* Hide on hover */
+}
+
+.sidebar:hover .eyeIcon {
+  opacity: 1; /* Show on hover */
 }

@@ -1,10 +1,13 @@
+// filepath: /d:/github/akram/RNAQES-Frontend-/src/components/SideBar/SideBar.jsx
 import React, { useState } from 'react';
-import styles from './Sidebar.module.css';
+import styles from './SideBar.module.css';
+import FolderIcon from '../../assets/icons/folder-open.svg';
+import EyeIcon from '../../assets/icons/eye.svg';
+import FolderIcon2 from '../../assets/icons/folder-open2.svg';
+import EyeIcon2 from '../../assets/icons/eye2.svg';
+import ExitIcon from '../../assets/icons/exit.png';
 
 
-    /* this here is the code for the side bar made as requested expand and collapse when hovered over and has all parts of the content as requested 
-          in the design PS. deal with the logout button position bullshit on your own */
-          
 export default function Sidebar() {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false); // State for account menu visibility
 
@@ -31,7 +34,8 @@ export default function Sidebar() {
             e.target.style.display = 'none'; // Hide the image if it fails to load
           }}
         />
-        <span className={styles.fallbackIcon}>👤</span> {/* Fallback icon */}
+        <span className={styles.itemName}>Ilyes Izmr</span>
+        <span className={styles.fallbackIcon}></span> {/* Fallback icon */}
 
         {/* Account Dropdown Menu */}
         {isAccountMenuOpen && (
@@ -51,27 +55,40 @@ export default function Sidebar() {
       {/* Sidebar Items */}
       <ul className={styles.sidebarItems}>
         <li className={styles.sidebarItem}>
-          <span className={styles.icon}>📁</span>
-          <span className={styles.itemName}>Item 1</span>
+          <span className={styles.iconContainer}>
+            <img src={EyeIcon} alt="Eye Icon" className={styles.eyeIcon} />
+            <img src={EyeIcon2} alt="Eye Icon 2" className={styles.eyeIcon2} />
+          </span>
+          <span className={styles.itemName}>Overview</span>
         </li>
         <li className={styles.sidebarItem}>
-          <span className={styles.icon}>📄</span>
-          <span className={styles.itemName}>Item 2</span>
+          <span className={styles.iconContainer}>
+            <img src={FolderIcon} alt="Folder Icon" className={styles.folderIcon} />
+            <img src={FolderIcon2} alt="Folder Icon 2" className={styles.folderIcon2} />
+          </span>
+          <span className={styles.itemName}>Politique D’ouverture 
+            internationale</span>
         </li>
         <li className={styles.sidebarItem}>
-          <span className={styles.icon}>📂</span>
-          <span className={styles.itemName}>Item 3</span>
+          <span className={styles.iconContainer}>
+            <img src={FolderIcon} alt="Folder Icon" className={styles.folderIcon} />
+            <img src={FolderIcon2} alt="Folder Icon 2" className={styles.folderIcon2} />
+          </span>
+          <span className={styles.itemName}>Partenariat et mobillté</span>
         </li>
         <li className={styles.sidebarItem}>
-          <span className={styles.icon}>📊</span>
-          <span className={styles.itemName}>Item 4</span>
+          <span className={styles.iconContainer}>
+            <img src={FolderIcon} alt="Folder Icon" className={styles.folderIcon} />
+            <img src={FolderIcon2} alt="Folder Icon 2" className={styles.folderIcon2} />
+          </span>
+          <span className={styles.itemName}>Échange de connaissances et <br /> mutualisation des ressources</span>
         </li>
       </ul>
 
       {/* Logout Button */}
       <div className={styles.logoutContainer}>
         <button className={styles.logoutButton} onClick={handleLogout}>
-          <span className={styles.icon}>🚪</span>
+          <span className={styles.icon}><img src={ExitIcon} alt="Exit Icon" className={styles.exitIcon} /></span>
           <span className={styles.logoutText}>Logout</span>
         </button>
       </div>
