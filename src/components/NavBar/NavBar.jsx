@@ -1,3 +1,4 @@
+/*
 import { useState } from 'react';
 import styles from './NavBar.module.css';
 import AppIcon from '../../assets/icons/apps.svg'; // Import as a regular image
@@ -44,4 +45,4 @@ export default function Navbar() {
            <div className={styles.menuIcon} onClick={toggleMenu}>
           ☰ 
         </div>
-        />*/}
+        />*/

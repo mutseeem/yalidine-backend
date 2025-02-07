@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Content.module.css';
 import CollapsibleSection from './CollapsibleSection'; // Import the CollapsibleSection component
+import downloadIcon from '../../assets/icons/cloud-download-alt.svg'; // Import the download icon
 
 const Overview = () => {
   return (
@@ -9,34 +10,46 @@ const Overview = () => {
 
       {/* General Insights Section */}
       <div className={styles.insightsSection}>
-        <h2>Nombre de questions répondues</h2>
-        <div className={styles.insightsGrid}>
-          {/* Field 1 */}
-          <div className={styles.insightCard}>
-            <h3>Champ 1</h3>
-            <p>Réponses: 5/10</p>
-            <div className={styles.progressBar}>
-              <div className={styles.progress} style={{ width: '50%' }}></div>
-            </div>
-          </div>
-
-          {/* Field 2 */}
-          <div className={styles.insightCard}>
-            <h3>Champ 2</h3>
-            <p>Réponses: 3/9</p>
-            <div className={styles.progressBar}>
-              <div className={styles.progress} style={{ width: '33%' }}></div>
-            </div>
-          </div>
-
-          {/* Field 3 */}
-          <div className={styles.insightCard}>
-            <h3>Champ 3</h3>
-            <p>Réponses: 11/11</p>
-            <div className={styles.progressBar}>
-              <div className={styles.progress} style={{ width: '100%' }}></div>
-            </div>
-          </div>
+        <div className={styles.tableContainer}>
+          <h2>Nombre de questions répondues</h2>
+          <table className={styles.insightsTable}>
+            <thead>
+              <tr>
+                <th>Champ</th>
+                <th>Réponses</th>
+                <th>Progrès</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Champ 1</td>
+                <td>5/10</td>
+                <td>
+                  <div className={styles.progressBar}>
+                    <div className={styles.progress} style={{ width: '50%' }}></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Champ 2</td>
+                <td>3/9</td>
+                <td>
+                  <div className={styles.progressBar}>
+                    <div className={styles.progress} style={{ width: '33%' }}></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Champ 3</td>
+                <td>11/11</td>
+                <td>
+                  <div className={styles.progressBar}>
+                    <div className={styles.progress} style={{ width: '100%' }}></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -73,6 +86,11 @@ const Overview = () => {
             </div>
           </div>
         </CollapsibleSection>
+      </div>
+
+      {/* Download Icon */}
+      <div className={styles.downloadIcon}>
+        <img src={downloadIcon} alt="Download Icon" style={{ width: '30px', height: '30px' }} />
       </div>
     </div>
   );
