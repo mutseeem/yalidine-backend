@@ -1,19 +1,24 @@
-import Sidebar from './components/SideBar/SideBar.jsx';
-import Navbar from './components/NavBar/NavBar.jsx';
-import Content from './components/Content/Content.jsx';
-import './index.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/SideBar/SideBar';
+{/*import NavBar from './components/NavBar/NavBar';*/}
+import Overview from './components/Content/overview';
+import Content from './components/Content/Content'; // Your existing content page
+import './App.css';
 
-        // if you get errors in the first two lines of the import ignore them HHH
-        // this is the app function OK? ok.
-
-export default function App() {
+function App() {
   return (
-    <div className="app">
-      <Sidebar />
-      <div className="content">
-        <Navbar />
-        <Content/>
+    <Router>
+      <div className="app">
+        <Sidebar />
+        {/*<NavBar /> */}
+        <Routes>
+          <Route path="/" element={<Content />} /> {/* Default page */}
+          <Route path="/overview" element={<Overview />} /> {/* Overview page */}
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
+
+export default App;

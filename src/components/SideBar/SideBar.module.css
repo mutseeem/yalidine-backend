@@ -57,6 +57,66 @@
   display: block;
 }
 
+/* Profile Section */
+.accountIcon {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the left */
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  gap: 10px; /* Space between profile picture, name, and buttons */
+  margin-left: -4px;
+}
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icon and name */
+  padding: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* Buttons under the profile picture */
+.accountButtons {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 8px; /* Space between buttons */
+  margin-top: 10px; /* Add some space between profile and buttons */
+  width: 100%; /* Ensure buttons take full width */
+}
+
+.accountButton {
+  background-color: #4CAF50; /* Green background */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%; /* Make buttons full width */
+  transition: background-color 0.3s ease;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflowed text */
+}
+
+.accountButton:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Optional: Expand buttons when sidebar is hovered */
+.sidebar:hover .accountButton {
+  width: auto; /* Allow buttons to expand to fit text */
+  padding: 10px 20px; /* Add more padding for better appearance */
+}
 /* --- Sidebar Items --- */
 .sidebar ul {
   list-style: none;
@@ -243,6 +303,7 @@
   opacity: 1; /* Show on hover */
 }
 
+<<<<<<< HEAD
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
   .sidebar {
@@ -306,4 +367,12 @@
   .itemName {
     font-size: 10px; /* Even smaller text for very small screens */
   }
+=======
+.sidebarLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+>>>>>>> cfd84e7239fc0925c3853d9b2bc03cb8b176f449
 }

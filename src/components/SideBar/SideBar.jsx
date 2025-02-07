@@ -1,12 +1,11 @@
-// filepath: /d:/github/akram/RNAQES-Frontend-/src/components/SideBar/SideBar.jsx
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import styles from './SideBar.module.css';
 import FolderIcon from '../../assets/icons/folder-open.svg';
 import EyeIcon from '../../assets/icons/eye.svg';
 import FolderIcon2 from '../../assets/icons/folder-open2.svg';
 import EyeIcon2 from '../../assets/icons/eye2.svg';
 import ExitIcon from '../../assets/icons/exit.png';
-
 
 export default function Sidebar() {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false); // State for account menu visibility
@@ -26,48 +25,60 @@ export default function Sidebar() {
     <div className={styles.sidebar}>
       {/* Profile Picture */}
       <div className={styles.accountIcon} onClick={handleAccountClick}>
-        <img
-          src={profilePictureUrl}
-          alt="👤"
-          className={styles.profilePicture}
-          onError={(e) => {
-            e.target.style.display = 'none'; // Hide the image if it fails to load
-          }}
-        />
-        <span className={styles.itemName}>Ilyes Izmr</span>
-        <span className={styles.fallbackIcon}></span> {/* Fallback icon */}
+  <img
+    src={profilePictureUrl}
+    alt="👤"
+    className={styles.profilePicture}
+    onError={(e) => {
+      e.target.style.display = 'none'; // Hide the image if it fails to load
+    }}
+  />
+  <span className={styles.itemName}>Ilyes Izmr</span>
+  <span className={styles.fallbackIcon}></span> {/* Fallback icon */}
 
-        {/* Account Dropdown Menu */}
-        {isAccountMenuOpen && (
-          <div className={styles.accountMenu}>
-            <ul>
-              <li>
-                <button onClick={() => console.log('Profile clicked')}>Profile</button>
-              </li>
-              <li>
-                <button onClick={() => console.log('Settings clicked')}>Settings</button>
-              </li>
-            </ul>
-          </div>
-        )}
-      </div>
+  {/* Home and Settings Buttons */}
+  <div className={styles.accountButtons}>
+  <button className={styles.accountButton} onClick={() => console.log('Home clicked')}>
+    Home
+  </button>
+  <button className={styles.accountButton} onClick={() => console.log('Settings clicked')}>
+    Settings
+  </button>
+</div>
+
+  {/* Account Dropdown Menu */}
+  {isAccountMenuOpen && (
+    <div className={styles.accountMenu}>
+      <ul>
+        <li>
+          <button onClick={() => console.log('Profile clicked')}>Profile</button>
+        </li>
+        <li>
+          <button onClick={() => console.log('Settings clicked')}>Settings</button>
+        </li>
+      </ul>
+    </div>
+  )}
+</div>
 
       {/* Sidebar Items */}
-      <ul className={styles.sidebarItems}>
-        <li className={styles.sidebarItem}>
-          <span className={styles.iconContainer}>
-            <img src={EyeIcon} alt="Eye Icon" className={styles.eyeIcon} />
-            <img src={EyeIcon2} alt="Eye Icon 2" className={styles.eyeIcon2} />
-          </span>
-          <span className={styles.itemName}>Overview</span>
+      <li className={styles.sidebarItem}>
+          <Link to="/overview" className={styles.sidebarLink}>
+            <span className={styles.iconContainer}>
+              <img src={EyeIcon} alt="Eye Icon" className={styles.eyeIcon} />
+              <img src={EyeIcon2} alt="Eye Icon 2" className={styles.eyeIcon2} />
+            </span>
+            <span className={styles.itemName}>Overview</span>
+          </Link>
         </li>
+      <ul className={styles.sidebarItems}>
+      
         <li className={styles.sidebarItem}>
           <span className={styles.iconContainer}>
             <img src={FolderIcon} alt="Folder Icon" className={styles.folderIcon} />
             <img src={FolderIcon2} alt="Folder Icon 2" className={styles.folderIcon2} />
           </span>
-          <span className={styles.itemName}>Politique D’ouverture 
-            internationale</span>
+          <span className={styles.itemName}>Politique D’ouverture internationale</span>
         </li>
         <li className={styles.sidebarItem}>
           <span className={styles.iconContainer}>
