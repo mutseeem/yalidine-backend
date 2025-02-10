@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
 import styles from './CollapsibleSection.module.css';
+import FaAngleDown from '../../assets/icons/angle-circle-down.svg';
+import FaAngleRight from '../../assets/icons/angle-circle-right.svg';
 
-// this code is for collapsible component functionality 
+const CollapsibleSection = ({ title, icon, indicator, category, children }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-export default function CollapsibleSection({ title, children }) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const toggleSection = () => {
+    setIsOpen((prev) => !prev);
+  };
 
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-  }; 
+  // Assign a fill color based on the category
+  const iconClass =
+    category === 'category1'
+      ? styles['icon-orange']
+      : category === 'category2'
+      ? styles['icon-blue']
+      : styles['icon-purple'];
 
   return (
     <div className={styles.section}>
-      <div className={styles.header} onClick={toggleCollapse}> 
-        <h2>{title}</h2>
-        <button className={styles.collapseButton}>
-          {isCollapsed ? 'Expand' : 'Collapse'}
-        </button>
+      {/* Header */}
+      <div className={styles.header} onClick={toggleSection} role="button" aria-expanded={isOpen}>
+        <div className={styles.iconContainer}>
+          <img src={isOpen ? FaAngleDown : FaAngleRight} alt="toggle" className={`${styles.icon} ${iconClass}`} />
+        </div>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.indicator}>{indicator}</div>
       </div>
-      {!isCollapsed && <div className={styles.content}>{children}</div>}
+
+      {/* Expandable Content */}
+      {isOpen && <div className={styles.content}>{children}</div>}
     </div>
   );
-}
+};
+
+export default CollapsibleSection;
