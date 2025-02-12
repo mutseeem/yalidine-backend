@@ -23,63 +23,31 @@ export default function Subsection({ title, files, graphs }) {
     <div className={styles.subsection}>
       <h3>{title}</h3>
 
-      {/* Display Files */}
+      {/* Files Section */}
       {files && (
         <div className={styles.files}>
           {files.map((file, index) => (
             <div key={index} className={styles.file}>
-              <span className={styles.fileName}>{file.name}</span>
-              <span className={styles.fileSize}>{file.size}</span>
-              <a href={file.url} download className={styles.downloadLink}>
-                Download
-              </a>
+              <img src={`/icons/${file.type}.svg`} alt="File Icon" />
+              <div>
+                <span className={styles.fileName}>{file.name}</span>
+                <span className={styles.fileSize}>{file.size}</span>
+                {file.unavailable && <span className={styles.unavailable}>(Unavailable)</span>}
+              </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* Display Graphs */}
+      {/* Graphs Section */}
       {graphs && (
         <div className={styles.graphs}>
           {graphs.map((graph, index) => (
             <div key={index} className={styles.graph}>
               <h4>{graph.title}</h4>
-              {graph.type === 'bar' && (
-                <Bar
-                  data={graph.data}
-                  options={{
-                    responsive: true,
-                    plugins: {
-                      legend: { position: 'top' },
-                      title: { display: true, text: graph.title },
-                    },
-                  }}
-                />
-              )}
-              {graph.type === 'line' && (
-                <Line
-                  data={graph.data}
-                  options={{
-                    responsive: true,
-                    plugins: {
-                      legend: { position: 'top' },
-                      title: { display: true, text: graph.title },
-                    },
-                  }}
-                />
-              )}
-              {graph.type === 'pie' && (
-                <Pie
-                  data={graph.data}
-                  options={{
-                    responsive: true,
-                    plugins: {
-                      legend: { position: 'top' },
-                      title: { display: true, text: graph.title },
-                    },
-                  }}
-                />
-              )}
+              {graph.type === 'bar' && <Bar data={graph.data} />}
+              {graph.type === 'line' && <Line data={graph.data} />}
+              {graph.type === 'pie' && <Pie data={graph.data} />}
             </div>
           ))}
         </div>

@@ -1,76 +1,87 @@
 .subsection {
-    margin-bottom: 20px;
-  }
-  
-  .subsection h3 {
-    margin: 0 0 10px 0;
-    font-size: 16px;
-    color: #333;
-  }
-  
+  background: #F4F9FF; /* Light blue background */
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subsection h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E3A56;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.subsection h3::before {
+  content: "🔵"; /* Placeholder icon, replace with actual */
+  margin-right: 10px;
+}
+
+.files {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.file {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.file img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.fileName {
+  font-weight: 500;
+  flex: 1;
+}
+
+.fileSize {
+  color: #888;
+  font-size: 12px;
+}
+
+.unavailable {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.graphs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.graph {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.graph h4 {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .files {
-    margin-bottom: 20px;
+    grid-template-columns: 1fr;
   }
-  
-  .file {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .fileName {
-    flex: 1;
-    font-weight: bold;
-  }
-  
-  .fileSize {
-    margin: 0 10px;
-    color: #666;
-  }
-  
-  .downloadLink {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .downloadLink:hover {
-    text-decoration: underline;
-  }
-  
   .graphs {
-    margin-bottom: 20px;
+    grid-template-columns: 1fr;
   }
-  
-  .graph {
-    margin-bottom: 20px;
-  }
-  
-  .graph h4 {
-    margin: 0 0 10px 0;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table th,
-  table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  table th {
-    background-color: #f4f4f4;
-  }
-  
-  .chartPlaceholder {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    text-align: center;
-  }
+}

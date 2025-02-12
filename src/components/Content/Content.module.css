@@ -75,6 +75,7 @@
 
 .insightsTable th:nth-child(1) {
   width: 20%; /* Adjust as needed */
+  padding-right: 95px;
 }
 
 .insightsTable th:nth-child(2) {
@@ -95,7 +96,7 @@
 }
 
 .insightsTable th:nth-child(2) {
-  padding-left: 30px;
+  padding-right: 55px;
 }
 
 .insightsTable th,
@@ -108,15 +109,15 @@
   font-weight: 500;
   color: #333333b2;
   background-color: transparent;
-  border-bottom: 0.25px solid rgba(0, 0, 0, 0.144); /* Add a bottom border to the th elements */
-  border-radius: 0;
+  border-bottom: 0.25px solid rgba(0, 0, 0, 0.199);
+  
 }
 
-.insightsTable td {
+.insightsTable td{
   font-size: 16px;
   font-weight: 600;
   color: #000000;
-  border-top: 0.25px solid rgba(0, 0, 0, 0.199);
+  
   border-bottom: 0.25px solid rgba(0, 0, 0, 0.199);
 }
 
