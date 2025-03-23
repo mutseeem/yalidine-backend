@@ -1,0 +1,123 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative; /* Ensure the navbar is a positioning context */
+}
+
+/* Left section of the navbar */
+.navbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Consistent spacing between elements */
+}
+
+.appIcon {
+  width: 16px;
+  height: 16px;
+  fill: #1E1E1E; /* Icon color */
+}
+
+.champsText {
+  font-size: 18px;
+  font-weight: 400; /* Lighter font weight */
+  color: #1E1E1E; /* Text color */
+  margin: 0; /* Remove default margin */
+}
+
+/* Right section of the navbar */
+.navbarRight {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Consistent spacing between elements */
+}
+
+.searchBar {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  width: 200px; /* Default width */
+  transition: border-color 0.3s ease; /* Smooth transition for focus */
+}
+
+.searchBar:focus {
+  border-color: #007bff; /* Highlight the search bar when focused */
+}
+
+.menuIcon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #1E1E1E; /* Icon color */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+.menuIcon:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+/* Dropdown menu */
+.menuItems {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  top: 100%; /* Position below the navbar */
+  right: 0;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 10; /* Ensure the dropdown appears above other content */
+}
+
+.menuItems.active {
+  display: flex; /* Show the dropdown when active */
+}
+
+.menuItems a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+.menuItems a:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px; /* Reduce padding on smaller screens */
+  }
+
+  .searchBar {
+    width: 150px; /* Reduce search bar width */
+  }
+
+  .champsText {
+    font-size: 16px; /* Reduce font size */
+  }
+
+  .menuIcon {
+    font-size: 20px; /* Reduce menu icon size */
+  }
+}
+
+@media (max-width: 480px) {
+  .searchBar {
+    width: 120px; /* Further reduce search bar width */
+  }
+
+  .champsText {
+    font-size: 14px; /* Further reduce font size */
+  }
+
+  .navbarRight {
+    gap: 10px; /* Reduce gap between elements */
+  }
+}

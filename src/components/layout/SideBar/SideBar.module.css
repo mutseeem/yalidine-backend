@@ -1,43 +1,40 @@
+:root{
+
+
+  
+}
+
+
+
+/* --- Sidebar Base Styles --- */
 .sidebar {
-  width: 50px; /* Minimized width */
-  background-color: #00141B;
+  width: 72px; /* Minimized width */
+  background-color: #00141B; /* Dark background */
   padding: 20px 10px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease; /* Smooth transition for width */
   overflow: hidden; /* Hide overflow when minimized */
-  position: relative; /* Needed for absolute positioning of the logout button */
+  position: fixed; /* Fixed position for better responsiveness */
+  height: 100vh; /* Full height */
+  z-index: 1000; /* Ensure it stays on top */
 }
 
+/* Expand sidebar on hover */
 .sidebar:hover {
-  width: 322px; /* Expanded width */
-
+  width: 336px; /* Expanded width */
 }
 
 /* --- Profile Section --- */
-.accountIcon {
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-  gap : 10px;
-  flex-direction: row; /* Ensure icons are in the same line */
-  margin-left: -4px;
-}
 .profileContainer {
   display: flex;
   align-items: center;
   gap: 10px; /* Space between icon and name */
   padding: 10px;
   transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
   cursor: pointer;
-   /* Move the container a bit to the left */
 }
+
 .profilePicture {
-  display: flex;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -47,8 +44,8 @@
 }
 
 /* Expand Profile Picture when Sidebar Expands */
-.sidebar.expanded .profilePicture {
-  width: 60px; /* Adjust to desired size */
+.sidebar:hover .profilePicture {
+  width: 60px;
   height: 60px;
 }
 
@@ -60,52 +57,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
 }
 
 /* Show fallback icon when image fails to load */
 .accountIcon img:empty + .fallbackIcon,
 .accountIcon img:not([src]) + .fallbackIcon {
   display: block;
-
-}
-
-/* Account Dropdown */
-.accountMenu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  z-index: 10;
-  min-width: 150px;
-  margin-top: 5px;
-  display: none;
-}
-
-.accountMenu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.accountMenu li {
-  padding: 10px;
-}
-
-.accountMenu button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  width: 100%;
-  text-align: left;
-}
-
-.accountMenu button:hover {
-  background-color: #f0f0f0;
 }
 
 /* Profile Section */
@@ -210,9 +167,9 @@
   visibility: hidden;
   transition: opacity 0.05s ease, visibility 0.05s ease; /* Super fast transition */
   white-space: nowrap;
-  font-size: 14px; 
+  font-size: 14px;
   font-weight: 500;
-  color: #f0f0f0;
+  color: #ffffff;
   margin-left: 5px; /* Reduce gap between itemName and icon */
   min-width: 50px; /* Ensure the gap is maintained */
   display: inline-block; /* Ensure the gap is maintained */
@@ -222,7 +179,6 @@
 .sidebar:hover .itemName {
   opacity: 1;
   visibility: visible;
-  width: auto; /* Show text on hover */
 }
 
 /* --- Logout Button --- */
@@ -238,7 +194,6 @@
 
 .sidebar:hover .logoutContainer {
   width: 322px; /* Expanded width to match expanded sidebar */
-  
 }
 
 .logoutButton {
@@ -283,9 +238,9 @@
   opacity: 1;
 }
 
-/* Specific styles for FolderIcon, EyeIcon, and ExitIcon */
+/* --- Icon Specific Styles --- */
 .folderIcon, .eyeIcon, .exitIcon {
-  width: 30px; /* Keep size */
+  width: 30px;
   height: 30px;
   filter: brightness(0) invert(1); /* Always white */
   transition: filter 0.3s ease;
@@ -301,7 +256,7 @@
 }
 
 .exitIcon {
-  width: 30px; /* Keep size */
+  width: 30px;
   height: 30px;
   filter: brightness(0) invert(1); /* Always white */
   transition: filter 0.3s ease;
@@ -319,7 +274,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 30px; /* Keep size */
+  width: 30px;
   height: 30px;
   transition: opacity 0.3s ease;
 }
@@ -356,10 +311,12 @@
   opacity: 1; /* Show on hover */
 }
 
+
 .sidebarLink {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
   width: 100%;
+
 }

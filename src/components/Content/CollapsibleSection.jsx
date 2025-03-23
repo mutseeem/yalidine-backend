@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './CollapsibleSection.module.css';
 import FaAngleDown from '../../assets/icons/angle-circle-down.svg';
 import FaAngleRight from '../../assets/icons/angle-circle-right.svg';
