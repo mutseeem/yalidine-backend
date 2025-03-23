@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import styles from './SideBar.module.css';
 import FolderIcon from '../../assets/icons/folder-open.svg';
@@ -6,6 +5,7 @@ import EyeIcon from '../../assets/icons/eye.svg';
 import FolderIcon2 from '../../assets/icons/folder-open2.svg';
 import EyeIcon2 from '../../assets/icons/eye2.svg';
 import ExitIcon from '../../assets/icons/exit.png';
+import { useState } from 'react';
 
 export default function Sidebar() {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false); // State for account menu visibility
@@ -19,7 +19,7 @@ export default function Sidebar() {
     alert('Logout successful!'); // Optional: Show a confirmation message
   };
 
-  const profilePictureUrl = './src/assets/ilyesHHH.png';
+  const profilePictureUrl = './src/assets/profile.jpg'; // Replace with the URL of the user's profile picture
 
   return (
     <div className={styles.sidebar}>

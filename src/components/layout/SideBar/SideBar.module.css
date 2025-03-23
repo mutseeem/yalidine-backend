@@ -1,3 +1,11 @@
+:root{
+
+
+  
+}
+
+
+
 /* --- Sidebar Base Styles --- */
 .sidebar {
   width: 72px; /* Minimized width */
@@ -303,76 +311,12 @@
   opacity: 1; /* Show on hover */
 }
 
-<<<<<<< HEAD
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 56px; /* Smaller minimized width for mobile */
-  }
 
-  .sidebar:hover {
-    width: 250px; /* Smaller expanded width for mobile */
-  }
-
-  .profilePicture {
-    width: 30px;
-    height: 30px;
-  }
-
-  .sidebar:hover .profilePicture {
-    width: 40px;
-    height: 40px;
-  }
-
-  .icon {
-    font-size: 18px; /* Smaller icons for mobile */
-  }
-
-  .itemName {
-    font-size: 12px; /* Smaller text for mobile */
-  }
-
-  .logoutContainer {
-    width: 100%; /* Full width for mobile */
-  }
-
-  .sidebar:hover .logoutContainer {
-    width: 100%; /* Full width for mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebar {
-    width: 48px; /* Even smaller minimized width for very small screens */
-  }
-
-  .sidebar:hover {
-    width: 200px; /* Smaller expanded width for very small screens */
-  }
-
-  .profilePicture {
-    width: 24px;
-    height: 24px;
-  }
-
-  .sidebar:hover .profilePicture {
-    width: 32px;
-    height: 32px;
-  }
-
-  .icon {
-    font-size: 16px; /* Even smaller icons for very small screens */
-  }
-
-  .itemName {
-    font-size: 10px; /* Even smaller text for very small screens */
-  }
-=======
 .sidebarLink {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
   width: 100%;
->>>>>>> cfd84e7239fc0925c3853d9b2bc03cb8b176f449
+
 }

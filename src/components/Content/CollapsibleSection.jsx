@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './CollapsibleSection.module.css';
 
 // this code is for collapsible component functionality 

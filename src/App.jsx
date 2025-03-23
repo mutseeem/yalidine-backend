@@ -1,9 +1,8 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/SideBar/SideBar';
-{/*import NavBar from './components/NavBar/NavBar';*/}
+import Sidebar from './components/layout/SideBar/SideBar';
+//import NavBar from './components/layout/NavBar/NavBar';
 import Overview from './components/Content/overview';
-import Content from './components/Content/Content'; // Your existing content page
+import Content from './components/Content/Content'; 
 import './App.css';
 
 function App() {
@@ -11,7 +10,7 @@ function App() {
     <Router>
       <div className="app">
         <Sidebar />
-        {/*<NavBar /> */}
+        {/*<NavBar />*/}
         <Routes>
           <Route path="/" element={<Content />} /> {/* Default page */}
           <Route path="/overview" element={<Overview />} /> {/* Overview page */}
