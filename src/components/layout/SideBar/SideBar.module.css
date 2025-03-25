@@ -4,7 +4,7 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 80px; /* Collapsed width */
+  width: 70px; /* Collapsed width */
   background: #ffffff;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05);
   display: flex;
@@ -16,7 +16,7 @@
 }
 
 .sidebar.expanded {
-  width: 240px; /* Expanded width */
+  width: 280px ; /* Expanded width */
 }
 
 /* Header Styles */
@@ -197,4 +197,100 @@ body {
   height: 1px;
   background-color: #f0f0f0;
   margin: 12px 16px;
+}
+
+
+/* Account Section */
+.accountSection {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+  cursor: pointer;
+  margin-top: auto; /* Push to bottom */
+}
+
+/* Adjusted for correct spacing */
+.sidebar.expanded .accountSection:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Profile Picture */
+.profilePicture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f0f0f0;
+}
+
+/* User Details (Only visible in expanded mode) */
+.userDetails {
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  width: 0;
+  transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+
+.sidebar.expanded .userDetails {
+  opacity: 1;
+  width: auto;
+}
+
+/* Name & Email */
+.itemName {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(31, 31, 31);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.itemUserName{
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(31, 31, 31);
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 1px;
+}
+
+.itemEmail {
+  font-size: 11px;
+  color: #383838;
+  white-space: nowrap;
+  overflow: hidden;
+  
+}
+
+/* Logout Button */
+.logoutButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto; /* Push the logout button to the far right */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Fixed width for the button */
+  height: 40px; /* Fixed height for the button */
+  opacity: 0; /* Hidden by default */
+  transform: scale(0.8); /* Start with a smaller size */
+  transition: opacity var(--transition-speed), transform var(--transition-speed);
+}
+
+.sidebar.expanded .logoutButton {
+  opacity: 1; /* Fully visible when expanded */
+  transform: scale(1); /* Full size when expanded */
+}
+
+.logoutIcon {
+  width: 24px; /* Icon size */
+  height: 24px;
+  object-fit: contain;
 }

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './SideBar.module.css';
 import { useState } from 'react';
-import { 
+import {
   FolderIcon, FolderFocusIcon,
   HomeIcon, HomeFocusIcon,
   EyeIcon, EyeFocusIcon,
@@ -10,152 +10,76 @@ import {
 } from '../../../assets/icons/icons';
 import Profile from '../../../assets/images/profile.png';
 
-export default function Sidebar() {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isMenuActive, setIsMenuActive] = useState(false); // Active state for Menu button
-  const [isLogoutActive, setIsLogoutActive] = useState(false); // Active state for Logout button
-
+export default function Sidebar({ isExpanded, setIsExpanded }) {
   const toggleSidebar = () => setIsExpanded(!isExpanded);
-
-  const handleLogout = () => {
-    setIsLogoutActive(true); // Highlight logout button
-    alert('Logout successful!');
-  };
 
   return (
     <div className={`${styles.sidebar} ${isExpanded ? styles.expanded : ''}`}>
-      {/* Header with Menu Button */}
+      {/* Header */}
       <div className={styles.header}>
         <img src={AppLogo} alt="App Logo" className={styles.appLogo} />
         <span className={styles.brandName}>RNAQES</span>
       </div>
 
-      {/* Navigation Items */}
+      {/* Navigation Links */}
       <ul className={styles.sidebarItems}>
-        {/* Menu Button */}
+        {/* Menu Toggle */}
         <li className={styles.sidebarItem}>
-        <div
-          className={`${styles.sidebarLink} ${styles.noHover}`} // Add a custom class to disable hover
-          onClick={() => {
-            setIsMenuActive(!isMenuActive); // Toggle Menu button state
-            toggleSidebar(); // Toggle sidebar state
-          }}
-        >
-          <div className={styles.iconContainer}>
-            {/* Show default icon when inactive, focus icon when active */}
-            <img
-              src={isMenuActive ? MenuIconFocus : MenuIcon}
-              alt="Menu"
-              className={styles.sidebarIcon}
-            />
+          <div className={styles.sidebarLink} onClick={toggleSidebar}>
+            <div className={styles.iconContainer}>
+              <img
+                src={isExpanded ? MenuIconFocus : MenuIcon}
+                alt="Menu"
+                className={styles.sidebarIcon}
+              />
+            </div>
+            <span className={styles.itemName}>Menu</span>
           </div>
-          <span className={styles.itemName}>Menu</span>
-        </div>
-      </li>
-
-        {/* Home Link */}
-        <li className={styles.sidebarItem}>
-          <NavLink
-            to="/"
-            exact
-            className={({ isActive }) =>
-              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            <span className={styles.iconContainer}>
-              <img src={HomeIcon} alt="Home" className={styles.sidebarIcon} />
-              <img src={HomeFocusIcon} alt="Home Active" className={styles.sidebarIconFocus} />
-            </span>
-            <span className={styles.itemName}>Home</span>
-          </NavLink>
         </li>
 
-        {/* Separator */}
-        <div className={styles.separator}></div>
+        {/* Dynamic Sidebar Links */}
+        {[
+          { path: '/', name: 'Home', icons: [HomeIcon, HomeFocusIcon] },
+          { path: '/overview', name: 'Overview', icons: [EyeIcon, EyeFocusIcon] },
+          { path: '/politique', name: 'Politique D\'ouverture', icons: [FolderIcon, FolderFocusIcon] },
+          { path: '/partenariat', name: 'Partenariat et mobilité', icons: [FolderIcon, FolderFocusIcon] },
+          { path: '/connaissances', name: 'Échange de connaissances', icons: [FolderIcon, FolderFocusIcon] },
+        ].map(({ path, name, icons }, index) => (
+          <>
+            <li className={styles.sidebarItem} key={path}>
+              <NavLink
+                to={path}
+                className={({ isActive }) => `${styles.sidebarLink} ${isActive ? styles.active : ''}`}
+              >
+                <span className={styles.iconContainer}>
+                  <img src={icons[0]} alt={name} className={styles.sidebarIcon} />
+                  <img src={icons[1]} alt={`${name} Active`} className={styles.sidebarIconFocus} />
+                </span>
+                <span className={styles.itemName}>{name}</span>
+              </NavLink>
+            </li>
 
-        {/* Overview Link */}
-        <li className={styles.sidebarItem}>
-          <NavLink
-            to="/overview"
-            className={({ isActive }) =>
-              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            <span className={styles.iconContainer}>
-              <img src={EyeIcon} alt="Overview" className={styles.sidebarIcon} />
-              <img src={EyeFocusIcon} alt="Overview Active" className={styles.sidebarIconFocus} />
-            </span>
-            <span className={styles.itemName}>Overview</span>
-          </NavLink>
-        </li>
-
-        {/* Politique Link */}
-        <li className={styles.sidebarItem}>
-          <NavLink
-            to="/politique"
-            className={({ isActive }) =>
-              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            <span className={styles.iconContainer}>
-              <img src={FolderIcon} alt="Politique" className={styles.sidebarIcon} />
-              <img src={FolderFocusIcon} alt="Politique Active" className={styles.sidebarIconFocus} />
-            </span>
-            <span className={styles.itemName}>Politique D'ouverture</span>
-          </NavLink>
-        </li>
-
-        {/* Partenariat Link */}
-        <li className={styles.sidebarItem}>
-          <NavLink
-            to="/partenariat"
-            className={({ isActive }) =>
-              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            <span className={styles.iconContainer}>
-              <img src={FolderIcon} alt="Partenariat" className={styles.sidebarIcon} />
-              <img src={FolderFocusIcon} alt="Partenariat Active" className={styles.sidebarIconFocus} />
-            </span>
-            <span className={styles.itemName}>Partenariat et mobilité</span>
-          </NavLink>
-        </li>
-
-        {/* Connaissances Link */}
-        <li className={styles.sidebarItem}>
-          <NavLink
-            to="/connaissances"
-            className={({ isActive }) =>
-              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
-            }
-          >
-            <span className={styles.iconContainer}>
-              <img src={FolderIcon} alt="Connaissances" className={styles.sidebarIcon} />
-              <img src={FolderFocusIcon} alt="Connaissances Active" className={styles.sidebarIconFocus} />
-            </span>
-            <span className={styles.itemName}>Échange de connaissances</span>
-          </NavLink>
-        </li>
+            {/* Add Separator After "Home" */}
+            {index === 0 && <li className={styles.separator}></li>}
+          </>
+        ))}
       </ul>
 
       {/* Footer Section */}
-      <div className={styles.separator}></div>
+      <li className={styles.separator}></li>
       <div className={styles.footer}>
-        {/* Account Section */}
         <div className={styles.accountSection}>
-          <img src={Profile} alt="Profile" className={styles.profilePicture} />
-          <span className={styles.itemName}>Ilyes Izmr</span>
+          <img src={Profile} alt="User Profile" className={styles.profilePicture} />
+          {isExpanded && (
+            <div className={styles.userDetails}>
+              <span className={styles.itemUserName}>Ilyes Izmr</span>
+              <span className={styles.itemEmail}>i.izemmouren@gmail.com</span>
+            </div>
+          )}
+          <div className={styles.logoutButton} onClick={() => alert('Logout successful!')}>
+            <img src={ExitIcon} alt="Logout" className={styles.logoutIcon} />
+          </div>
         </div>
-
-        {/* Logout Button */}
-        <button
-          className={`${styles.logoutButton} ${isLogoutActive ? styles.active : ''}`}
-          onClick={handleLogout}
-        >
-          <span className={styles.iconContainer}>
-            <img src={ExitIcon} alt="Logout" className={styles.sidebarIcon} />
-          </span>
-        </button>
       </div>
     </div>
   );

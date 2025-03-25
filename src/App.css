@@ -1,11 +1,38 @@
-.app {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
+/* App Container */
+.app-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
 
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 70px; /* Collapsed width */
+  background: #ffffff;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05);
+  transition: width 0.3s ease-in-out; /* Smooth width transition */
+  z-index: 100;
+  overflow: hidden; /* Prevent overflow */
+  border-right: 1px solid #f0f0f0;
+}
+
+.sidebar.expanded {
+  width: 280px; /* Expanded width */
+}
+
+/* Main Content Styles */
+.main-content {
+  flex-grow: 1;
+  margin-left: 70px; /* Default: collapsed sidebar */
+  transition: margin-left 0.3s ease-in-out; /* Smooth margin transition */
+  padding: 20px;
+}
+
+.main-content.expanded {
+  margin-left: 280px; /* Adjust margin for expanded sidebar */
+}
