@@ -1,125 +1,158 @@
-import { Link } from 'react-router-dom'; 
+import { NavLink } from 'react-router-dom';
 import styles from './SideBar.module.css';
-
-// Import Icons from the icons.js in the assests/icons/icon.js folder 
+import { useState } from 'react';
 import { 
-  FolderIcon , FolderFocusIcon, 
-  HomeIcon , HomeFocusIcon, 
-  SettingsIcon , SettingsFocusIcon, 
-  EyeIcon , EyeFocusIcon,
-  ExitIcon
-}from '../../../assets/icons/icons';
-
+  FolderIcon, FolderFocusIcon,
+  HomeIcon, HomeFocusIcon,
+  EyeIcon, EyeFocusIcon,
+  MenuIcon, MenuIconFocus,
+  ExitIcon, AppLogo
+} from '../../../assets/icons/icons';
 import Profile from '../../../assets/images/profile.png';
 
-import { useState } from 'react'; 
-
 export default function Sidebar() {
-  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false); // State to manage account menu visibility 
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState(false); // Active state for Menu button
+  const [isLogoutActive, setIsLogoutActive] = useState(false); // Active state for Logout button
 
+  const toggleSidebar = () => setIsExpanded(!isExpanded);
 
-  const handleAccountClick = () => {
-    setIsAccountMenuOpen(!isAccountMenuOpen); // Toggle account menu state 
-  };
-
-  
-  //TODO: Implement actual logout logic later 
   const handleLogout = () => {
-    console.log('User logged out');  
-    alert('Logout successful!');    
+    setIsLogoutActive(true); // Highlight logout button
+    alert('Logout successful!');
   };
-
-  //TODO: Profile Picture URL
-  const profilePictureUrl = Profile ;
 
   return (
-    <div className={styles.sidebar}>
-      {/* Profile Picture */}
-      <div className={styles.accountIcon} /*onClick={handleAccountClick}*/>
-        <img
-          src={profilePictureUrl}
-          //TODO: by defualt show no profile pictureIcon 
-          alt="👤"
-          className={styles.profilePicture}
-          onError={(e) => {
-            e.target.style.display = 'none'; // Hide the image if it fails to load
-          }}
-        />
-
-        {/*TODO: get the name using an API*/}
-        <span className={styles.itemName}>Ilyes Izmr</span>
-        {/*TODO: WHAT IS THIS ??? */}
-        <span className={styles.fallbackIcon}></span> {/* Fallback icon */}
-
-        {/*FIXME: HOME : change it into a dev <clickable icon> instead of a button*/}
-        <div className={styles.accountButtons}>
-          <button className={styles.accountButton} onClick={() => console.log('Home clicked')}>
-            Home
-          </button>
-
-          {/*FIXME: Settings : change it into a dev <clickable icon> instead of a button*/}
-          <button className={styles.accountButton} onClick={() => console.log('Settings clicked')}>
-            Settings
-          </button>
-        </div>
-
-        {/*TODO: this should be a comment*/}
-        {isAccountMenuOpen && (
-          <div className={styles.accountMenu}>
-            <ul>
-              <li>
-                <button onClick={() => console.log('Profile clicked')}>Profile</button>
-              </li>
-              <li>
-                <button onClick={() => console.log('Settings clicked')}>Settings</button>
-              </li>
-            </ul>
-          </div>
-        )}
+    <div className={`${styles.sidebar} ${isExpanded ? styles.expanded : ''}`}>
+      {/* Header with Menu Button */}
+      <div className={styles.header}>
+        <img src={AppLogo} alt="App Logo" className={styles.appLogo} />
+        <span className={styles.brandName}>RNAQES</span>
       </div>
 
-      {/* Sidebar Items */}
-      <li className={styles.sidebarItem}>
-        <Link to="/overview" className={styles.sidebarLink}>
-          <span className={styles.iconContainer}>
-            <img src={EyeIcon} alt="Eye Icon" className={styles.eyeIcon} />
-            <img src={EyeFocusIcon} alt="Eye Icon 2" className={styles.eyeIcon2} />
-          </span>
-          <span className={styles.itemName}>Overview</span>
-        </Link>
-      </li>
-
+      {/* Navigation Items */}
       <ul className={styles.sidebarItems}>
+        {/* Menu Button */}
         <li className={styles.sidebarItem}>
-          <span className={styles.iconContainer}>
-            <img src={FolderIcon} alt="Folder Icon" className={styles.folderIcon} />
-            <img src={FolderFocusIcon} alt="Folder Icon 2" className={styles.folderIcon2} />
-          </span>
+          <div
+            className={`${styles.sidebarLink} ${isMenuActive ? styles.active : ''}`}
+            onClick={() => {
+              setIsMenuActive(true); // Highlight menu button
+              toggleSidebar();
+            }}
+          >
+            <div className={styles.iconContainer}>
+              <img src={MenuIcon} alt="Menu" className={styles.sidebarIcon} />
+              <img src={MenuIconFocus} alt="Menu Focus" className={styles.sidebarIconFocus} />
+            </div>
+            <span className={styles.itemName}>Menu</span>
+          </div>
+        </li>
 
-          <span className={styles.itemName}>Politique D’ouverture internationale</span>
-        </li>
+        {/* Home Link */}
         <li className={styles.sidebarItem}>
-          <span className={styles.iconContainer}>
-            <img src={FolderIcon} alt="Folder Icon" className={styles.folderIcon} />
-            <img src={FolderFocusIcon} alt="Folder Icon 2" className={styles.folderIcon2} />
-          </span>
-          <span className={styles.itemName}>Partenariat et mobillté</span>
+          <NavLink
+            to="/"
+            exact
+            className={({ isActive }) =>
+              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
+            }
+          >
+            <span className={styles.iconContainer}>
+              <img src={HomeIcon} alt="Home" className={styles.sidebarIcon} />
+              <img src={HomeFocusIcon} alt="Home Active" className={styles.sidebarIconFocus} />
+            </span>
+            <span className={styles.itemName}>Home</span>
+          </NavLink>
         </li>
+
+        {/* Separator */}
+        <div className={styles.separator}></div>
+
+        {/* Overview Link */}
         <li className={styles.sidebarItem}>
-          <span className={styles.iconContainer}>
-            <img src={FolderIcon} alt="Folder Icon" className={styles.folderIcon} />
-            <img src={FolderFocusIcon} alt="Folder Icon 2" className={styles.folderIcon2} />
-          </span>
-           <span className={styles.itemName}>Échange de connaissances et <br /> mutualisation des ressources</span>
+          <NavLink
+            to="/overview"
+            className={({ isActive }) =>
+              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
+            }
+          >
+            <span className={styles.iconContainer}>
+              <img src={EyeIcon} alt="Overview" className={styles.sidebarIcon} />
+              <img src={EyeFocusIcon} alt="Overview Active" className={styles.sidebarIconFocus} />
+            </span>
+            <span className={styles.itemName}>Overview</span>
+          </NavLink>
+        </li>
+
+        {/* Politique Link */}
+        <li className={styles.sidebarItem}>
+          <NavLink
+            to="/politique"
+            className={({ isActive }) =>
+              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
+            }
+          >
+            <span className={styles.iconContainer}>
+              <img src={FolderIcon} alt="Politique" className={styles.sidebarIcon} />
+              <img src={FolderFocusIcon} alt="Politique Active" className={styles.sidebarIconFocus} />
+            </span>
+            <span className={styles.itemName}>Politique D'ouverture</span>
+          </NavLink>
+        </li>
+
+        {/* Partenariat Link */}
+        <li className={styles.sidebarItem}>
+          <NavLink
+            to="/partenariat"
+            className={({ isActive }) =>
+              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
+            }
+          >
+            <span className={styles.iconContainer}>
+              <img src={FolderIcon} alt="Partenariat" className={styles.sidebarIcon} />
+              <img src={FolderFocusIcon} alt="Partenariat Active" className={styles.sidebarIconFocus} />
+            </span>
+            <span className={styles.itemName}>Partenariat et mobilité</span>
+          </NavLink>
+        </li>
+
+        {/* Connaissances Link */}
+        <li className={styles.sidebarItem}>
+          <NavLink
+            to="/connaissances"
+            className={({ isActive }) =>
+              `${styles.sidebarLink} ${isActive ? styles.active : ''}`
+            }
+          >
+            <span className={styles.iconContainer}>
+              <img src={FolderIcon} alt="Connaissances" className={styles.sidebarIcon} />
+              <img src={FolderFocusIcon} alt="Connaissances Active" className={styles.sidebarIconFocus} />
+            </span>
+            <span className={styles.itemName}>Échange de connaissances</span>
+          </NavLink>
         </li>
       </ul>
 
-      {/* Logout Button */}
-      <div className={styles.logoutContainer}>
-            <button className={styles.logoutButton} onClick={handleLogout}>
-              <span className={styles.icon}><img src={ExitIcon} alt="Exit Icon" className={styles.exitIcon} /></span>
-              <span className={styles.logoutText}>Logout</span>
-            </button>
+      {/* Footer Section */}
+      <div className={styles.separator}></div>
+      <div className={styles.footer}>
+        {/* Account Section */}
+        <div className={styles.accountSection}>
+          <img src={Profile} alt="Profile" className={styles.profilePicture} />
+          <span className={styles.itemName}>Ilyes Izmr</span>
+        </div>
+
+        {/* Logout Button */}
+        <button
+          className={`${styles.logoutButton} ${isLogoutActive ? styles.active : ''}`}
+          onClick={handleLogout}
+        >
+          <span className={styles.iconContainer}>
+            <img src={ExitIcon} alt="Logout" className={styles.sidebarIcon} />
+          </span>
+          <span className={styles.logoutText}>Logout</span>
+        </button>
       </div>
     </div>
   );
