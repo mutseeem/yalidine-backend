@@ -1,37 +1,148 @@
-:root{
-
-
-  
-}
-
-
-
-/* --- Sidebar Base Styles --- */
+/* Base Styles */
 .sidebar {
-  width: 72px; /* Minimized width */
-  background-color: #00141B; /* Dark background */
-  padding: 20px 10px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s ease; /* Smooth transition for width */
-  overflow: hidden; /* Hide overflow when minimized */
-  position: fixed; /* Fixed position for better responsiveness */
-  height: 100vh; /* Full height */
-  z-index: 1000; /* Ensure it stays on top */
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px; /* Collapsed width */
+  background: #ffffff;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+  overflow: hidden; /* Prevent overflow */
+  border-right: 1px solid #f0f0f0;
 }
 
-/* Expand sidebar on hover */
-.sidebar:hover {
-  width: 336px; /* Expanded width */
+.sidebar.expanded {
+  width: 240px; /* Expanded width */
 }
 
-/* --- Profile Section --- */
-.profileContainer {
+/* Header Styles */
+.header {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between icon and name */
-  padding: 10px;
-  transition: all 0.3s ease;
+  padding: 20px 16px;
+  margin-left: 5px;
+  position: relative;
+}
+
+.appLogo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.brandName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-left: 12px;
+  white-space: nowrap;
+  display: none; /* Hidden by default */
+  transition: opacity 0.2s;
+}
+
+.sidebar.expanded .brandName {
+  display: block; /* Visible when expanded */
+}
+
+/* Shared Icon Styles */
+.iconContainer {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.sidebarIcon,
+.sidebarIconFocus {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: all 0.2s ease;
   cursor: pointer;
+}
+
+.sidebarIconFocus {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Navigation Items */
+.sidebarItems {
+  flex: 1;
+  padding: 16px 0;
+  overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.sidebarItem {
+  margin: 4px 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.sidebarLink {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  width: 100%; /* Ensure it fits within the sidebar */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.itemName {
+  margin-left: 16px;
+  font-size: 0.875rem;
+  color: #555;
+  white-space: nowrap;
+  display: none; /* Hidden by default */
+  transition: opacity 0.2s;
+  font-weight: 500;
+}
+
+.sidebar.expanded .itemName {
+  display: inline-block; /* Visible when expanded */
+}
+
+/* Hover & Active States */
+.sidebarItem:hover {
+  background-color: #f9f9f9;
+}
+
+.sidebarItem:hover .sidebarIcon,
+.active .sidebarIcon {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.sidebarItem:hover .sidebarIconFocus,
+.active .sidebarIconFocus {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.active {
+  background-color: #f0f7ff;
+}
+
+.active .itemName {
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+/* Footer Section */
+
+
+.accountSection {
+  display: flex;
+  align-items: center;
+  padding: 16px;
 }
 
 .profilePicture {
@@ -39,284 +150,40 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  transition: width 0.3s ease, height 0.3s ease;
-  background-color: #ffffff;
+  border: 2px solid #f0f0f0;
 }
 
-/* Expand Profile Picture when Sidebar Expands */
-.sidebar:hover .profilePicture {
-  width: 60px;
-  height: 60px;
-}
-
-/* Fallback Profile Icon */
-.fallbackIcon {
-  font-size: 24px;
-  display: none; /* Hidden by default */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Show fallback icon when image fails to load */
-.accountIcon img:empty + .fallbackIcon,
-.accountIcon img:not([src]) + .fallbackIcon {
-  display: block;
-}
-
-/* Profile Section */
-.accountIcon {
-  position: relative;
-  display: flex;
-  flex-direction: column; /* Stack items vertically */
-  align-items: flex-start; /* Align items to the left */
-  padding: 10px;
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-  gap: 10px; /* Space between profile picture, name, and buttons */
-  margin-left: -4px;
-}
-
-.profileContainer {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Space between icon and name */
-  padding: 10px;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
-}
-
-/* Buttons under the profile picture */
-.accountButtons {
-  display: flex;
-  flex-direction: column; /* Stack buttons vertically */
-  gap: 8px; /* Space between buttons */
-  margin-top: 10px; /* Add some space between profile and buttons */
-  width: 100%; /* Ensure buttons take full width */
-}
-
-.accountButton {
-  background-color: #4CAF50; /* Green background */
-  border: none;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  width: 100%; /* Make buttons full width */
-  transition: background-color 0.3s ease;
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis (...) for overflowed text */
-}
-
-.accountButton:hover {
-  background-color: #45a049; /* Darker green on hover */
-}
-
-/* Optional: Expand buttons when sidebar is hovered */
-.sidebar:hover .accountButton {
-  width: auto; /* Allow buttons to expand to fit text */
-  padding: 10px 20px; /* Add more padding for better appearance */
-}
-/* --- Sidebar Items --- */
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebarItem {
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-  transition: background-color 0.3s ease;
-  user-select: none; /* Prevent text selection */
-  gap: 10px; /* Add gap between icon and text */
-}
-
-.sidebarItem:hover {
-  background-color: #41B8D5;
-  cursor: pointer;
-  border-radius: 8px; /* Add rounded borders on hover */
-}
-
-/* Icon Handling */
-.icon {
-  font-size: 20px;
-  flex-shrink: 0;
-  width: 100%;
-  text-align: center;
-}
-
-/* Expand icon and show text when hovered */
-.sidebar:hover .icon {
-  width: auto;
-  margin-right: 10px;
-}
-
-/* Hide text when minimized */
-.itemName {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.05s ease, visibility 0.05s ease; /* Super fast transition */
-  white-space: nowrap;
-  font-size: 14px;
-  font-weight: 500;
-  color: #ffffff;
-  margin-left: 5px; /* Reduce gap between itemName and icon */
-  min-width: 50px; /* Ensure the gap is maintained */
-  display: inline-block; /* Ensure the gap is maintained */
-}
-
-/* Show text on hover */
-.sidebar:hover .itemName {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* --- Logout Button --- */
-.logoutContainer {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-top: 1px solid #e0e0e0;
-  padding-top: 10px;
-  transition: width 0.3s ease; /* Smooth transition for width */
-}
-
-.sidebar:hover .logoutContainer {
-  width: 322px; /* Expanded width to match expanded sidebar */
-}
-
+/* Logout Button */
 .logoutButton {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px;
-  background-color: transparent;
+  background: none;
   border: none;
-  color: #333;
+  width: 100%;
+  padding: 10px 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, filter 0.3s ease;
-}
-
-.logoutButton:hover {
-  background-color: #41B8D5;
-  border-radius: 8px;
-}
-
-.logoutButton .icon {
-  font-size: 20px;
-  text-align: center;
-  filter: brightness(0) invert(1); /* Always white */
-  transition: filter 0.3s ease;
 }
 
 .logoutText {
-  color: #e0e0e0;
+  margin-left: 16px;
+  font-size: 0.875rem;
+  color: #555;
+  display: none; /* Hidden by default */
+  transition: opacity 0.2s;
 }
 
-/* Hide text when minimized */
-.logoutButton .logoutText {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  white-space: nowrap;
-  font-size: 14px;
-  font-weight: 500;
+.sidebar.expanded .logoutText {
+  display: inline-block; /* Visible when expanded */
 }
 
-/* Show text when sidebar is hovered */
-.sidebar:hover .logoutButton .logoutText {
-  opacity: 1;
+/* Prevent horizontal scrollbar on the body */
+body {
+  overflow-x: hidden; /* Remove horizontal scrollbar */
 }
 
-/* --- Icon Specific Styles --- */
-.folderIcon, .eyeIcon, .exitIcon {
-  width: 30px;
-  height: 30px;
-  filter: brightness(0) invert(1); /* Always white */
-  transition: filter 0.3s ease;
-}
-
-.folderIcon2, .eyeIcon2 {
-  filter: brightness(0) invert(1); /* Always white */
-  transition: filter 0.3s ease;
-}
-
-.sidebar:hover .folderIcon, .sidebar:hover .eyeIcon {
-  fill: #ffffff; /* Keep white color on hover */
-}
-
-.exitIcon {
-  width: 30px;
-  height: 30px;
-  filter: brightness(0) invert(1); /* Always white */
-  transition: filter 0.3s ease;
-}
-
-.iconContainer {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px; /* Add gap between icon and text */
-  margin-left: 10px; /* Add margin-left to align with profile icon */
-}
-
-.folderIcon, .eyeIcon, .folderIcon2, .eyeIcon2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30px;
-  height: 30px;
-  transition: opacity 0.3s ease;
-}
-
-.folderIcon2, .eyeIcon2 {
-  opacity: 0; /* Initially hidden */
-}
-
-.folderIcon, .eyeIcon {
-  opacity: 1; /* Initially visible */
-}
-
-.sidebar:hover .folderIcon2, .sidebar:hover .eyeIcon2 {
-  opacity: 1; /* Show on hover */
-}
-
-.sidebar:hover .folderIcon, .sidebar:hover .eyeIcon {
-  opacity: 0; /* Hide on hover */
-}
-
-.eyeIcon2 {
-  opacity: 1; /* Initially visible */
-}
-
-.eyeIcon {
-  opacity: 0; /* Initially hidden */
-}
-
-.sidebar:hover .eyeIcon2 {
-  opacity: 0; /* Hide on hover */
-}
-
-.sidebar:hover .eyeIcon {
-  opacity: 1; /* Show on hover */
-}
-
-
-.sidebarLink {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  width: 100%;
-
+/* Separator */
+.separator {
+  height: 1px;
+  background-color: #f0f0f0;
+  margin: 12px 16px;
 }
