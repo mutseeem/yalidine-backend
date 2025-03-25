@@ -106,6 +106,17 @@
   font-weight: 500;
 }
 
+/* Disable hover effects for the Menu button */
+.sidebarLink.noHover:hover .sidebarIcon,
+.sidebarLink.noHover:hover .sidebarIconFocus {
+  opacity: 1; /* Ensure icons remain visible */
+  transform: none; /* Prevent scaling */
+}
+
+.sidebarLink.noHover:hover {
+  background-color: transparent; /* No hover background */
+}
+
 .sidebar.expanded .itemName {
   display: inline-block; /* Visible when expanded */
 }

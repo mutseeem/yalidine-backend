@@ -34,20 +34,24 @@ export default function Sidebar() {
       <ul className={styles.sidebarItems}>
         {/* Menu Button */}
         <li className={styles.sidebarItem}>
-          <div
-            className={`${styles.sidebarLink} ${isMenuActive ? styles.active : ''}`}
-            onClick={() => {
-              setIsMenuActive(true); // Highlight menu button
-              toggleSidebar();
-            }}
-          >
-            <div className={styles.iconContainer}>
-              <img src={MenuIcon} alt="Menu" className={styles.sidebarIcon} />
-              <img src={MenuIconFocus} alt="Menu Focus" className={styles.sidebarIconFocus} />
-            </div>
-            <span className={styles.itemName}>Menu</span>
+        <div
+          className={`${styles.sidebarLink} ${styles.noHover}`} // Add a custom class to disable hover
+          onClick={() => {
+            setIsMenuActive(!isMenuActive); // Toggle Menu button state
+            toggleSidebar(); // Toggle sidebar state
+          }}
+        >
+          <div className={styles.iconContainer}>
+            {/* Show default icon when inactive, focus icon when active */}
+            <img
+              src={isMenuActive ? MenuIconFocus : MenuIcon}
+              alt="Menu"
+              className={styles.sidebarIcon}
+            />
           </div>
-        </li>
+          <span className={styles.itemName}>Menu</span>
+        </div>
+      </li>
 
         {/* Home Link */}
         <li className={styles.sidebarItem}>
@@ -151,7 +155,6 @@ export default function Sidebar() {
           <span className={styles.iconContainer}>
             <img src={ExitIcon} alt="Logout" className={styles.sidebarIcon} />
           </span>
-          <span className={styles.logoutText}>Logout</span>
         </button>
       </div>
     </div>
