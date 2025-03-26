@@ -10,3 +10,4 @@ export {default as HomeFocusIcon} from './home-focus.svg';
 export {default as MenuIcon} from './menu.svg';
 export {default as MenuIconFocus} from './menu-focus.svg';
 export {default as AppLogo} from './logo.png';
+export {default as MenuDots} from './menu-dots.svg';
