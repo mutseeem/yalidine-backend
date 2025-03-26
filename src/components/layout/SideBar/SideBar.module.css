@@ -100,11 +100,11 @@ ul {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateX(-10px); /* Start from left */
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0); /* End at normal position */
   }
 }
 
@@ -165,6 +165,7 @@ ul {
   transition: all var(--transition-speed);
   position: relative;
 }
+
 
 /* ----- Sidebar Link Styles ----- */
 .sidebarLink {
@@ -362,3 +363,4 @@ ul {
   width: calc(100% - 40px);
   border-radius: 50%;
 }
+
