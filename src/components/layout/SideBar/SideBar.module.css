@@ -4,56 +4,65 @@
   --sidebar-border: #003245;
   --sidebar-shadow: rgba(0, 20, 27, 0.8);
   --text-primary: #FFFFFF;
-  --text-secondary: #A6E4FF;
-  --text-active: #41B8D5;
-  --item-hover-bg: rgba(65, 184, 213, 0.15);
-  --item-active-bg: rgba(65, 184, 213, 0.25);
-  --separator-color: #003245;
-  --profile-border: #005A7A;
+  --text-secondary: #f5fcff;
+  --text-email: #cdf0ff;
+  --text-active: #ffffff;
+  --item-hover-bg: rgb(65, 184, 213);
+  --item-active-bg: #41b8d5;
+  --separator-color: #ffffff7b;
+  --profile-border: #41b8d5;
   --transition-speed: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --focus-glow: 0 0 0 2px rgba(65, 184, 213, 0.3);
+  --focus-glow: 0 0 0 2px rgba(81, 220, 255, 0.3);
 
   /* Size Variables */
   --sidebar-collapsed-width: 80px;
   --sidebar-expanded-width: 290px;
-  --header-padding: 26px 26px;
-  --logo-size: 28px;
-  --icon-size: 22px;
+  --header-padding: 24px 24px;
+  --logo-size: 30px;
+  --icon-size: 20px;
   --item-padding: 14px 20px;
   --item-margin: 6px 10px;
-  --item-radius: 10px;
-  --profile-size: 48px;
+  --item-radius: 12px;
+  --item-hover-raduis:12px;
+  --profile-size: 40px;
   --profile-border-width: 2px;
   --separator-margin: 16px 20px;
   --font-size-base: 0.9375rem;
   --font-size-large: 1.375rem;
   --font-size-xlarge: 17px;
   --font-size-small: 12px;
-  --icon-spacing: 18px;
+  --icon-spacing: 20px;
 }
 
-/* ---- Sidebar base styles ---- */
+/* -------- Base Styles -------- */
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
   width: var(--sidebar-collapsed-width);
-  background: linear-gradient(180deg, #00141B, #021d25);
+  background: linear-gradient(180deg, #00141B, #001820);
   display: flex;
   flex-direction: column;
   transition: all var(--transition-speed);
   z-index: 1000;
   overflow: hidden;
   border-right: 1px solid var(--sidebar-border);
-  backdrop-filter: blur(10px); 
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+}
+
+/*removing the dots*/
+ul {
+  list-style: none; /* Removes default bullets */
+  padding: 0;
+  margin: 0;  
 }
 
 .sidebar.expanded {
   width: var(--sidebar-expanded-width);
 }
 
-/* ---- Header styles ---- */
+/* -------- Header Styles -------- */
 .header {
   display: flex;
   align-items: center;
@@ -62,17 +71,16 @@
   transition: padding var(--transition-speed);
 }
 
-/*Logo : */
+/*App logo style*/
 .appLogo {
   width: var(--logo-size);
   height: var(--logo-size);
   object-fit: contain;
-  
   transition: transform 0.3s ease-in-out;
   transform: rotate(45deg);
 }
 
-
+/*Brand name*/
 .brandName {
   font-size: var(--font-size-large);
   font-weight: 600;
@@ -100,7 +108,7 @@
   }
 }
 
-/* Shared Icon Styles */
+/* -------- Icon global style -------- */
 .iconContainer {
   position: relative;
   width: var(--icon-size);
@@ -108,6 +116,7 @@
   flex-shrink: 0;
 }
 
+/* Sidebar Icon/Icon-focus */
 .sidebarIcon,
 .sidebarIconFocus {
   position: absolute;
@@ -119,12 +128,13 @@
   filter: brightness(0) invert(1);
 }
 
+/* Sidebar Icon-focus-only */
 .sidebarIconFocus {
   opacity: 0;
   transform: scale(0.9);
 }
 
-/* Navigation Items */
+/* -------- Navigation Items -------- */
 .sidebarItems {
   flex: 1;
   padding: 20px 0;
@@ -134,6 +144,7 @@
   scrollbar-color: var(--text-active) transparent;
 }
 
+/* scrollbar */
 .sidebarItems::-webkit-scrollbar {
   width: 4px;
 }
@@ -155,10 +166,11 @@
   position: relative;
 }
 
+/* ----- Sidebar Link Styles ----- */
 .sidebarLink {
   display: flex;
   align-items: center;
-  padding: var(--item-padding);
+  padding: var(--item-padding); /*spacing between items*/
   text-decoration: none;
   color: inherit;
   cursor: pointer;
@@ -171,6 +183,7 @@
   box-shadow: var(--focus-glow);
 }
 
+/*items text and content*/
 .itemName {
   margin-left: var(--icon-spacing);
   font-size: var(--font-size-base);
@@ -201,13 +214,13 @@
 .sidebarItem:hover {
   background: var(--item-hover-bg);
   transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(65, 184, 213, 0.2);
+  box-shadow: 0 4px 12px rgba(75, 213, 248, 0.2);
 }
 
+/* -------- Item focus state handling --------*/
 .sidebarItem:hover .sidebarIcon,
 .active .sidebarIcon {
   opacity: 0;
-  transform: scale(1.1) rotate(-10deg);
 }
 
 .sidebarItem:hover .sidebarIconFocus,
@@ -218,19 +231,19 @@
 
 .active {
   background-color: var(--item-active-bg);
+  border-radius: var( --item-hover-raduis);
   position: relative;
 }
 
-.active::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--text-active);
-  box-shadow: 0 0 10px var(--text-active), 0 0 20px var(--text-active);
-  border-radius: 3px 0 0 3px;
+/* Disable hover effects for the Menu button */
+.sidebarLink.noHover:hover .sidebarIcon,
+.sidebarLink.noHover:hover .sidebarIconFocus {
+  opacity: 1; /* Ensure icons remain visible */
+  transform: none; /* Prevent scaling or rotation */
+}
+
+.sidebarLink.noHover:hover {
+  background-color: transparent; /* No hover background */
 }
 
 .active .itemName {
@@ -238,12 +251,12 @@
   font-weight: 600;
 }
 
-/* Footer Section */
+/* -------- Footer Section -------- */
 .accountSection {
   display: flex;
   align-items: center;
   width: calc(100% - 40px);
-  padding: 16px 20px;
+  padding: 6px 6px;
   border-radius: var(--item-radius);
   transition: all var(--transition-speed);
   cursor: pointer;
@@ -252,12 +265,18 @@
   position: relative;
 }
 
-.accountSection:focus-visible {
-  box-shadow: var(--focus-glow);
+.accountSection:hover {
+  background: var(--item-hover-bg);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(75, 213, 248, 0.2);
 }
 
-.sidebar.expanded .accountSection:hover {
-  background-color: rgba(65, 184, 213, 0.1);
+.accountSection:hover {
+  
+  background: var(--item-hover-bg);
+}
+.accountSection:focus-visible {
+  box-shadow: var(--focus-glow);
 }
 
 /* Profile Picture */
@@ -270,10 +289,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.accountSection:hover .profilePicture {
-  transform: scale(1.1) rotate(5deg);
-}
-
 /* User Details */
 .userDetails {
   display: flex;
@@ -281,6 +296,7 @@
   overflow: hidden;
   opacity: 0;
   width: 0;
+  margin-left: 10px;
   transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
@@ -297,12 +313,12 @@
   color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
-  margin-left: 1px;
+  margin-left: 0px;
 }
 
 .itemEmail {
   font-size: var(--font-size-small);
-  color: var(--text-secondary);
+  color: var(--text-email);
   white-space: nowrap;
   overflow: hidden;
   letter-spacing: 0.3px;
@@ -326,21 +342,23 @@
 }
 
 
-
 .sidebar.expanded .logoutButton {
   opacity: 1;
-  transform: scale(1);
 }
 
 .logoutIcon {
   width: var(--icon-size);
   height: var(--icon-size);
+  object-fit: contain;
   transform: rotate(180deg);
   filter: brightness(0) invert(1);
   transition: transform 0.3s ease-in-out;
 }
 
-.logoutButton:hover .logoutIcon {
-  fill: var(--text-active);
-  transform: rotate(180deg) ;
+.separator {
+  margin: var(--separator-margin);
+  height: 1px;
+  background: var(--separator-color);
+  width: calc(100% - 40px);
+  border-radius: 50%;
 }

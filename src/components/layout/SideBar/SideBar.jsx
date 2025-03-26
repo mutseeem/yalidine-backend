@@ -6,7 +6,7 @@ import {
   HomeIcon, HomeFocusIcon,
   EyeIcon, EyeFocusIcon,
   MenuIcon, MenuIconFocus,
-  ExitIcon, AppLogo
+  MenuDots, AppLogo
 } from '../../../assets/icons/icons';
 import Profile from '../../../assets/images/profile.png';
 
@@ -31,7 +31,7 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
       <ul className={styles.sidebarItems}>
         {/* Menu Toggle */}
         <li className={styles.sidebarItem}>
-          <div className={styles.sidebarLink} onClick={toggleSidebar}>
+          <div className={`${styles.sidebarLink} ${styles.noHover}`} onClick={toggleSidebar}>
             <div className={styles.iconContainer}>
               <img
                 src={isExpanded ? MenuIconFocus : MenuIcon}
@@ -73,11 +73,11 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
       </ul>
 
       {/* Footer Section */}
-      <li className={styles.separator}></li>
+      <div className={styles.separator}></div>
 
       <div className={styles.footer}>
         {/*dev o5r fih img + email image  ==> col gap ,, div binathom m3a icon*/}
-        <div className={styles.accountSection}>
+        <div className={styles.accountSection} onClick={() => alert('Logout successful!')}>
           <img src={Profile} alt="User Profile" className={styles.profilePicture} />
           {isExpanded && (
             <div className={styles.userDetails}>
@@ -85,8 +85,8 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
               <span className={styles.itemEmail}>i.izemmouren@gmail.com</span>
             </div>
           )}
-          <div className={styles.logoutButton} onClick={() => alert('Logout successful!')}>
-            <img src={ExitIcon} alt="Logout" className={styles.logoutIcon} />
+          <div className={styles.logoutButton} >
+            <img src={MenuDots} alt="Logout" className={styles.logoutIcon} />
           </div>
         </div>
       </div>
