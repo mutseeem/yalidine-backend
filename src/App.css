@@ -12,7 +12,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 70px; /* Collapsed width */
+  width: 10%; /* Collapsed width */
   background: #ffffff;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05);
   transition: width 0.3s ease-in-out; /* Smooth width transition */
@@ -22,7 +22,7 @@
 }
 
 .sidebar.expanded {
-  width: 280px; /* Expanded width */
+  width: 15%; /* Expanded width */
 }
 
 /* Main Content Styles */

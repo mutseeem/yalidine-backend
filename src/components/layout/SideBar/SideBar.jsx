@@ -10,6 +10,12 @@ import {
 } from '../../../assets/icons/icons';
 import Profile from '../../../assets/images/profile.png';
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
+
 export default function Sidebar({ isExpanded, setIsExpanded }) {
   const toggleSidebar = () => setIsExpanded(!isExpanded);
 
@@ -36,7 +42,8 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
             <span className={styles.itemName}>Menu</span>
           </div>
         </li>
-
+        
+        {/*TODO: ge the data from database + control system*/}
         {/* Dynamic Sidebar Links */}
         {[
           { path: '/', name: 'Home', icons: [HomeIcon, HomeFocusIcon] },
@@ -55,7 +62,7 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
                   <img src={icons[0]} alt={name} className={styles.sidebarIcon} />
                   <img src={icons[1]} alt={`${name} Active`} className={styles.sidebarIconFocus} />
                 </span>
-                <span className={styles.itemName}>{name}</span>
+                <span className={styles.itemName} title={name}>{name}</span>
               </NavLink>
             </li>
 
@@ -67,7 +74,9 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
 
       {/* Footer Section */}
       <li className={styles.separator}></li>
+
       <div className={styles.footer}>
+        {/*dev o5r fih img + email image  ==> col gap ,, div binathom m3a icon*/}
         <div className={styles.accountSection}>
           <img src={Profile} alt="User Profile" className={styles.profilePicture} />
           {isExpanded && (
