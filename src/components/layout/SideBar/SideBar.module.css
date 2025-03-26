@@ -15,8 +15,8 @@
 
   /* Size Variables */
   --sidebar-collapsed-width: 80px;
-  --sidebar-expanded-width: 300px;
-  --header-padding: 24px 20px;
+  --sidebar-expanded-width: 290px;
+  --header-padding: 26px 26px;
   --logo-size: 28px;
   --icon-size: 22px;
   --item-padding: 14px 20px;
@@ -32,29 +32,28 @@
   --icon-spacing: 18px;
 }
 
-/* Base Styles */
+/* ---- Sidebar base styles ---- */
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
   width: var(--sidebar-collapsed-width);
-  background: linear-gradient(180deg, #00141B, #002233);
-  box-shadow: 4px 0 20px var(--sidebar-shadow);
+  background: linear-gradient(180deg, #00141B, #021d25);
   display: flex;
   flex-direction: column;
   transition: all var(--transition-speed);
   z-index: 1000;
   overflow: hidden;
   border-right: 1px solid var(--sidebar-border);
-  backdrop-filter: blur(10px); /* Frosted glass effect */
+  backdrop-filter: blur(10px); 
 }
 
 .sidebar.expanded {
   width: var(--sidebar-expanded-width);
 }
 
-/* Header Styles */
+/* ---- Header styles ---- */
 .header {
   display: flex;
   align-items: center;
@@ -63,11 +62,12 @@
   transition: padding var(--transition-speed);
 }
 
+/*Logo : */
 .appLogo {
   width: var(--logo-size);
   height: var(--logo-size);
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  
   transition: transform 0.3s ease-in-out;
   transform: rotate(45deg);
 }
