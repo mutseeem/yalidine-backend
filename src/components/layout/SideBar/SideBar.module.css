@@ -4,7 +4,8 @@
   /* Background Colors */
   --sidebar-bg: #00141B; /* Main sidebar background */
   --sidebar-bg-gradient-start: #00141B; /* Gradient start color */
-  --sidebar-bg-gradient-end: #001820; /* Gradient end color */
+  --sidebar-bg-gradient-mid: #041c24; /* Gradient mid color */
+  --sidebar-bg-gradient-end: #00141B; /* Gradient end color */
   --sidebar-border: #003245; /* Sidebar right border */
   
   /* Text Colors */
@@ -38,7 +39,7 @@
   /* Element Sizes */
   --logo-size: 30px; /* App logo dimensions */
   --icon-size: 22px; /* Standard icon dimensions */
-  --profile-size: 40px; /* Profile picture dimensions */
+  --profile-size: 38px; /* Profile picture dimensions */
   
   /* Border Properties */
   --item-radius: 8px; /* Border radius for items */
@@ -124,6 +125,7 @@
   width: var(--sidebar-collapsed-width); /* Collapsed width */
   background: linear-gradient(180deg, 
     var(--sidebar-bg-gradient-start), 
+    var(--sidebar-bg-gradient-mid),
     var(--sidebar-bg-gradient-end)); /* Gradient background */
   display: flex;
   flex-direction: column;
@@ -131,6 +133,7 @@
   z-index: 1000; /* Ensure it's above other elements */
   overflow: hidden; /* Hide overflowing content */
   border-right: 1px solid var(--sidebar-border); /* Right border */
+  -webkit-backdrop-filter: blur(10px); /* Frosted glass effect */
   backdrop-filter: blur(10px); /* Frosted glass effect */
 }
 
@@ -352,8 +355,8 @@
 /* Hover state for account section */
 .accountSection:hover {
   background: var(--item-hover-bg); /* Highlight background */
-  transform: translateX(4px); /* Slight movement */
-  box-shadow: 0 4px 12px rgba(75, 213, 248, 0.2); /* Subtle shadow */
+  /*transform: translateX(4px); /* Slight movement */
+  /*box-shadow: 0 4px 12px rgba(75, 213, 248, 0.2); /* Subtle shadow */
 }
 
 /* Focus state for accessibility */
@@ -447,4 +450,34 @@
   width: calc(100% - 40px); /* Full width minus margins */
   border-radius: 50%; /* Rounded edges */
   opacity: 0.3; /* Slightly transparent */
+}
+
+/* ================= HOVER TOOLTIP STYLES ================= */
+.hoverTooltip {
+  position: absolute;
+  z-index: 1100;
+  background: var(--item-active-bg);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: var(--item-radius);
+  font-size: var(--font-size-base);
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--sidebar-shadow);
+  animation: fadeInTooltip 0.15s ease-out;
+  margin-top: 5px;
+  
+}
+
+@keyframes fadeInTooltip {
+  from { 
+    opacity: 0; 
+    transform: translateX(-10px);
+    /* Start 10px to the left */
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0);
+    /* End at normal position */
+  }
 }
