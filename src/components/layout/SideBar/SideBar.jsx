@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SideBar.module.css';
 
@@ -8,21 +8,17 @@ import {
   HomeIcon, HomeFocusIcon,
   EyeIcon, EyeFocusIcon,
   MenuIcon, MenuIconFocus,
-  MenuDots, AppLogo , ArrowIcon
+  MenuDots, AppLogo, ArrowIcon
 } from '../../../assets/icons/icons';
 import Profile from '../../../assets/images/profile.png';
+import AccountMenu from './AccountMenu.jsx'; // Import the new component
 
-/**
- * Sidebar Component, 
- * @param {boolean} isExpanded - Whether the sidebar is expanded or not .
- * @param {function} setIsExpanded - Function to toggle the sidebar state.
- */
 export default function Sidebar({ isExpanded, setIsExpanded }) {
-
   const [hoveredItem, setHoveredItem] = useState(null);
   const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
-  
-  // FIXME: Sidebar links should be fetched dynamically from an API instead of being hardcoded.
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
+
   const sidebarLinks = [
     { path: '/', name: 'Home', icons: [HomeIcon, HomeFocusIcon] },
     { path: '/overview', name: 'Overview', icons: [EyeIcon, EyeFocusIcon] },
@@ -31,24 +27,33 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
     { path: '/connaissances', name: 'Échange de connaissances', icons: [FolderIcon, FolderFocusIcon] },
   ];
 
-  const handleItemTooltip = (event , itemName) => {
-    if(!isExpanded){
+  const handleItemTooltip = (event, itemName) => {
+    if (!isExpanded) {
       const rect = event.currentTarget.getBoundingClientRect();
       setHoverPosition({
         top: rect.top + window.scrollY,
-        left: rect.right + window.scrollX + 10 // 10px margin from icon
+        left: rect.right + window.scrollX + 10
       });
       setHoveredItem(itemName);
     }
-  }
+  };
 
   const handleItemLeave = () => {
     setHoveredItem(null);
-  }
+  };
+
+  const handleAccountClick = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setMenuPosition({
+      top: rect.top + window.scrollY,
+      left: isExpanded ? rect.left + window.scrollX : rect.right + window.scrollX + 10
+    });
+    setShowAccountMenu(true);
+  };
 
   return (
     <div>
-      {/* oOo==========oOo Tooltip oOo==========oOo */}
+      {/* Tooltip */}
       {!isExpanded && hoveredItem && (
         <div 
           className={styles.hoverTooltip}
@@ -61,7 +66,15 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
         </div>
       )}
 
-      {/* oOo==========oOo Toggle Sidebar Button oOo==========oOo */}
+      {/* Account Context Menu */}
+      {showAccountMenu && (
+        <AccountMenu
+          menuPosition={menuPosition}
+          onClose={() => setShowAccountMenu(false)}
+        />
+      )}
+
+      {/* Toggle Button */}
       <div className={`${styles.toggleButtonContainer} ${isExpanded ? styles.expanded : ''}`}>
         <button 
           className={styles.toggleButton}
@@ -72,24 +85,23 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
         </button>
       </div>
 
-      {/* oOo==========oOo Sidebar Container oOo==========oOo */}
+      {/* Sidebar Container */}
       <div className={`${styles.sidebar} ${isExpanded ? styles.expanded : ''}`}>
         
-        {/* o===o Header o===o */}
+        {/* Header */}
         <div className={styles.header}>
-          {/*TODO: Do we need to call this from the Database ?*/}
           <img src={AppLogo} alt="App Logo" className={styles.appLogo} /> 
-          {/*TODO: Should The brand name be a variable fetched from API ? */}
           <span className={styles.brandName}>RNAQES</span>
         </div>
 
         <div className={styles.separator}></div> 
 
-        {/* o===o Sidebar Navigation o===o */}
+        {/* Navigation */}
         <ul className={styles.sidebarItems}>
           {/* Menu Toggle */}
           <li className={styles.sidebarItem}>
-            <div className={`${styles.sidebarLink} ${styles.noHover}`} 
+            <div 
+              className={`${styles.sidebarLink} ${styles.noHover}`} 
               onClick={() => setIsExpanded(prev => !prev)}
               onMouseEnter={(e) => handleItemTooltip(e, 'Menu')}
               onMouseLeave={handleItemLeave}
@@ -127,21 +139,21 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
 
         <div className={styles.separator}></div>
 
-        {/* o===o Footer o===o */}
+        {/* Footer */}
         <div className={styles.footer}>
-          <div className={styles.accountSection} onClick={() => alert('Logout successful!')}>
-            {/* FIXME: Profile image should be dynamically fetched from API */}
+          <div 
+            className={styles.accountSection} 
+            onClick={handleAccountClick}
+          >
             <img src={Profile} alt="User Profile" className={styles.profilePicture} />
             {isExpanded && (
               <div className={styles.userDetails}>
-                {/* FIXME: User name and email should come from API */}
                 <span className={styles.itemUserName}>Ilyes Izmr</span>
                 <span className={styles.itemEmail}>i.izemmouren@gmail.com</span>
               </div>
             )}
             <div className={styles.logoutButton}>
-              {/* FIXME: Logout icon should be configurable from API or theme settings */}
-              <img src={MenuDots} alt="Logout" className={styles.logoutIcon} />
+              <img src={MenuDots} alt="Account Menu" className={styles.logoutIcon} />
             </div>
           </div>
         </div>
@@ -150,7 +162,6 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
   );
 }
 
-//PropTypes 
 Sidebar.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   setIsExpanded: PropTypes.func.isRequired,

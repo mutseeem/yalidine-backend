@@ -481,3 +481,50 @@
     /* End at normal position */
   }
 }
+
+/* ================= Account Menu  ================= */
+/* Context Menu */
+.contextMenu {
+  position: absolute;
+  z-index: 1200;
+  background: var(--sidebar-bg);
+  border: 1px solid var(--sidebar-border);
+  border-radius: var(--item-radius);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+  padding: 8px 0;
+  min-width: 200px;
+  animation: fadeInUp 0.15s ease-out;
+}
+
+.contextMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  width: 100%;
+  text-align: left;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  transition: background-color var(--transition-speed);
+}
+
+.menuItem:hover {
+  background: var(--item-hover-bg);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(-100%) translateX(0); 
+  }
+}
