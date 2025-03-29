@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './SideBar.module.css';
+
 import {
   FolderIcon, FolderFocusIcon,
   HomeIcon, HomeFocusIcon,
@@ -147,3 +149,9 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
     </div>
   );
 }
+
+//PropTypes 
+Sidebar.propTypes = {
+  isExpanded: PropTypes.bool.isRequired,
+  setIsExpanded: PropTypes.func.isRequired,
+};
