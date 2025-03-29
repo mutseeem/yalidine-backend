@@ -29,7 +29,6 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
     { path: '/connaissances', name: 'Échange de connaissances', icons: [FolderIcon, FolderFocusIcon] },
   ];
 
-
   const handleItemTooltip = (event , itemName) => {
     if(!isExpanded){
       const rect = event.currentTarget.getBoundingClientRect();
@@ -44,7 +43,6 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
   const handleItemLeave = () => {
     setHoveredItem(null);
   }
-
 
   return (
     <div>
@@ -89,7 +87,11 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
         <ul className={styles.sidebarItems}>
           {/* Menu Toggle */}
           <li className={styles.sidebarItem}>
-            <div className={`${styles.sidebarLink} ${styles.noHover}`} onClick={() => setIsExpanded(prev => !prev)}>
+            <div className={`${styles.sidebarLink} ${styles.noHover}`} 
+              onClick={() => setIsExpanded(prev => !prev)}
+              onMouseEnter={(e) => handleItemTooltip(e, 'Menu')}
+              onMouseLeave={handleItemLeave}
+            >
               <div className={styles.iconContainer}>
                 <img src={isExpanded ? MenuIconFocus : MenuIcon} alt="Menu" className={styles.sidebarIcon} />
               </div>
