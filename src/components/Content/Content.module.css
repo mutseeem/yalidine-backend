@@ -3,7 +3,7 @@
 .content {
   flex: 1;
   padding: 20px;
-  background: linear-gradient(-90deg, #FFFFFF 0%, #DAEBFF 100%); /* Linear gradient from white to light blue */
+  background: linear-gradient(-90deg, #f44747 0%, #DAEBFF 100%); /* Linear gradient from white to light blue */
   overflow-y: auto; /* Add scroll if content overflows */
   border-radius: 8px;
   margin-left: px; /* Adjust based on sidebar width */

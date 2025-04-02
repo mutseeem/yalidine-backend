@@ -1,123 +1,127 @@
+/* ================= IMPORTS ================= */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* ================= ROOT VARIABLES ================= */
+:root {
+  /* ================= LAYOUT DIMENSIONS ================= */
+  --navbar-height: 56px; /* Height of the navbar */
+  --sidebar-expanded-width: 280px; /* Width when sidebar is expanded */
+  --sidebar-collapsed-width: 80px; /* Width when sidebar is collapsed */
+
+  /* ================= COLORS ================= */
+  --navbar-bg-color: #FFFFFF; /* Background color of the navbar */
+  --navbar-text-color: rgba(0, 21, 28, 0.85); /* Text color of the navbar */
+  --separator-color: rgba(0, 0, 0, 0.7); /* Color of the vertical separator */
+
+  /* ================= TYPOGRAPHY ================= */
+  --font-family: 'Roboto', sans-serif; /* Font family for the navbar */
+  --title-font-size: 1.2rem; /* Font size for titles */
+  --title-font-weight: 400; /* Font weight for titles */
+
+  /* ================= EFFECTS ================= */
+  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for the navbar */
+  --transition-speed: 0.2s ease-in-out; /* Transition speed for animations */
+
+  /* ================= SPACING ================= */
+  --padding-horizontal: 20px; /* Horizontal padding */
+  --logo-text-gap: 20px; /* Gap between logo and text */
+  --separator-margin: 0 20px; /* Margin around the separator */
+  --menu-icon-size: 24px; /* Size of the menu icon */
+  --logo-size: 19px; /* Size of the logo */
+}
+
+/* ================= GLOBAL STYLES ================= */
+body {
+  font-family: var(--font-family); /* Apply Roboto font globally */
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+  box-sizing: border-box; /* Ensure consistent sizing */
+}
+
+/* ================= NAVBAR STYLES ================= */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: relative; /* Ensure the navbar is a positioning context */
+  position: fixed; /* Fixed position at the top */
+  top: 0; /* Align to the top of the viewport */
+  left: var(--sidebar-expanded-width); /* Start after the expanded sidebar */
+  right: 0; /* Stretch to the end of the viewport */
+  width: auto; /* Auto-adjust width based on left/right properties */
+  height: var(--navbar-height); /* Set height using root variable */
+  background: var(--navbar-bg-color); /* Background color */
+  color: var(--navbar-text-color); /* Text color */
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Vertically center items */
+  padding: 0; /* No padding by default */
+  z-index: 1000; /* Ensure it stays above other elements */
+  box-shadow: var(--box-shadow); /* Add subtle shadow */
+  transition: left var(--transition-speed); /* Smooth transition for sidebar collapse/expand */
 }
 
-/* Left section of the navbar */
-.navbarLeft {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Consistent spacing between elements */
+/* Adjust navbar position when sidebar is collapsed */
+.navbar.expanded {
+  left: var(--sidebar-collapsed-width); /* Start after the collapsed sidebar */
 }
 
-.appIcon {
-  width: 16px;
-  height: 16px;
-  fill: #1E1E1E; /* Icon color */
+/* ================= LEFT SECTION STYLES ================= */
+.leftSection {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically center items */
+  padding-left: var(--padding-horizontal); /* Add horizontal padding */
 }
 
-.champsText {
-  font-size: 18px;
-  font-weight: 400; /* Lighter font weight */
-  color: #1E1E1E; /* Text color */
-  margin: 0; /* Remove default margin */
+.logoContainer {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically center items */
+  margin-left: 16px; /* Space from the left edge */
+  margin-right: 16px; /* Space before the text */
+  gap: var(--logo-text-gap); /* Consistent gap between logo and text */
 }
 
-/* Right section of the navbar */
-.navbarRight {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Consistent spacing between elements */
+.logo {
+  transform: rotate(45deg); /* Rotate the logo for a unique look */
+  width: 18px; /* Set logo size */
+  height: 18px; /* Maintain aspect ratio */
 }
 
-.searchBar {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  outline: none;
-  width: 200px; /* Default width */
-  transition: border-color 0.3s ease; /* Smooth transition for focus */
+/* Titles (Champs C1 & Page Name) */
+.title,
+.pageTitle {
+  font-size: var(--title-font-size); /* Set font size */
+  font-weight: var(--title-font-weight); /* Set font weight */
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+  opacity: 0.8px;
+  color: var(--navbar-text-color); /* Inherit text color */
 }
 
-.searchBar:focus {
-  border-color: #007bff; /* Highlight the search bar when focused */
+/* ================= VERTICAL SEPARATOR STYLES ================= */
+.separator {
+  height: 35%; /* Increased height */
+  width: 1.5px; /* Make it more visible */
+  background-color: rgba(0, 20, 27, 0.766); /* Darker and more visible */
+  margin: 0 15px;
+  display: inline-block; /* Ensure it renders properly */
+}
+
+/* ================= RIGHT SECTION STYLES ================= */
+.rightSection {
+  margin-left: auto; /* Push to the far right */
+  padding-right: var(--padding-horizontal); /* Add horizontal padding */
 }
 
 .menuIcon {
-  font-size: 24px;
-  cursor: pointer;
-  color: #1E1E1E; /* Icon color */
-  transition: color 0.3s ease; /* Smooth transition for hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  width: var(--menu-icon-size); /* Set icon size */
+  height: var(--menu-icon-size); /* Maintain aspect ratio */
 }
 
-.menuIcon:hover {
-  color: #007bff; /* Change color on hover */
-}
-
-/* Dropdown menu */
-.menuItems {
-  display: none; /* Hidden by default */
-  flex-direction: column;
-  gap: 10px;
-  position: absolute;
-  top: 100%; /* Position below the navbar */
-  right: 0;
-  background-color: #fff;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  z-index: 10; /* Ensure the dropdown appears above other content */
-}
-
-.menuItems.active {
-  display: flex; /* Show the dropdown when active */
-}
-
-.menuItems a {
-  text-decoration: none;
-  color: #333;
-  transition: color 0.3s ease; /* Smooth transition for hover */
-}
-
-.menuItems a:hover {
-  color: #007bff; /* Change color on hover */
-}
-
-/* Responsive Design */
+/* ================= MOBILE RESPONSIVENESS ================= */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 10px 15px; /* Reduce padding on smaller screens */
+  .navbar,
+  .navbar.expanded {
+    left: 0; /* Full width on mobile */
   }
 
-  .searchBar {
-    width: 150px; /* Reduce search bar width */
-  }
-
-  .champsText {
-    font-size: 16px; /* Reduce font size */
-  }
-
-  .menuIcon {
-    font-size: 20px; /* Reduce menu icon size */
-  }
-}
-
-@media (max-width: 480px) {
-  .searchBar {
-    width: 120px; /* Further reduce search bar width */
-  }
-
-  .champsText {
-    font-size: 14px; /* Further reduce font size */
-  }
-
-  .navbarRight {
-    gap: 10px; /* Reduce gap between elements */
+  .title {
+    font-size: 1rem; /* Smaller font size for mobile */
   }
 }
