@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SideBar.module.css';
 
