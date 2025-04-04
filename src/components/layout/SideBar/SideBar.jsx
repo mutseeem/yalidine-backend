@@ -3,6 +3,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SideBar.module.css';
 
+//FIXME: split this component into smaller components later 
+
 import {
   FolderIcon, FolderFocusIcon,
   HomeIcon, HomeFocusIcon,

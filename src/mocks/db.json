@@ -1,0 +1,98 @@
+{
+    "fields": [
+      {
+        "id": 1,
+        "name": "C1 - POLITIQUE D’OUVERTURE INTERNATIONALE",
+        "tag" : "Champ 1",
+        "questions": [
+          {
+            "id": "C1.1.1",
+            "question": "Est-ce que L’établissement dispose d’une politique déclarée d’ouverture à l’international ?",
+            "tag": "C1.1.1",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-1-1-1",
+            "status": "answered"  
+          },
+          {
+            "id": "C1.1.2",
+            "question": "Est-ce que la politique d’ouverture sur l’international est communiquée ?",
+            "tag": "C1.1.2",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-1-1-2",
+            "status": "missing_files"  
+          },
+          {
+            "id": "C1.1.3",
+            "question": "Est-ce que l’établissement propose les dispositifs techniques et organisationnels pour améliorer sa visibilité ?",
+            "tag": "C1.1.3",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-1-1-3",
+            "status": "not_answered"  
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "C2 - PARTENARIAT ET MOBILLITÉ",
+        "tag" : "Champ 2",
+        "questions": [
+          {
+            "id": "C2.1.1",
+            "question": "Est-ce que L’établissement établit des partenariats avec des universités/écoles et/ ou des entités de recherche internationales ?",
+            "tag": "C2.1.1",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-2-1-1",
+            "status": "answered" 
+          },
+          {
+            "id": "C2.1.2",
+            "question": "L’établissement informe son personnel et les étudiants de la nature de la collaboration entre les institutions concernées.",
+            "tag": "C2.1.2",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-2-1-2",
+            "status": "not_answered"  
+          },
+          {
+            "id": "C2.1.3",
+            "question": "L’établissement lance des évaluations des partenariats.",
+            "tag": "C2.1.3",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-2-1-3",
+            "status": "missing_files" 
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "C3 - ÉCHANGE DE CONNAISSANCES ET MUTUALISATION DES RESSOURCES",
+        "tag" : "Champ 3",
+        "questions": [
+          {
+            "id": "C3.1.1",
+            "question": "Est-ce que les formations ouvertes à l’international existent et sont opérationnelles ?",
+            "tag": "C3.1.1",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-3-1-1",
+            "status": "answered"  
+          },
+          {
+            "id": "C3.2.1",
+            "question": "Est-ce que l’établissement établit des abonnements à des ressources documentaires internationales ?",
+            "tag": "C3.2.1",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-3-2-1",
+            "status": "not_answered"  
+          },
+          {
+            "id": "C3.3.1",
+            "question": "Est-ce que L’établissement met en place une cellule de veille à l’international ?",
+            "tag": "C3.3.1",
+            "domaine": "RELEX",
+            "answer": "/CAQ/RELEX/Reponse/CH-3-3-1",
+            "status": "answered"  
+          }
+        ]
+      }
+    ]
+  }
+  

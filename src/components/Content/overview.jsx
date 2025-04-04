@@ -9,7 +9,7 @@ import FaAngleRight from '../../assets/icons/angle-circle-right.svg';
 const Overview = () => {
   return (
     <div className={styles.content}>
-      <h1 className={styles.Title}>Domaine D7 | Coopération Internationale</h1>
+      <h1 className={styles.Title}></h1>
 
       {/* General Insights Section */}
       <div className={styles.insightsSection}>

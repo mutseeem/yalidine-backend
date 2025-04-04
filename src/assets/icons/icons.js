@@ -13,3 +13,5 @@ export {default as AppLogo} from './logo.png';
 export {default as MenuDots} from './menu-dots.svg';
 export {default as ArrowIcon} from './arrow.png';
 export {default as MenuBurger} from './menu-burger.svg';
+export {default as DownloadIcon} from './download-close.svg';
+export {default as DownloadIconFocus} from './download.svg';
