@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ========== COLOR SYSTEM ========== */
+  --primary-blue: #41b8d5;
+  --dark-blue: #2d8bba;
+  --text-dark: #2d3748;
+  --text-gray: #718096;
+  --bg-white: #ffffff;
+  --bg-light: #f8fafc;
+  --border-light: #e2e8f0;
+  
+  /* ========== SPACING SYSTEM ========== */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 40px;
+
+  /* ========== TYPOGRAPHY ========== */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-xxl: 24px;
+  --text-xxxl: 28px;
+  
+  /* ========== LAYOUT SYSTEM ========== */
+  --content-padding: var(--space-xl);
+  --table-radius: 16px;
+  --element-radius: 16px;
+
+  /* ========== TABLE SIZES ========== */
+  --table-max-width: 943px;
+  --table-min-height: 380px;
+  
+  /* ========== PROGRESS BAR ========== */
+  --progress-height: 16px;
+  --progress-min-width: 280px;
+  --progress-radius: 12px;
+  
+  /* ========== SHADOWS & TRANSITIONS ========== */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 6px 8px 0px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== BASE STYLES ========== */
+
+
+/* ========== CONTENT CONTAINER ========== */
+.content {
+  flex: 1;
+  padding: var(--content-padding);
+  background: var(--bg-white);
+  border-radius: var(--table-radius);
+  margin-left: 80px;
+  transition: var(--transition);
+  box-shadow: var(--shadow-lg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.sidebar:hover ~ .content {
+  margin-left: 322px;
+}
+
+/* ========== TABLE CONTAINER ========== */
+.tableContainer {
+  width: 100%;
+  max-width: var(--table-max-width);
+  height: auto;
+  min-height: var(--table-min-height);
+  background: var(--bg-white);
+  border-radius: var(--table-radius);
+  padding: var(--content-padding);
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* ========== HEADINGS ========== */
+.headTitle {
+  font-size: var(--text-xxl);
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0 0 2px 2px;
+  padding-top: 4px;
+}
+
+.underHead {
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--text-gray);
+  margin: 0 0 var(--space-md) 2px;
+}
+
+/* ========== TABLE STYLES ========== */
+.insightsTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 var(--space-sm);
+}
+
+.insightsTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-light);
+  z-index: 10;
+}
+
+.insightsTable th {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--border-light);
+  text-align: left;
+}
+th:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.insightsTable td {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: var(--text-dark);
+  background-color: var(--bg-white);
+  border-bottom: 1px solid var(--border-light);
+  border-left: none;
+  border-right: none;
+  transition: var(--transition);
+}
+
+.insightsTable td:nth-child(2) {
+  text-align: center;
+  font-weight: 600;
+  color: var(--dark-blue);
+}
+
+.insightsTable td:nth-child(3) {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ========== PROGRESS BAR SYSTEM ========== */
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0 var(--space-lg);
+}
+
+.progressText {
+  min-width: 60px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--dark-blue);
+}
+
+.progressBar {
+  flex: 1;
+  min-width: var(--progress-min-width);
+  height: var(--progress-height);
+  background: var(--border-light);
+  border-radius: var(--progress-radius);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.progress {
+  
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-blue), var(--dark-blue));
+  border-radius: var(--progress-radius);
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  position: relative;
+}
+
+.progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--progress-radius);
+  
+}
+
+/* ========== INTERACTIVE ELEMENTS ========== */
+.insightsTable tbody tr:hover td {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.downloadIcon {
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.downloadIcon:hover {
+  transform: translateY(-2px);
+}
+
+/* ========== ICON STYLE MANAGEMENT ========== */
+.icon {
+  transition: all 0.3s ease-in-out;
+  fill: var(--text-gray); /* Default color */
+  opacity: 0.7;
+}
+
+.icon:hover {
+  fill: var(--primary-blue); /* Change fill color on hover */
+  opacity: 1;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes shimmer {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(0px); }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 992px) {
+  .content {
+    padding: var(--space-lg);
+  }
+  
+  .tableContainer {
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: var(--space-md);
+    margin-left: 0;
+  }
+  
+  .tableContainer {
+    padding: var(--space-xl);
+  }
+  
+  .insightsTable th,
+  .insightsTable td {
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .progressContainer {
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+  
+  .progressBar {
+    width: 100%;
+    min-width: 100%;
+  }
+  
+  .downloadIcon {
+    bottom: 8px;
+    right: var(--space-md);
+  }
+  
+  .headTitle {
+    padding-top: 2px;
+  }
+  
+  .underHead {
+    margin-bottom: var(--space-sm);
+  }
+}

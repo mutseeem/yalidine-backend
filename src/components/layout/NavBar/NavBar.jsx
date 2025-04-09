@@ -93,8 +93,9 @@ export default function Navbar({ isExpanded }) {
         {/* Page Title */}
         {/*TODO: make it go dynamically*/ }
         <h1 className={styles.title} aria-label="Curret page">
-          Domain D7
+          Domain D7 | Coopération Internationale
         </h1>
+        
       </div>
 
       {/* Visual separator */}
