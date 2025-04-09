@@ -45,18 +45,12 @@
   /* ========== SHADOWS & TRANSITIONS ========== */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 20px 20px 0px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 6px 8px 0px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ========== BASE STYLES ========== */
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--bg-light);
-  color: var(--text-dark);
-  margin: 0;
-  line-height: 1.5;
-}
+
 
 /* ========== CONTENT CONTAINER ========== */
 .content {
@@ -85,6 +79,9 @@ body {
   border-radius: var(--table-radius);
   padding: var(--content-padding);
   position: relative;
+  box-shadow: var(--shadow-lg);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 /* ========== HEADINGS ========== */
@@ -207,8 +204,8 @@ th:hover {
 
 .downloadIcon {
   position: absolute;
-  bottom: 10px;
-  right: 28px;
+  top: 40px;
+  right: 30px;
   width: 34px;
   height: 34px;
   display: flex;

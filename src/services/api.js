@@ -21,7 +21,7 @@ export const fetchFieldsData = async () => {
         });
 
         // Debugging: Log the API response
-        console.log("API Response:", response.data);
+        //console.log("API Response:", response.data);
 
         // Return the fetched data
         return response.data;

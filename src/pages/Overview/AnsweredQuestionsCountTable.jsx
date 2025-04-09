@@ -1,18 +1,18 @@
 import React, { useState, useRef } from "react";
 import styles from "./AnsweredQuestionsCountTable.module.css";
 import { DownloadIcon, DownloadIconFocus } from "../../assets/icons/icons";
-import html2canvas from "html2canvas"; // Importing html2canvas
+import { downloadChartAsImage } from "../../util/chart"; // Import the utility function
 
 const AnsweredQuestionsCountTable = ({ data }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [sortConfig, setSortConfig] = useState({
-    key: "name",  // default sorting by "name"
-    direction: "asc",  // default ascending order
+    key: "name", // Default sorting by "name"
+    direction: "asc", // Default ascending order
   });
 
-  // Create a ref to the insights section
   const insightsSectionRef = useRef(null);
 
+  // Function to process data
   const getFieldsData = () => {
     if (!data?.length) return [];
 
@@ -30,6 +30,7 @@ const AnsweredQuestionsCountTable = ({ data }) => {
 
   const fieldsData = getFieldsData();
 
+  // Render progress bar
   const renderProgressBar = (answeredCount, totalQuestions) => (
     <div className={styles.progressBar}>
       <div
@@ -39,6 +40,7 @@ const AnsweredQuestionsCountTable = ({ data }) => {
     </div>
   );
 
+  // Render table rows
   const renderTableRows = () => {
     if (fieldsData.length === 0) {
       return (
@@ -65,6 +67,7 @@ const AnsweredQuestionsCountTable = ({ data }) => {
     ));
   };
 
+  // Handle sorting
   const handleSort = (key) => {
     let direction = "asc";
     if (sortConfig.key === key && sortConfig.direction === "asc") {
@@ -73,40 +76,18 @@ const AnsweredQuestionsCountTable = ({ data }) => {
     setSortConfig({ key, direction });
   };
 
+  // Handle download
   const handleDownload = () => {
     const tableElement = document.querySelector(`.${styles.insightsTable}`); // Target the table directly
-  
-    if (tableElement) {
-      html2canvas(tableElement, {
-        useCORS: true, // For external images like icons, etc.
-        scale: 3, // Increase this value for higher resolution (higher means better quality)
-        scrollX: 0,
-        scrollY: -window.scrollY, // Adjust for page scrolling
-        width: tableElement.offsetWidth,
-        height: tableElement.offsetHeight,
-      }).then((canvas) => {
-        const dataUrl = canvas.toDataURL("image/jpeg", 1.0); // Convert to JPEG image with quality 1.0 (100%)
-        const link = document.createElement("a");
-        link.href = dataUrl;
-        link.download = "answered_questions_number_table.jpeg"; // Name of the downloaded file
-        link.click(); // Trigger the download
-      }).catch((error) => {
-        console.error("Error during html2canvas rendering:", error);
-      });
-    } else {
-      console.error("Table element not found for screenshot");
-    }
+    downloadChartAsImage(tableElement, "answered_questions_number_table.jpeg"); // Call the utility function
   };
-  
-  
-  
 
   return (
     <div className={styles.insightsSection} ref={insightsSectionRef}>
       <div className={styles.tableContainer}>
         {/* Download Icon with Hover Logic */}
         <img
-          src={isHovered ? DownloadIconFocus : DownloadIcon}  // Toggle icon based on hover state
+          src={isHovered ? DownloadIconFocus : DownloadIcon} // Toggle icon based on hover state
           alt="Download Icon"
           className={styles.downloadIcon}
           onMouseEnter={() => setIsHovered(true)}
