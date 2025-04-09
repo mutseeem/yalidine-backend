@@ -1,0 +1,77 @@
+/* ========== ROOT ELEMENT ========== */
+:root {
+  --background-gradient-start: #F3F9FF;
+  --background-gradient-end: #FAFCFF;
+  --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --border-color: #E5F0FF;
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --padding-md: 16px;
+  --text-gray: #718096;
+  --text-dark: #4a5568;
+  --text-bold: #000000;
+}
+
+/* ========== CONTAINER STYLES ========== */
+.questionContainer {
+  background: linear-gradient(to bottom, var(--background-gradient-start), var(--background-gradient-end));
+  border-radius: var(--border-radius);
+  padding: var(--padding-md);
+  margin-bottom: var(--gap-sm);
+  box-shadow: var(--box-shadow-light);
+  border: 1px solid var(--border-color); /* Subtle border */
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.questionContainer:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhanced hover effect */
+  transform: translateY(-3px); /* Subtle elevation on hover */
+}
+
+/* ========== HEADER SECTION ========== */
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--gap-sm); /* Consistent spacing */
+}
+
+.questionContent {
+  flex-grow: 1;
+}
+
+/* ========== LABEL STYLES ========== */
+.questionLabel {
+  display: flex;
+  align-items: baseline;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap-xs);
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-gray);
+  text-transform: uppercase;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-bold);
+}
+
+/* ========== TEXT STYLES ========== */
+.questionText {
+  font-size: 16px;
+  color: var(--text-dark);
+  line-height: 1.6; /* Improved readability */
+}
+
+/* ========== ICON STYLES ========== */
+.statusIcon {
+  width: 24px;
+  height: 24px;
+  margin-left: var(--gap-sm);
+}

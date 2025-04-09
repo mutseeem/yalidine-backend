@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchFieldsData } from '../../services/api';
 import AnsweredQuestionsCountTable from './AnsweredQuestionsCountTable';
 import AnsweredQuestionsDonutChart from './AnsweredQuestionsDonutChart';
+import QuestionList from './QuestionsList';
 import styles from './Overview.module.css';
 
 const Overview = () => {
@@ -23,11 +24,12 @@ const Overview = () => {
               <AnsweredQuestionsCountTable data={data} />
             </div>
             <div className={styles.chartSection}>
-              {<AnsweredQuestionsDonutChart data={data} />}
+              <AnsweredQuestionsDonutChart data={data} />
             </div>
           </>
         )}
       </div>
+      <QuestionList data={data} />
     </div>
   );
 };

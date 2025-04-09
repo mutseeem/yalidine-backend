@@ -7,17 +7,19 @@ import {
   Legend,
 } from "chart.js";
 import styles from "./AnsweredQuestionsDonutChart.module.css";
-import { DownloadIcon } from "../../assets/icons/icons";
-import { downloadChartAsImage } from "../../util/chart"; // Import the utility function
+import { DownloadIcon, DownloadIconFocus } from "../../assets/icons/icons";
+import { downloadChartAsImage } from "../../util/chart";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const AnsweredQuestionsDonutChart = ({ data }) => {
   const [hoverIndex, setHoverIndex] = useState(null);
+  const [isFocused, setIsFocused] = useState(false); // Track focus state for center text
+  const [isHovered, setIsHovered] = useState(false); // Track hover state for download button
   const chartRef = useRef(null);
 
-  // Count statuses (answered, not_answered, missing_files)
+  // Count statuses
   const countStatuses = () =>
     data?.reduce(
       (acc, field) => {
@@ -33,7 +35,6 @@ const AnsweredQuestionsDonutChart = ({ data }) => {
 
   const { answered, notAnswered, missingFiles } = countStatuses();
 
-  // Generate chart data with hover effects
   const getChartData = () => ({
     labels: ["Répondues", "Non répondues", "Fichiers manquants"],
     datasets: [
@@ -46,29 +47,28 @@ const AnsweredQuestionsDonutChart = ({ data }) => {
     ],
   });
 
-  // Chart options
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     cutout: "65%",
     plugins: {
       legend: {
-        position: "top",
+        position: "bottom",
         labels: {
           color: "#2d3748",
-          font: { size: 14, family: "Roboto, sans-serif" },
-          boxWidth: 16,
-          padding: 12,
+          font: { size: 16, family: "Roboto, sans-serif" },
+          boxWidth: 14,
+          padding: 10,
         },
       },
       tooltip: {
         backgroundColor: "#333",
         titleColor: "#fff",
         bodyColor: "#fff",
-        displayColors: true,
         borderColor: "transparent",
         borderWidth: 0,
-        padding: 16,
-        caretSize: 8,
+        padding: 12,
+        caretSize: 6,
         callbacks: {
           label: (tooltipItem) => {
             const value = tooltipItem.raw || 0;
@@ -84,36 +84,62 @@ const AnsweredQuestionsDonutChart = ({ data }) => {
       },
     },
     hover: { mode: "nearest", intersect: true },
-    onHover: (event, chartElements) =>
-      setHoverIndex(chartElements.length > 0 ? chartElements[0].index : null),
-    elements: { arc: { borderWidth: 4 } },
+    elements: { arc: { borderWidth: 3 } },
+    layout: { padding: 0 },
   };
 
-  // Handle Download
   const handleDownload = () => {
     const chartElement = chartRef.current;
-    downloadChartAsImage(chartElement, "answered_questions_donut_chart.jpeg"); // Call the utility function
+    downloadChartAsImage(chartElement, "answered_questions_donut_chart.jpeg");
   };
 
   return (
     <div className={styles.chartContainer}>
-      {/* Header Section */}
+      {/* Header */}
       <div className={styles.headerSection}>
         <div className={styles.titleSection}>
           <h2 className={styles.headTitle}>Répartition des réponses</h2>
-          <h3 className={styles.underHead}>Toutes catégories confondues</h3>
+          <h3 className={styles.underHead}>Toutes catégories</h3>
         </div>
+        {/* Download Icon with Hover Logic */}
         <img
-          src={DownloadIcon}
+          src={isHovered ? DownloadIconFocus : DownloadIcon} // Toggle icon based on hover state
           alt="Download Icon"
           className={styles.downloadIcon}
-          onClick={handleDownload}
+          onMouseEnter={() => setIsHovered(true)} // Set hover state to true
+          onMouseLeave={() => setIsHovered(false)} // Set hover state to false
+          onClick={handleDownload} // Trigger download when clicked
         />
       </div>
 
-      {/* Chart */}
-      <div ref={chartRef}>
-        <Doughnut data={getChartData()} options={options} />
+      {/* Chart Wrapper with Center Text */}
+      <div
+        ref={chartRef}
+        className={styles.chartWrapper}
+        onMouseEnter={() => setIsFocused(true)} // Hide center text on hover
+        onMouseLeave={() => setIsFocused(false)} // Show center text when leaving
+      >
+        <Doughnut
+          data={getChartData()}
+          options={{
+            ...options,
+            onHover: (event, elements) => {
+              if (elements.length > 0) {
+                setHoverIndex(elements[0].index);
+              } else {
+                setHoverIndex(null);
+              }
+            },
+          }}
+        />
+
+        {/* Center Text 
+        <div
+          className={`${styles.centerText} ${isFocused ? styles.hidden : ""}`}
+        >
+          {Math.round((answered / (answered + notAnswered + missingFiles)) * 100)}%
+          <div>Répondues</div>
+        </div>*/}
       </div>
     </div>
   );

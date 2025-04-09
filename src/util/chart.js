@@ -29,3 +29,4 @@ export const downloadChartAsImage = (chartElement, fileName) => {
       console.error("Error during html2canvas rendering:", error);
     });
 };
+

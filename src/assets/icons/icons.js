@@ -15,3 +15,6 @@ export {default as ArrowIcon} from './arrow.png';
 export {default as MenuBurger} from './menu-burger.svg';
 export {default as DownloadIcon} from './download-close.svg';
 export {default as DownloadIconFocus} from './download.svg';
+export {default as CheckMark} from './check-circle.png';
+export {default as CrossMark} from './cross-circle.png';
+export {default as MissingMark} from './exclamation.png';

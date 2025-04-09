@@ -21,6 +21,7 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
 
+  //TODO: get them from teh api
   const sidebarLinks = [
     { path: '/', name: 'Home', icons: [HomeIcon, HomeFocusIcon] },
     { path: '/overview', name: 'Overview', icons: [EyeIcon, EyeFocusIcon] },
