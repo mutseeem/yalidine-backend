@@ -26,11 +26,11 @@ const Profile = ({ picture, role, name, socialLinks }) => {
                 <i className={`fab ${link.icon}`} />
               </a>
             ))}
-          </div>
+          </div>  
         </div>
       </div>
     </div>
   );
 };
 
-export default Profile;
+export default Profile; 
