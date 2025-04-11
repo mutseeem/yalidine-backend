@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./QuestionList.module.css";
 import QuestionSingle from "./QuestionSingle";
-
+//TODO:make the question tag as a badge will  maek it better
 const QuestionList = ({ data }) => {
   // Process the data
   const processData = (inputData) => {

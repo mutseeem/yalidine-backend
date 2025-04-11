@@ -1,0 +1,85 @@
+/* HeroSection.module.css */
+.hero {
+    display: flex;
+    padding: 140px 60px 80px;
+    gap: 50px;
+    align-items: center;
+  }
+  
+  .leftContent {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .heroTitle {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  
+  .highlight {
+    color: #15F5BA;
+  }
+  
+  .heroSubtitle {
+    font-size: 18px;
+    color: #cdd6e0;
+    margin-bottom: 30px;
+    max-width: 500px;
+  }
+  
+  .heroButtons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .getStarted {
+    background-color: #15F5BA;
+    color: #020b16;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+  
+  .getStarted:hover {
+    background-color: #0ed3a5;
+  }
+  
+  .learnMore {
+    background-color: transparent;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  
+  .rightContent {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .plainChartImage {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      padding: 120px 30px 60px;
+    }
+    
+    .heroTitle {
+      font-size: 36px;
+    }
+  }
