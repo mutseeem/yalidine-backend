@@ -4,26 +4,32 @@ import styles from './Profile.module.css';
 const Profile = ({ picture, role, name, socialLinks }) => {
   return (
     <div className={styles.profile}>
-  <div className={styles.card}>
-    {/* Move the image inside the card */}
-    <img src={picture} alt={name} className={styles.picture} />
-  </div>
+      {/* Blue Area (Card) */}
+      <div className={styles.card}>
+        {/* Hidden Image Container */}
+        <div className={styles.imageContainer}>
+          <img src={picture} alt={name} className={styles.picture} />
+        </div>
+      </div>
 
-  <div className={styles.info}>
-    <p className={styles.role}>{role}</p>
-    <div className={styles.nameAndIcons}>
-      <h3 className={styles.name}>{name}</h3>
-      <div className={styles.socialLinks}>
-        {socialLinks.map((link, index) => (
-          <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
-            <i className={`fab ${link.icon}`} />
-          </a>
-        ))}
+      {/* Black Area (Info) */}
+      <div className={styles.info}>
+        {/* Role */}
+        <p className={styles.role}>{role}</p>
+
+        {/* Name and Social Icons */}
+        <div className={styles.nameAndIcons}>
+          <h3 className={styles.name}>{name}</h3>
+          <div className={styles.socialLinks}>
+            {socialLinks.map((link, index) => (
+              <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                <i className={`fab ${link.icon}`} />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
   );
 };
 
