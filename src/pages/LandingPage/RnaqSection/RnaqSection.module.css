@@ -1,0 +1,193 @@
+/* RnaqSection.module.css */
+
+/* Section Container */
+.rnaqSection {
+    padding: 120px 40px;
+    background-color: #0f172a;
+    color: white;
+  }
+  
+  /* Content Container */
+  .rnaqContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+  
+  /* Left Column - Chart */
+  .leftContent {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .chartImage {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 12px;
+    
+    filter: brightness(1.05) contrast(1.1);
+  }
+  
+  /* Right Column - Text Content */
+  .rightContent {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  /* Text Styling */
+  .rnaqTitle {
+    font-size: 2.5rem; /* 40px */
+    margin-bottom: 1.5rem;
+    color: #15F5BA;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .rnaqTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #15F5BA;
+    border-radius: 3px;
+  }
+  
+  .rnaqDescription {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    color: #e2e8f0;
+    font-weight: 400;
+    text-align: justify;
+    hyphens: auto;
+  }
+  
+  /* Button Styles */
+  .rnaqButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: transparent;
+    color: #15F5BA;
+    padding: 14px 36px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid #15F5BA;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .rnaqButton:hover {
+    background-color: #15F5BA;
+    color: #020b16;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(21, 245, 186, 0.3);
+  }
+  
+  .rnaqButton:active {
+    transform: translateY(0);
+  }
+  
+  .rnaqButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+  }
+  
+  .rnaqButton:hover::before {
+    left: 100%;
+  }
+  
+  /* Animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+  
+  .floatingChart {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .rnaqContainer {
+      gap: 60px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .rnaqSection {
+      padding: 100px 30px;
+    }
+    
+    .rnaqTitle {
+      font-size: 2rem;
+    }
+    
+    .rnaqDescription {
+      font-size: 1.125rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .rnaqContainer {
+      flex-direction: column;
+    }
+    
+    .leftContent {
+      order: 2;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .rightContent {
+      order: 1;
+      text-align: center;
+    }
+    
+    .rnaqTitle::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .rnaqDescription {
+      text-align: center;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .rnaqSection {
+      padding: 80px 20px;
+    }
+    
+    .rnaqTitle {
+      font-size: 1.75rem;
+    }
+    
+    .rnaqButton {
+      padding: 12px 28px;
+      font-size: 1rem;
+    }
+  }

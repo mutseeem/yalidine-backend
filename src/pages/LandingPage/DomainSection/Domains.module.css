@@ -1,0 +1,56 @@
+.domainsSection {
+    padding: 40px;
+    text-align: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  
+  .domainRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-bottom: 25px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .domainRow {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .domainRow {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  
+    .domainsSection {
+      padding: 30px 20px;
+    }
+  
+    .title {
+      font-size: 28px;
+    }
+  
+    .subtitle {
+      font-size: 16px;
+    }
+  }

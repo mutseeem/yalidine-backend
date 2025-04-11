@@ -1,0 +1,70 @@
+.profile {
+  width: 160px;
+  margin: auto;
+  font-family: sans-serif;
+  position: relative;
+}
+
+.card {
+  background-color: #00aedd;
+  height: 163px;
+  width: 164px;
+  border-radius: 10px 10px 0px 0px;
+  position: relative;
+  z-index: 1;
+}
+
+.picture {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+  z-index: 2;
+}
+
+.info {
+  background-color: #000;
+  color: white;
+  padding: 8px 10px 6px;
+  width: 164px;
+  min-height: 50px;
+  box-sizing: border-box;
+  text-align: left;
+  position: relative;
+  z-index: 0;
+}
+
+.role {
+  color: #00aedd;
+  font-size: 0.4rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.nameAndIcons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.25px;
+  white-space: nowrap;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 5px;
+}
+
+.socialLinks a {
+  color: white;
+  font-size: 0.6rem;
+}

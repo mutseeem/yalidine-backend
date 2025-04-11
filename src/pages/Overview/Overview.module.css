@@ -1,9 +1,13 @@
+
 /* ========== BASE STYLES ========== */
+
+
 .overviewContainer {
     width: 100%;
     max-width: 1200px; /* Limit max width for better readability */
     margin: 0 auto; /* Center the container */
     padding: 24px;
+    
   }
   
   .title {

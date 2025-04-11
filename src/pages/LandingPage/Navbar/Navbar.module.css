@@ -1,0 +1,106 @@
+/* Navbar.module.css */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 40px;
+    background-color: rgba(2, 11, 22, 0.95);
+    -webkit-backdrop-filter : blur(8px);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logoImg {
+    height: 32px;
+    width: 32px;
+  }
+  
+  .logoText {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .navLinks {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .navLink {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+  
+  .navLink:hover {
+    color: #15F5BA;
+  }
+  
+  .navRight {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .loginButton {
+    background: transparent;
+    border: 2px solid #15F5BA;
+    color: #15F5BA;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  
+  .loginButton:hover {
+    background-color: rgba(21, 245, 186, 0.1);
+  }
+  
+  .signUp {
+    margin-right: 60px; 
+    background-color: #15F5BA;
+    color: #020b16;
+    padding: 8px 16px;
+    border: 2px solid #15F5BA;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+   
+    transition: all 0.15s ease;
+  }
+  
+  .signUp:hover {
+    background-color: #0ed3a5;
+    border-color: #0ed3a5;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 16px 24px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .navLinks {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .navRight {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
