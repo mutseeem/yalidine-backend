@@ -30,25 +30,36 @@ const LandingPage = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <div ref={heroRef}>
+      <div id="home" ref={heroRef}>
         <HeroSection />
       </div>
 
       {/* RNAQ Section */}
-      <div ref={rnaqRef}>
+      <div id="about" ref={rnaqRef}>
         <RnaqSection />
       </div>
 
       {/* Domains Section */}
-      <Domains />
+      <div id="domains">
+        <Domains />
+      </div>
 
       {/* Meet Our Team Section */}
-      <div ref={meetOurTeamRef}>
+      <div id="devs" ref={meetOurTeamRef}>
         <MeetOurTeam />
       </div>
 
       {/* Contact Us Section */}
-      <ContactUs />
+      <div id="contact">
+        <ContactUs />
+      </div>
+
+      {/* FAQ Section (Placeholder) 
+      <div id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <p>Answers to common questions go here.</p>
+      </div>
+      */}
     </div>
   );
 };
