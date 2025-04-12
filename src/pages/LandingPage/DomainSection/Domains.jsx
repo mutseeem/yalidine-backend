@@ -3,56 +3,73 @@ import React from 'react';
 import styles from './Domains.module.css';
 import DomainCard from './DomainCard';
 import { motion } from 'framer-motion';
+import { 
+  FaGraduationCap, 
+  FaMicroscope, 
+  FaChessKing, 
+  FaUniversity,
+  FaBuilding,
+  FaHandshake,
+  FaGlobeAmericas,
+  FaLeaf
+} from 'react-icons/fa';
 
 const Domains = () => {
+  const handleDomainClick = (domainNumber) => {
+    alert(`Navigating to Domain ${domainNumber} page\n\n(This will be replaced with actual navigation)`);
+    // In a real implementation, you would use:
+    // navigate(`/domains/${domainNumber}`);
+    // or similar routing logic
+  };
+
   const domainsData = [
     {
-      name: 'GOVERNANCE',
+      name: 'FORMATION',
       number: '1',
-      icon: <i className="fas fa-chess-queen" />,
-      description: 'Strategic leadership and decision-making frameworks',
+      icon: <FaGraduationCap />,
+      description: 'Focused on the structure, delivery, and continuous improvement of academic training in universities',
     },
     {
-      name: 'EDUCATION',
+      name: 'RESEARCH AND INNOVATION',
       number: '2',
-      icon: <i className="fas fa-graduation-cap" />,
-      description: 'Academic program quality and student outcomes',
+      icon: <FaMicroscope />,
+      description: 'Covers strategic development, partnerships, and the impact of research and innovation',
     },
     {
-      name: 'RESEARCH',
+      name: 'GOVERNANCE',
       number: '3',
-      icon: <i className="fas fa-flask" />,
-      description: 'Research excellence and innovation standards',
+      icon: <FaChessKing />,
+      description: 'Focuses on the strategic management of information, policy development, and organizational oversight for effective governance',
     },
     {
-      name: 'RESOURCES',
+      name: 'ÉESRS',
       number: '4',
-      icon: <i className="fas fa-cogs" />,
-      description: 'Human, financial and infrastructure management',
+      icon: <FaUniversity />,
+      description: 'Life in Higher Education Institutions and Scientific Research',
     },
     {
-      name: 'COMMUNITY',
+      name: 'INFRASTRUCTURE',
       number: '5',
-      icon: <i className="fas fa-users" />,
-      description: 'Social engagement and stakeholder relations',
+      icon: <FaBuilding />,
+      description: 'Covers the management and maintenance of key infrastructures for administration, academics, research, and student life.',
     },
     {
-      name: 'TECHNOLOGY',
+      name: 'RELATIONS WITH THE SOCIOECONOMIC ENVIRONMENT',
       number: '6',
-      icon: <i className="fas fa-server" />,
-      description: 'Digital infrastructure and information systems',
+      icon: <FaHandshake />,
+      description: 'Focuses on the institution`s interaction with its socioeconomic environment.',
     },
     {
-      name: 'QUALITY',
+      name: 'INTERNATIONAL COOPERATION',
       number: '7',
-      icon: <i className="fas fa-award" />,
-      description: 'Continuous improvement and assurance processes',
+      icon: <FaGlobeAmericas />,
+      description: 'Focuses on establishing and strengthening international partnerships and collaborations to enhance global engagement and academic exchange',
     },
     {
-      name: 'INTERNATIONAL',
+      name: 'UNIVERSITY SOCIAL RESPONSIBILITY AND SUSTAINABLE DEVELOPMENT',
       number: '8',
-      icon: <i className="fas fa-globe" />,
-      description: 'Global standards alignment and partnerships',
+      icon: <FaLeaf />,
+      description: 'Focuses on promoting social responsibility and sustainable practices within the university.',
     },
   ];
 
@@ -96,6 +113,7 @@ const Domains = () => {
             icon={domain.icon}
             description={domain.description}
             index={index}
+            onClick={() => handleDomainClick(domain.number)}
           />
         ))}
       </div>

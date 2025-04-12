@@ -9,7 +9,4 @@ export {default as ilyes} from './ilyes.png';
 export {default as amine} from './amine.png';
 export {default as moatassim} from './moatassim.png';
 export {default as ramdani} from './ramdaniMoh.png';
-export {default as ilyesBW} from './ilyesBW.png';
-export {default as moatassimBW} from './ilyes.png';
-export {default as ramdaniBW} from './ilyes.png';
-export {default as amineBW} from './ilyes.png';
+export {default as kahloul} from './kahloul.png';
