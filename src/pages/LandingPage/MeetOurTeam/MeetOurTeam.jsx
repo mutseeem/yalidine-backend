@@ -1,79 +1,80 @@
+// MeetOurTeam.js
 import React from 'react';
+import { motion } from 'framer-motion';
 import styles from './MeetOurTeam.module.css';
-import Profile from './Profile'; // Import the Profile component
-import { ilyes , moatassim ,amine ,ramdani} from '../../../assets/images/images'; // Import the image from assets
-
+import Profile from './Profile';
+import { ilyes, moatassim, amine, ramdani } from '../../../assets/images/images';
 
 const MeetOurTeam = () => {
   const teamMembers = [
     {
-      picture: amine, // Replace with actual image path
+      picture: amine,
       role: 'UI/UX & Front-end',
       name: 'CHABI AMINE',
       socialLinks: [
-        { url: 'https://www.linkedin.com/in/amine/', icon: 'fa-linkedin' },
-        { url: 'https://www.facebook.com/amine/', icon: 'fa-facebook' },
+        { url: '#', icon: 'fa-linkedin' },
+        { url: '#', icon: 'fa-github' }
       ],
     },
     {
-      picture: ilyes, // Replace with actual image path
+      picture: ilyes,
       role: 'UI/UX & Front-end',
       name: 'IZEMMOUREN ILYES',
       socialLinks: [
-        { url: 'https://www.linkedin.com/in/ilyes/', icon: 'fa-linkedin' },
-        { url: 'https://www.facebook.com/ilyes/', icon: 'fa-facebook' },
+        { url: '#', icon: 'fa-linkedin' },
+        { url: '#', icon: 'fa-dribbble' }
       ],
     },
     {
-      picture: moatassim, // Replace with actual image path
-      role: 'UI/UX & Front-end',
-      name: 'MOURKSI MOATASSIM',
+      picture: ramdani,
+      role: 'SLAVE OWNER',
+      name: 'RAMDANI MOHAMED',
       socialLinks: [
-        { url: 'https://www.linkedin.com/in/ilyes/', icon: 'fa-linkedin' },
-        { url: 'https://www.facebook.com/ilyes/', icon: 'fa-facebook' },
+        { url: '#', icon: 'fa-linkedin' },
+        { url: '#', icon: 'fa-twitter' }
       ],
     },
     {
-      picture: ramdani, // Replace with actual image path
+      picture: ramdani,
       role: 'Supervisor',
       name: 'RAMDANI MOHAMED',
       socialLinks: [
-        { url: 'https://www.linkedin.com/in/ilyes/', icon: 'fa-linkedin' },
-        { url: 'https://www.facebook.com/ilyes/', icon: 'fa-facebook' },
+        { url: '#', icon: 'fa-linkedin' },
+        { url: '#', icon: 'fa-globe' }
       ],
-    },
-    {
-      picture: ilyes, // Replace with actual image path
-      role: 'UI/UX & Front-end',
-      name: 'IZEMMOUREN ILYES',
-      socialLinks: [
-        { url: 'https://www.linkedin.com/in/ilyes/', icon: 'fa-linkedin' },
-        { url: 'https://www.facebook.com/ilyes/', icon: 'fa-facebook' },
-      ],
-    },
-    {
-      picture: ilyes, // Replace with actual image path
-      role: 'UI/UX & Front-end',
-      name: 'IZEMMOUREN ILYES',
-      socialLinks: [
-        { url: 'https://www.linkedin.com/in/ilyes/', icon: 'fa-linkedin' },
-        { url: 'https://www.facebook.com/ilyes/', icon: 'fa-facebook' },
-      ],
-    },
+    }
   ];
 
   return (
     <section className={styles.meetOurTeamSection}>
-      <h2 className={styles.title}>MEET OUR TEAM</h2>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className={styles.header}
+      >
+        <h2 className={styles.title}>MEET OUR TEAM</h2>
+        <p className={styles.subtitle}>The brilliant minds behind your quality assurance journey</p>
+      </motion.div>
+
       <div className={styles.teamGrid}>
         {teamMembers.map((member, index) => (
-          <Profile
+          <motion.div
             key={index}
-            picture={member.picture}
-            role={member.role}
-            name={member.name}
-            socialLinks={member.socialLinks}
-          />
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.4,
+              delay: index * 0.1
+            }}
+          >
+            <Profile
+              picture={member.picture}
+              role={member.role}
+              name={member.name}
+              socialLinks={member.socialLinks}
+            />
+          </motion.div>
         ))}
       </div>
     </section>

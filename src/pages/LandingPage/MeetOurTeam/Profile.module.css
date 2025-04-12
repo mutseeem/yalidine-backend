@@ -1,96 +1,161 @@
-/* Main Profile Container */
+/* Profile.module.css */
 .profile {
-  width: 338px; /* 260px * 1.3 */
-  margin: auto;
-  font-family: sans-serif;
+  width: 320px;
+  margin: 0 auto 3rem;
+  font-family: 'Inter', sans-serif;
   position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: #f8f8f8;
 }
 
-/* Blue Area (Card) */
+/* PRESERVED IMAGE STYLES */
 .card {
-  background-color: #00aedd; /* Blue background */
-  height: 286px; /* 220px * 1.3 */
-  width: 338px; /* 260px * 1.3 */
-  border-radius: 19.5px 19.5px 0px 0px; /* 15px * 1.3 */
+  background-color: #f8f8f8;
+  height: 280px;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
   position: relative;
-  z-index: 0;
-  overflow: visible; /* Allow content to overflow */
+  overflow: visible;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
 }
 
-/* Hidden Image Container */
 .imageContainer {
   position: absolute;
-  bottom: 0; /* Align with the bottom of the blue area */
-  right: 0; /* Align with the right edge of the blue area */
-  width: 338px; /* 260px * 1.3 */
-  height: 468px; /* 360px * 1.3 */
-  overflow: hidden; /* Clip any part of the image that exceeds the container */
-  z-index: 1; /* Ensure it's above the blue area */
-  background-color: transparent; /* No background color */
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  z-index: 1;
 }
 
-/* Picture */
 .picture {
   position: absolute;
-  bottom: 0; /* Align the image to the bottom of the hidden container */
-  right: 0; /* Align the image to the right edge of the hidden container */
-  width: 377px; /* 290px * 1.3 */
-  height: 351px; /* 270px * 1.3 */
-  object-fit: cover; /* Ensure proper scaling */
-  object-position: center; /* Center the image */
+  bottom: 0;
+  right: 0;
+  width: 360px;
+  height: 340px;
+  object-fit: cover;
+  object-position: center;
+  transition: filter 0.4s ease;
+  filter: grayscale(100%) contrast(110%);
 }
 
-/* Black Area (Info) */
+.profile:hover .picture {
+  filter: grayscale(0%) contrast(100%);
+}
+
+/* TEXT AREA IMPROVEMENTS */
 .info {
-  background-color: #00141B; /* Red background */
-  color: white;
-  padding: 5.2px 10.4px; /* 4px * 1.3, 8px * 1.3 */
-  width: 338px; /* 260px * 1.3 */
-  height: 65px; /* 50px * 1.3 */
+  background-color: #f8f8f8;
+  color: #171717;
+  padding: 1.75rem; /* Increased padding */
+  width: 100%;
+  height:80px;
   box-sizing: border-box;
   text-align: left;
   position: relative;
   z-index: 0;
-  display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: center; /* Center content vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0 0 20px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: none;
 }
 
-/* Role */
 .role {
-  margin-top: 26px; /* 20px * 1.3 */
-  color: #00aedd; /* Blue text */
-  font-size: 0.78rem; /* 0.6rem * 1.3 */
-  font-weight: 600;
-  margin-bottom: -13px; /* -10px * 1.3 */
+  color: #15F5BA;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.6rem;
 }
 
-/* Name and Social Icons */
 .nameAndIcons {
   display: flex;
-  justify-content: space-between; /* Align name and icons horizontally */
-  align-items: center; /* Center items vertically */
-  gap: 7.8px; /* 6px * 1.3 */
-  margin-bottom: 6.5px; /* 5px * 1.3 */
+  justify-content: space-between;
+  align-items: center; /* Ensures perfect vertical alignment */
 }
 
-/* Name */
 .name {
-  font-size: 1.04rem; /* 0.8rem * 1.3 */
-  font-weight: bold;
-  letter-spacing: 0.39px; /* 0.3px * 1.3 */
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
   white-space: nowrap;
-  overflow: hidden; /* Prevent overflow */
-  text-overflow: ellipsis; /* Add ellipsis for long names */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  color: #333333;
+  line-height: 1.3; /* Better text alignment */
+  margin-bottom: 40px;
 }
 
-/* Social Links */
+/* LARGER ICONS WITH PROPER ALIGNMENT */
 .socialLinks {
   display: flex;
-  gap: 5.2px; /* 4px * 1.3 */
+  gap: 0.8rem;
+  align-items: center; /* Perfect vertical centering */
+  margin-bottom: 20px;
 }
 
 .socialLinks a {
-  color: white; /* White icons */
-  font-size: 0.91rem; /* 0.7rem * 1.3 */
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 1.1rem; /* Slightly larger */
+  width: 28px; /* Fixed dimensions */
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.socialLinks a:hover {
+  color: #15F5BA;
+  transform: translateY(-2px);
+}
+
+/* Hover Effects */
+.profile:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.profile:hover .info {
+  background-color: #f8f8f8;
+}
+
+/* MeetOurTeam.module.css updates */
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .teamGrid {
+    gap: 5rem 0;
+  }
+  
+  .profile {
+    margin-bottom: 4rem;
+  }
+  
+  .name {
+    font-size: 1.15rem;
+  }
+  
+  .socialLinks a {
+    font-size: 1rem; /* Slightly smaller on mobile */
+    width: 26px;
+    height: 26px;
+  }
 }

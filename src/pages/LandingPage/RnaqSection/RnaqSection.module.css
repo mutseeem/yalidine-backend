@@ -1,193 +1,202 @@
-/* RnaqSection.module.css */
-
-/* Section Container */
 .rnaqSection {
-    padding: 120px 40px;
-    background-color: #0f172a;
-    color: white;
-  }
-  
-  /* Content Container */
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+  overflow: hidden;
+}
+
+
+.backgroundPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(14, 211, 165, 0.03) 0%, transparent 30%),
+    linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+  z-index: -1;
+}
+
+.rnaqContainer {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 3rem; /* Reduced from 4rem */
+  align-items: center;
+}
+
+.leftContent {
+  flex: 1;
+  position: relative;
+  min-width: 0; /* Prevents flex item overflow */
+}
+
+
+.chartWrapper {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  max-width: 500px; /* Added max-width constraint */
+  margin: 0 auto;
+}
+
+.chartImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 2;
+  padding: 1rem; /* Added internal padding */
+}
+
+.chartGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(14, 211, 165, 0.1) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.rightContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionBadge {
+  background: rgba(14, 211, 165, 0.1);
+  color: #0ed3a5;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  width: fit-content;
+  border: 1px solid rgba(14, 211, 165, 0.2);
+}
+
+.rnaqTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111;
+  margin: 0;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #0ed3a5, #00b4d8);
+  background-size: 100% 100%;
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding-bottom: 0.2rem;
+}
+
+.rnaqDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.featureList li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: #444;
+}
+
+.featureList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #15F5BA;
+  border-radius: 50%;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.primaryButton {
+  background: #15F5BA;
+  color: #020b16;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.secondaryButton {
+  background: transparent;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
   .rnaqContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 80px;
+    flex-direction: column;
+    gap: 3rem;
   }
   
-  /* Left Column - Chart */
-  .leftContent {
-    flex: 1;
-    min-width: 300px;
-  }
-  
-  .chartImage {
+  .leftContent,
+  .rightContent {
     width: 100%;
     max-width: 600px;
-    height: auto;
-    border-radius: 12px;
-    
-    filter: brightness(1.05) contrast(1.1);
+    margin: 0 auto;
   }
   
-  /* Right Column - Text Content */
-  .rightContent {
-    flex: 1;
-    min-width: 300px;
-  }
-  
-  /* Text Styling */
   .rnaqTitle {
-    font-size: 2.5rem; /* 40px */
-    margin-bottom: 1.5rem;
-    color: #15F5BA;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .rnaqSection {
+    padding: 4rem 1.5rem;
   }
   
-  .rnaqTitle::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: #15F5BA;
-    border-radius: 3px;
+  .buttonGroup {
+    flex-direction: column;
   }
   
-  .rnaqDescription {
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-    color: #e2e8f0;
-    font-weight: 400;
-    text-align: justify;
-    hyphens: auto;
-  }
-  
-  /* Button Styles */
-  .rnaqButton {
-    display: inline-flex;
-    align-items: center;
+  .primaryButton,
+  .secondaryButton {
     justify-content: center;
-    gap: 8px;
-    background-color: transparent;
-    color: #15F5BA;
-    padding: 14px 36px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border: 2px solid #15F5BA;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .rnaqButton:hover {
-    background-color: #15F5BA;
-    color: #020b16;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(21, 245, 186, 0.3);
-  }
-  
-  .rnaqButton:active {
-    transform: translateY(0);
-  }
-  
-  .rnaqButton::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.5s;
   }
-  
-  .rnaqButton:hover::before {
-    left: 100%;
-  }
-  
-  /* Animation */
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-15px);
-    }
-  }
-  
-  .floatingChart {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 1200px) {
-    .rnaqContainer {
-      gap: 60px;
-    }
-  }
-  
-  @media (max-width: 992px) {
-    .rnaqSection {
-      padding: 100px 30px;
-    }
-    
-    .rnaqTitle {
-      font-size: 2rem;
-    }
-    
-    .rnaqDescription {
-      font-size: 1.125rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .rnaqContainer {
-      flex-direction: column;
-    }
-    
-    .leftContent {
-      order: 2;
-      width: 100%;
-      text-align: center;
-    }
-    
-    .rightContent {
-      order: 1;
-      text-align: center;
-    }
-    
-    .rnaqTitle::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    .rnaqDescription {
-      text-align: center;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .rnaqSection {
-      padding: 80px 20px;
-    }
-    
-    .rnaqTitle {
-      font-size: 1.75rem;
-    }
-    
-    .rnaqButton {
-      padding: 12px 28px;
-      font-size: 1rem;
-    }
-  }
+}

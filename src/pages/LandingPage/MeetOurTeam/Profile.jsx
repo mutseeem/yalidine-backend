@@ -1,36 +1,56 @@
+// Profile.js
 import React from 'react';
+import { motion } from 'framer-motion';
 import styles from './Profile.module.css';
 
 const Profile = ({ picture, role, name, socialLinks }) => {
   return (
-    <div className={styles.profile}>
-      {/* Blue Area (Card) */}
+    <motion.div 
+      className={styles.profile}
+      whileHover={{
+        y: -10,
+        transition: { duration: 0.2 }
+      }}
+    >
       <div className={styles.card}>
-        {/* Hidden Image Container */}
         <div className={styles.imageContainer}>
-          <img src={picture} alt={name} className={styles.picture} />
+          <motion.img 
+            src={picture} 
+            alt={name} 
+            className={styles.picture}
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
+          />
         </div>
       </div>
 
-      {/* Black Area (Info) */}
       <div className={styles.info}>
-        {/* Role */}
         <p className={styles.role}>{role}</p>
-
-        {/* Name and Social Icons */}
         <div className={styles.nameAndIcons}>
           <h3 className={styles.name}>{name}</h3>
           <div className={styles.socialLinks}>
             {socialLinks.map((link, index) => (
-              <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+              <motion.a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ 
+                  y: -3,
+                  color: '#15F5BA',
+                  transition: { duration: 0.1 }
+                }}
+              >
                 <i className={`fab ${link.icon}`} />
-              </a>
+              </motion.a>
             ))}
           </div>  
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default Profile; 
+export default Profile;

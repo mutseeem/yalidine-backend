@@ -1,7 +1,7 @@
 /* Contains both container and shared styles */
 .container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #020b16;
+  background-color: #ffffff;
   color: white;
   min-height: 100vh;
 }

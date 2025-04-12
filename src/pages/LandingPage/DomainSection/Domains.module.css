@@ -1,56 +1,67 @@
+/* Domains.module.css */
 .domainsSection {
-    padding: 40px;
-    text-align: center;
-    max-width: 1400px;
-    margin: 0 auto;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  padding-top: 1rem;
+}
+
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #0ed3a5, #00b4d8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.domainGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.qualityTag {
+  background: rgba(21, 245, 186, 0.1);
+  color: #15F5BA;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: fit-content;
+  margin: 0 auto 1rem;
+  border: 1px solid rgba(21, 245, 186, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .domainsSection {
+    padding: 4rem 1.5rem;
   }
   
   .title {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #2c3e50;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 2rem;
   }
   
-  .subtitle {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 40px;
-    line-height: 1.6;
+  .domainGrid {
+    grid-template-columns: 1fr;
   }
-  
-  .domainRow {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-bottom: 25px;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 1200px) {
-    .domainRow {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .domainRow {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-  
-    .domainsSection {
-      padding: 30px 20px;
-    }
-  
-    .title {
-      font-size: 28px;
-    }
-  
-    .subtitle {
-      font-size: 16px;
-    }
-  }
+}

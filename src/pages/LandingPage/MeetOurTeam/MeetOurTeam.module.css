@@ -1,49 +1,46 @@
+/* MeetOurTeam.module.css */
 .meetOurTeamSection {
-  padding: 40px 20px;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
   text-align: center;
 }
 
+.header {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
 .title {
-  font-size: 2rem;
-  margin-bottom: 40px; /* Space under the title */
-  color: #333;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #0ed3a5, #00b4d8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
 }
 
 .teamGrid {
-  display: flex;
-  flex-wrap: wrap; /* Allows items to wrap into multiple rows */
-  justify-content: center; /* Centers the items horizontally */
-  max-width: 1200px; /* Limits the width of the container */
-  margin: 0 auto; /* Centers the container on the page */
-}
-
-.teamGrid > div {
-  flex: 0 0 calc(33.33% - 40px); /* Each item takes up ~33.33% width minus 40px spacing */
-  margin-right: 0px; /* Adds 40px spacing between items */
-  margin-bottom: 40px; /* Adds vertical spacing between rows */
-  box-sizing: border-box; /* Includes padding and borders in the width calculation */
-}
-
-/* Remove margin-right from the last item in each row */
-.teamGrid > div:nth-child(3n) {
-  margin-right: 0; /* Removes the right margin for every 3rd item */
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 1024px) {
-  .teamGrid > div {
-    flex: 0 0 calc(50% - 40px); /* 2 items per row on medium screens */
-  }
-
-  /* Remove margin-right from the last item in each row */
-  .teamGrid > div:nth-child(2n) {
-    margin-right: 0; /* Removes the right margin for every 2nd item */
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem 2rem; /* Increased vertical gap (first value) */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
-  .teamGrid > div {
-    flex: 0 0 100%; /* 1 item per row on small screens */
-    margin-right: 0; /* No horizontal spacing needed */
+  .meetOurTeamSection {
+    padding: 4rem 1.5rem;
+  }
+  
+  .teamGrid {
+    grid-template-columns: 1fr;
   }
 }

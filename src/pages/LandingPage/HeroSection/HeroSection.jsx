@@ -8,20 +8,20 @@ const HeroSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.03, // Faster stagger
         when: "beforeChildren",
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 15, opacity: 0 },
+    hidden: { y: 10, opacity: 0 }, // Smaller initial movement
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.25,
-        ease: [0.16, 0.77, 0.47, 0.97],
+        duration: 0.2, // Faster duration
+        ease: "easeOut",
       },
     },
   };
@@ -34,88 +34,113 @@ const HeroSection = () => {
         animate="visible"
         variants={containerVariants}
       >
+        <motion.div variants={itemVariants} className={styles.badge}>
+          <span>Guided by RNAQ-ESRS</span>
+        </motion.div>
+
         <motion.h1 variants={itemVariants} className={styles.heroTitle}>
-          Empowering Excellence in{' '}
+          Transform Your{' '}
           <motion.span
             className={styles.highlight}
             initial={{ backgroundSize: "0% 100%" }}
             animate={{ backgroundSize: "100% 100%" }}
             transition={{ 
-              duration: 0.4, 
-              delay: 0.2,
-              ease: [0.16, 0.77, 0.47, 0.97]
+              duration: 0.4, // Faster highlight animation
+              delay: 0.15,
+              ease: "easeOut"
             }}
           >
-            Quality
-          </motion.span>{' '}
-          Management
+            Quality Management
+          </motion.span>
         </motion.h1>
 
         <motion.p 
           variants={itemVariants} 
           className={styles.heroSubtitle}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.1 }} // Reduced delay
         >
-          A smart, scalable SaaS platform designed to streamline, evaluate, and elevate quality processes across universities and businesses.
+          A practical solution designed to enhance productivity and trust in universities by supporting quality assurance processes and streamlining workflows..
         </motion.p>
 
         <motion.div 
           variants={itemVariants} 
           className={styles.heroButtons}
-          transition={{ delay: 0.15 }}
+          transition={{ delay: 0.15 }} // Reduced delay
         >
           <motion.button
             whileHover={{ 
               scale: 1.02,
-              backgroundColor: "#0ed3a5",
-              boxShadow: "0 4px 12px rgba(21, 245, 186, 0.3)"
+              boxShadow: "0 2px 10px rgba(14, 211, 165, 0.3)" // Subtler shadow
             }}
             whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.15 }}
-            className={styles.getStarted}
+            transition={{ duration: 0.1 }} // Faster interaction
+            className={styles.primaryButton}
           >
-            Get started
+            Start now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2"/>
+            </svg>
           </motion.button>
+          
           <motion.button
             whileHover={{ 
               scale: 1.02,
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
-              borderColor: "rgba(255, 255, 255, 0.5)"
+              backgroundColor: "rgba(0, 0, 0, 0.02)" // Lighter hover
             }}
             whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.15 }}
-            className={styles.learnMore}
+            transition={{ duration: 0.1 }} // Faster interaction
+            className={styles.secondaryButton}
           >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
+              <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2"/>
+            </svg>
             Learn more
           </motion.button>
+        </motion.div>
+
+        <motion.div 
+          variants={itemVariants}
+          className={styles.trustedBy}
+          transition={{ delay: 0.2 }}
+        >
+          <div className={styles.trustedText}>Trusted by:</div>
+          <div className={styles.logoGrid}>
+            <div className={styles.logoItem}>Biskra</div>
+            <div className={styles.logoItem}>Kahloul</div>
+            <div className={styles.logoItem}>Ramdani</div>
+            <div className={styles.logoItem}>amine</div>
+            <div className={styles.logoItem}>7ajBaroud</div>
+          </div>
         </motion.div>
       </motion.div>
 
       <motion.div
         className={styles.rightContent}
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          duration: 0.3,
-          delay: 0.2,
-          ease: [0.16, 0.77, 0.47, 0.97]
+          duration: 0.3, // Faster animation
+          delay: 0.25,
+          ease: "easeOut"
         }}
       >
         <motion.div
+          className={styles.chartContainer}
           animate={{
-            y: [0, -5, 0],
+            y: [0, -5, 0], // Smaller bounce
           }}
           transition={{
-            duration: 4,
+            duration: 4, // Slightly faster float
             repeat: Infinity,
             ease: "easeInOut",
           }}
         >
           <img
             src={chart6}
-            alt="Analytics Chart"
-            loading="lazy"
-            className={styles.plainChartImage}
+            alt="Analytics Dashboard"
+            loading="eager"
+            className={styles.dashboardImage}
           />
         </motion.div>
       </motion.div>

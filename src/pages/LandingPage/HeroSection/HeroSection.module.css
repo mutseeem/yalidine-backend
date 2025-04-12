@@ -1,85 +1,202 @@
-/* HeroSection.module.css */
 .hero {
-    display: flex;
-    padding: 140px 60px 80px;
-    gap: 50px;
-    align-items: center;
+  display: flex;
+  min-height: 90vh;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 3rem;
+  background: white; /* Pure white background */
+}
+
+.leftContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 600px;
+}
+
+/* Badge */
+.badge {
+  background: rgba(14, 211, 165, 0.1);
+  color: #0ed3a5;
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+/* Typography */
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 3.2rem); /* Responsive font size */
+  font-weight: 700;
+  line-height: 1.2;
+  color: #111;
+  margin: 0;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #0ed3a5, #00b4d8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.5;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+/* Buttons */
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton {
+  background: #0ed3a5;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.secondaryButton {
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Trusted by section */
+.trustedBy {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.trustedText {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.logoGrid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.logoItem {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Right content */
+.rightContent {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartContainer {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dashboardImage {
+  width: 100%;
+  height: auto;
+  max-width: 550px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hero {
+    margin-top: 15px;
+    flex-direction: column;
+    text-align: center;
+    padding: 4rem 2rem;
+    gap: 2rem;
   }
   
   .leftContent {
-    flex: 1;
-    min-width: 300px;
-  }
-  
-  .heroTitle {
-    font-size: 48px;
-    line-height: 1.2;
-    margin-bottom: 20px;
-  }
-  
-  .highlight {
-    color: #15F5BA;
-  }
-  
-  .heroSubtitle {
-    font-size: 18px;
-    color: #cdd6e0;
-    margin-bottom: 30px;
-    max-width: 500px;
+    align-items: center;
+    max-width: 100%;
   }
   
   .heroButtons {
-    display: flex;
-    gap: 20px;
+    justify-content: center;
   }
   
-  .getStarted {
-    background-color: #15F5BA;
-    color: #020b16;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-  }
-  
-  .getStarted:hover {
-    background-color: #0ed3a5;
-  }
-  
-  .learnMore {
-    background-color: transparent;
-    color: white;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    border: 2px solid white;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s ease;
+  .trustedBy {
+    justify-content: center;
   }
   
   .rightContent {
-    flex: 1;
-    min-width: 300px;
-  }
-  
-  .plainChartImage {
     width: 100%;
-    max-width: 600px;
-    height: auto;
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    margin-top: 15px;
+    padding: 3rem 1.5rem;
+    min-height: auto;
   }
   
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero {
-      flex-direction: column;
-      padding: 120px 30px 60px;
-    }
-    
-    .heroTitle {
-      font-size: 36px;
-    }
+  .heroButtons {
+    flex-direction: column;
+    width: 100%;
   }
+  
+  .primaryButton, 
+  .secondaryButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .logoGrid {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    margin-top: 15px;
+    font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+  
+  .badge {
+    font-size: 0.7rem;
+  }
+}
