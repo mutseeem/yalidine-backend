@@ -157,8 +157,8 @@ const ContactUs = () => {
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
           <div className={styles.footerLogo}>
-            <span>YOUR</span>
-            <span>LOGO</span>
+            <span>DIGIQA</span>
+            <span></span>
           </div>
           
           <div className={styles.footerLinks}>
@@ -186,7 +186,7 @@ const ContactUs = () => {
         </div>
         
         <div className={styles.footerBottom}>
-          <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} DIGIQA. All rights reserved.</p>
           <div className={styles.legalLinks}>
             <a href="/privacy">Privacy Policy</a>
             <a href="/terms">Terms of Service</a>

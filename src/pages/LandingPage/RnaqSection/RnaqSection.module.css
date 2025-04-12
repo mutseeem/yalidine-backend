@@ -5,7 +5,6 @@
   overflow: hidden;
 }
 
-
 .backgroundPattern {
   position: absolute;
   top: 0;
@@ -22,22 +21,20 @@
   display: flex;
   max-width: 1200px;
   margin: 0 auto;
-  gap: 3rem; /* Reduced from 4rem */
+  gap: 3rem;
   align-items: center;
 }
 
 .leftContent {
   flex: 1;
   position: relative;
-  min-width: 0; /* Prevents flex item overflow */
+  min-width: 0;
 }
-
 
 .chartWrapper {
   position: relative;
-  border-radius: 1rem;
   overflow: hidden;
-  max-width: 500px; /* Added max-width constraint */
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -47,7 +44,8 @@
   display: block;
   position: relative;
   z-index: 2;
-  padding: 1rem; /* Added internal padding */
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .chartGlow {
@@ -58,6 +56,7 @@
   height: 100%;
   background: radial-gradient(circle at center, rgba(14, 211, 165, 0.1) 0%, transparent 50%);
   z-index: 1;
+  opacity: 0.8;
 }
 
 .rightContent {
@@ -70,12 +69,14 @@
 .sectionBadge {
   background: rgba(14, 211, 165, 0.1);
   color: #0ed3a5;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   border-radius: 2rem;
-  font-size: 0.875rem;
+  font-size: 0.7rem;
   font-weight: 600;
   width: fit-content;
   border: 1px solid rgba(14, 211, 165, 0.2);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .rnaqTitle {
@@ -117,6 +118,7 @@
   position: relative;
   padding-left: 1.5rem;
   color: #444;
+  font-weight: 500;
 }
 
 .featureList li::before {
@@ -126,8 +128,9 @@
   top: 0.6rem;
   width: 0.5rem;
   height: 0.5rem;
-  background: #15F5BA;
+  background: #41B8D5;
   border-radius: 50%;
+  box-shadow: 0 0 8px rgba(21, 245, 186, 0.5);
 }
 
 .buttonGroup {
@@ -137,7 +140,7 @@
 }
 
 .primaryButton {
-  background: #15F5BA;
+  background: #41B8D5;
   color: #020b16;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -149,6 +152,25 @@
   align-items: center;
   gap: 0.5rem;
   transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(21, 185, 245, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.primaryButton::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  
+  transform: rotate(30deg);
+  transition: all 0.5s ease;
+}
+
+.primaryButton:hover::after {
+  left: 100%;
 }
 
 .secondaryButton {
@@ -163,7 +185,83 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.secondaryButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.secondaryButton:hover {
+  border-color: #41B8D5;
+  color: #111;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.secondaryButton:hover::before {
+  transform: translateX(100%);
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+.secondaryButton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.secondaryButton:hover::after {
+  opacity: 1;
+}
+
+.buttonIcon {
+  transition: transform 0.2s ease;
+}
+
+.primaryButton:hover .buttonIcon {
+  transform: translateX(2px);
+}
+
+.secondaryButton:hover .buttonIcon {
+  transform: translateX(2px);
 }
 
 /* Responsive */
@@ -198,5 +296,9 @@
   .secondaryButton {
     justify-content: center;
     width: 100%;
+  }
+  
+  .rnaqTitle {
+    font-size: 1.8rem;
   }
 }

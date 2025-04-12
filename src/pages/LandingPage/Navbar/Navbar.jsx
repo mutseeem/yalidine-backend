@@ -28,7 +28,7 @@ const Navbar = () => {
         transition={{ duration: 0.1, delay: 0.1 }}
         className={styles.logoText}
       >
-        JOGO
+        DIGIQA
       </motion.span>
     </div>
   );

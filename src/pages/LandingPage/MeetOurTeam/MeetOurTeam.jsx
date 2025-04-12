@@ -3,13 +3,33 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './MeetOurTeam.module.css';
 import Profile from './Profile';
-import { ilyes, moatassim, amine, ramdani } from '../../../assets/images/images';
+import { ilyes, moatassim, amine, ramdani,kahloul  } from '../../../assets/images/images';
 
+
+//TODO: fix the linking f the icons , github and linkedin
 const MeetOurTeam = () => {
   const teamMembers = [
     {
+      picture: kahloul,
+      role: 'Supervisor',
+      name: 'Pr.KAHLOUL LAID',
+      socialLinks: [
+        { url: '#', icon: 'fa-linkedin' },
+        { url: '#', icon: 'fa-facebook' }
+      ],
+    },
+    {
+      picture: ramdani,
+      role: 'Supervisor',
+      name: 'Dr.RAMDANI MOHAMED',
+      socialLinks: [
+        { url: '#', icon: 'fa-linkedin' },
+        { url: '#', icon: 'fa-Facebook' }
+      ],
+    },
+    {
       picture: amine,
-      role: 'UI/UX & Front-end',
+      role: 'Team leader & BACK-END Dev',
       name: 'CHABI AMINE',
       socialLinks: [
         { url: '#', icon: 'fa-linkedin' },
@@ -18,7 +38,7 @@ const MeetOurTeam = () => {
     },
     {
       picture: ilyes,
-      role: 'UI/UX & Front-end',
+      role: 'UI/UX & Front-end Dev',
       name: 'IZEMMOUREN ILYES',
       socialLinks: [
         { url: '#', icon: 'fa-linkedin' },
@@ -26,21 +46,20 @@ const MeetOurTeam = () => {
       ],
     },
     {
-      picture: ramdani,
-      role: 'Supervisor',
-      name: 'RAMDANI MOHAMED',
+      picture: moatassim,
+      role: 'BACK-END Dev',
+      name: 'MOURKSI MOATASSAM',
       socialLinks: [
         { url: '#', icon: 'fa-linkedin' },
-        { url: '#', icon: 'fa-twitter' }
+        { url: '#', icon: 'fa-dribbble' }
       ],
-    },
-    {
-      picture: ramdani,
-      role: 'Supervisor',
-      name: 'RAMDANI MOHAMED',
+    },{
+      picture: ilyes,
+      role: 'BACK-END Dev',
+      name: 'MEFTAH MOHAMED',
       socialLinks: [
         { url: '#', icon: 'fa-linkedin' },
-        { url: '#', icon: 'fa-globe' }
+        { url: '#', icon: 'fa-dribbble' }
       ],
     }
   ];
