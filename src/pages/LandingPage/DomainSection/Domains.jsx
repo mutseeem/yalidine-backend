@@ -1,99 +1,101 @@
+// Domains.js
 import React from 'react';
 import styles from './Domains.module.css';
-import DomainCard from './DomainCard'; // Import the reusable DomainCard component
+import DomainCard from './DomainCard';
+import { motion } from 'framer-motion';
 
 const Domains = () => {
   const domainsData = [
     {
-      color: '#3498db',
-      name: 'DOMAIN 1',
+      name: 'GOVERNANCE',
       number: '1',
-      icon: <i className="fas fa-globe" />,
-      description: 'Relations avec l’environnement sociécoéconomique.',
+      icon: <i className="fas fa-chess-queen" />,
+      description: 'Strategic leadership and decision-making frameworks',
     },
     {
-      color: '#e74c3c',
-      name: 'DOMAIN 2',
+      name: 'EDUCATION',
       number: '2',
-      icon: <i className="fas fa-users" />,
-      description: 'Gestion des ressources humaines et optimisation.',
+      icon: <i className="fas fa-graduation-cap" />,
+      description: 'Academic program quality and student outcomes',
     },
     {
-      color: '#2ecc71',
-      name: 'DOMAIN 3',
+      name: 'RESEARCH',
       number: '3',
-      icon: <i className="fas fa-chart-line" />,
-      description: 'Analyse financière et budgétaire stratégique.',
+      icon: <i className="fas fa-flask" />,
+      description: 'Research excellence and innovation standards',
     },
     {
-      color: '#f1c40f',
-      name: 'DOMAIN 4',
+      name: 'RESOURCES',
       number: '4',
       icon: <i className="fas fa-cogs" />,
-      description: 'Infrastructure et technologies de l’information.',
+      description: 'Human, financial and infrastructure management',
     },
     {
-      color: '#9b59b6',
-      name: 'DOMAIN 5',
+      name: 'COMMUNITY',
       number: '5',
-      icon: <i className="fas fa-balance-scale" />,
-      description: 'Conformité réglementaire et juridique.',
-    },
-    {
-      color: '#34495e',
-      name: 'DOMAIN 6',
-      number: '6',
-      icon: <i className="fas fa-globe" />,
-      description: 'Relations avec l’environnement sociécoéconomique.',
-    },
-    {
-      color: '#e67e22',
-      name: 'DOMAIN 7',
-      number: '7',
       icon: <i className="fas fa-users" />,
-      description: 'Gestion des ressources humaines et optimisation.',
+      description: 'Social engagement and stakeholder relations',
     },
     {
-      color: '#95a5a6',
-      name: 'DOMAIN 8',
+      name: 'TECHNOLOGY',
+      number: '6',
+      icon: <i className="fas fa-server" />,
+      description: 'Digital infrastructure and information systems',
+    },
+    {
+      name: 'QUALITY',
+      number: '7',
+      icon: <i className="fas fa-award" />,
+      description: 'Continuous improvement and assurance processes',
+    },
+    {
+      name: 'INTERNATIONAL',
       number: '8',
-      icon: <i className="fas fa-chart-line" />,
-      description: 'Analyse financière et budgétaire stratégique.',
+      icon: <i className="fas fa-globe" />,
+      description: 'Global standards alignment and partnerships',
     },
   ];
 
   return (
     <section className={styles.domainsSection}>
-      {/* Title and Subtitle */}
-      <h2 className={styles.title}>SERVICES</h2>
-      <p className={styles.subtitle}>
-        RNAQ-ESRS DOMAINS: Building a comprehensive framework for organizational excellence.
-      </p>
-
-      {/* First Row (Domains 1-4) */}
-      <div className={styles.domainRow}>
-        {domainsData.slice(0, 4).map((domain, index) => (
-          <DomainCard
-            key={`first-${index}`}
-            color={domain.color}
-            name={domain.name}
-            number={domain.number}
-            icon={domain.icon}
-            description={domain.description}
-          />
-        ))}
+      <div className={styles.header}>
+        <motion.div 
+          className={styles.qualityTag}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, delay: 0.1 }}
+        >
+          QUALITY FRAMEWORK 
+        </motion.div>
+        
+        <motion.h2 
+          className={styles.title}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          RNAQ-ESRS DOMAINS
+        </motion.h2>
+        
+        <motion.p 
+          className={styles.subtitle}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.15 }}
+        >
+          Comprehensive framework pillars for institutional excellence
+        </motion.p>
       </div>
 
-      {/* Second Row (Domains 5-8) */}
-      <div className={styles.domainRow}>
-        {domainsData.slice(4, 8).map((domain, index) => (
+      <div className={styles.domainGrid}>
+        {domainsData.map((domain, index) => (
           <DomainCard
-            key={`second-${index}`}
-            color={domain.color}
+            key={index}
             name={domain.name}
             number={domain.number}
             icon={domain.icon}
             description={domain.description}
+            index={index}
           />
         ))}
       </div>
