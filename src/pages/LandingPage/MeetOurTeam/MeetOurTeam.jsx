@@ -27,7 +27,7 @@ const MeetOurTeam = () => {
     },
     {
       picture: ramdani,
-      role: 'SLAVE OWNER',
+      role: 'Supervisor',
       name: 'RAMDANI MOHAMED',
       socialLinks: [
         { url: '#', icon: 'fa-linkedin' },

@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion';
 import { chart6 } from '../../../assets/images/images';
 import styles from './HeroSection.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+
+
+//TODO: chnage teh picture of the profile , make somthing better !!! 
 
 const HeroSection = () => {
   const containerVariants = {
@@ -8,19 +13,19 @@ const HeroSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.03, // Faster stagger
+        staggerChildren: 0.03,
         when: "beforeChildren",
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 10, opacity: 0 }, // Smaller initial movement
+    hidden: { y: 10, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.2, // Faster duration
+        duration: 0.2,
         ease: "easeOut",
       },
     },
@@ -28,6 +33,7 @@ const HeroSection = () => {
 
   return (
     <section className={styles.hero}>
+      {/* Left Content */}
       <motion.div
         className={styles.leftContent}
         initial="hidden"
@@ -45,7 +51,7 @@ const HeroSection = () => {
             initial={{ backgroundSize: "0% 100%" }}
             animate={{ backgroundSize: "100% 100%" }}
             transition={{ 
-              duration: 0.4, // Faster highlight animation
+              duration: 0.4,
               delay: 0.15,
               ease: "easeOut"
             }}
@@ -57,48 +63,44 @@ const HeroSection = () => {
         <motion.p 
           variants={itemVariants} 
           className={styles.heroSubtitle}
-          transition={{ delay: 0.1 }} // Reduced delay
+          transition={{ delay: 0.1 }}
         >
-          A practical solution designed to enhance productivity and trust in universities by supporting quality assurance processes and streamlining workflows..
+          A practical solution designed to enhance productivity and trust in universities by supporting quality assurance processes and streamlining workflows.
         </motion.p>
 
         <motion.div 
           variants={itemVariants} 
           className={styles.heroButtons}
-          transition={{ delay: 0.15 }} // Reduced delay
+          transition={{ delay: 0.15 }}
         >
           <motion.button
             whileHover={{ 
               scale: 1.02,
-              boxShadow: "0 2px 10px rgba(14, 211, 165, 0.3)" // Subtler shadow
+              boxShadow: "0 2px 10px rgba(2, 37, 29, 0.1)"
             }}
             whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.1 }} // Faster interaction
+            transition={{ duration: 0.1 }}
             className={styles.primaryButton}
           >
             Start now
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2"/>
-            </svg>
+            <FontAwesomeIcon icon={faArrowRight} className={styles.buttonIcon} />
           </motion.button>
           
           <motion.button
             whileHover={{ 
               scale: 1.02,
-              backgroundColor: "rgba(0, 0, 0, 0.02)" // Lighter hover
+              backgroundColor: "rgba(65, 184, 213, 0.1)"
             }}
             whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.1 }} // Faster interaction
+            transition={{ duration: 0.1 }}
             className={styles.secondaryButton}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2"/>
-              <path d="M12 16V12M12 8H12.01" stroke="currentColor" strokeWidth="2"/>
-            </svg>
+            <FontAwesomeIcon icon={faCircleInfo} className={styles.buttonIcon} />
             Learn more
           </motion.button>
         </motion.div>
 
+        {/*TODO: Add a link to the trusted by section , and uncomment it when we are ready to use it
         <motion.div 
           variants={itemVariants}
           className={styles.trustedBy}
@@ -106,21 +108,24 @@ const HeroSection = () => {
         >
           <div className={styles.trustedText}>Trusted by:</div>
           <div className={styles.logoGrid}>
-            <div className={styles.logoItem}>Biskra</div>
+            <div className={styles.logoItem}>UMKB</div>
             <div className={styles.logoItem}>Kahloul</div>
             <div className={styles.logoItem}>Ramdani</div>
             <div className={styles.logoItem}>amine</div>
             <div className={styles.logoItem}>7ajBaroud</div>
           </div>
         </motion.div>
+        */}
       </motion.div>
 
+      
+      {/* Right Content */}
       <motion.div
         className={styles.rightContent}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          duration: 0.3, // Faster animation
+          duration: 0.3,
           delay: 0.25,
           ease: "easeOut"
         }}
@@ -128,10 +133,10 @@ const HeroSection = () => {
         <motion.div
           className={styles.chartContainer}
           animate={{
-            y: [0, -5, 0], // Smaller bounce
+            y: [0, -5, 0],
           }}
           transition={{
-            duration: 4, // Slightly faster float
+            duration: 4,
             repeat: Infinity,
             ease: "easeInOut",
           }}

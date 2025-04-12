@@ -572,3 +572,22 @@ body {
   0% { transform: translateY(0); }
   100% { transform: translateY(-100vh); }
 }
+
+
+
+{/*TODO: Uncomment the trusted by section when ready, 
+        <motion.div 
+          variants={itemVariants}
+          className={styles.trustedBy}
+          transition={{ delay: 0.2 }}
+        >
+          <div className={styles.trustedText}>Trusted by:</div>
+          <div className={styles.logoGrid}>
+            <div className={styles.logoItem}>UMKB</div>
+            <div className={styles.logoItem}>Kahloul</div>
+            <div className={styles.logoItem}>Ramdani</div>
+            <div className={styles.logoItem}>amine</div>
+            <div className={styles.logoItem}>7ajBaroud</div>
+          </div>
+        </motion.div>
+        */}

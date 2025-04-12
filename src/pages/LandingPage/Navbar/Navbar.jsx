@@ -5,6 +5,7 @@ import styles from './Navbar.module.css';
 //TODO: refactor this area 
 //FIXME: fix teh login and sign up button to fuction correctly
 //TODO: change the logo and the brand name after this 
+//FIXME: we need to add props validation 
 
 const Navbar = () => {
   const navItems = ['Home', 'About', 'Domains', 'Devs', 'Contact', 'FAQ'];
