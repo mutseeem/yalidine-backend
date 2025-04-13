@@ -1,8 +1,8 @@
 src/
 |-- components/                # Reusable UI components
 |   |-- common/                # Shared, generic components (buttons, modals, etc.)
-|   |   |--           
-|   |   |-- 
+|   |   |--DocumentCard.jsx           
+|   |   |--DocumentCard.css
 |   |   |-- 
 |   |-- layout/                # Structural components (sidebar, navbar, etc.)
 |   |   |-- Sidebar/
