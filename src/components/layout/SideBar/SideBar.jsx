@@ -23,11 +23,34 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
 
   //TODO: get them from teh api
   const sidebarLinks = [
-    { path: '/', name: 'Home', icons: [HomeIcon, HomeFocusIcon] },
-    { path: '/chapters/overview', name: 'Overview', icons: [EyeIcon, EyeFocusIcon] },
-    { path: '/', name: "Politique D'ouverture", icons: [FolderIcon, FolderFocusIcon] },
-    { path: '/', name: 'Partenariat et mobilité', icons: [FolderIcon, FolderFocusIcon] },
-    { path: '/', name: 'Échange de connaissances', icons: [FolderIcon, FolderFocusIcon] },
+    { 
+      path: '/', 
+      name: 'Home', 
+      icons: [HomeIcon, HomeFocusIcon] 
+    },
+    { 
+      path: '/chapters/overview', 
+      name: 'Overview', 
+      icons: [EyeIcon, EyeFocusIcon] 
+    },
+    { 
+      path: '/chapters/politique-ouverture', 
+      chapterId: "1", // Actual ID from your backend
+      name: "Politique D'ouverture", 
+      icons: [FolderIcon, FolderFocusIcon] 
+    },
+    { 
+      path: '/chapters/partenariat-mobilite', 
+      chapterId: "2",
+      name: 'Partenariat et mobilité', 
+      icons: [FolderIcon, FolderFocusIcon] 
+    },
+    { 
+      path: '/chapters/echange-connaissances', 
+      chapterId: "3",
+      name: 'Échange de connaissances', 
+      icons: [FolderIcon, FolderFocusIcon] 
+    },
   ];
 
   const handleItemTooltip = (event, itemName) => {

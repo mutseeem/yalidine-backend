@@ -5,15 +5,39 @@ import styles from './ChartArea.module.css';
 
 Chart.register(zoomPlugin);
 
-const ChartArea = ({ 
-  type = 'bar', 
-  data, 
-  options,
-  isZoomed = false,
-  onZoomChange
+const COLORS = [
+  '#4361ee', '#3a0ca3', '#7209b7', '#b5179e',
+  '#f72585', '#4cc9f0', '#4895ef', '#3f37c9',
+  '#560bad', '#480ca8'
+];
+
+const ChartArea = ({
+  type = 'bar',
+  data,
+  options = {},
+  zoomLevel = 1,
+  onZoomChange = () => {}
 }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
+
+  const handleZoom = (factor) => {
+    if (!chartInstance.current) return;
+    
+    const zoom = chartInstance.current.options.plugins.zoom.zoom;
+    const currentZoom = zoom.wheel?.enabled ? zoom.wheel.speed : 0.1;
+    
+    // Simulate wheel zoom with the given factor
+    const deltaY = factor > 1 ? -1 : 1;
+    const wheelEvent = new WheelEvent('wheel', {
+      deltaY,
+      clientX: chartRef.current.width / 2,
+      clientY: chartRef.current.height / 2,
+    });
+    
+    chartRef.current.dispatchEvent(wheelEvent);
+    onZoomChange(factor);
+  };
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -24,9 +48,11 @@ const ChartArea = ({
       chartInstance.current.destroy();
     }
 
+    const preparedData = prepareChartData(type, data);
+
     chartInstance.current = new Chart(ctx, {
       type,
-      data,
+      data: preparedData,
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -37,10 +63,14 @@ const ChartArea = ({
         plugins: {
           zoom: {
             zoom: {
-              wheel: { enabled: false }, // Disabled mouse wheel zoom
-              pinch: { enabled: false }, // Disabled pinch zoom
+              wheel: { 
+                enabled: true,
+                speed: 0.1
+              },
+              pinch: { 
+                enabled: true 
+              },
               mode: 'xy',
-              onZoom: ({ chart }) => onZoomChange?.(chart.isZoomedOrPanned())
             },
             pan: {
               enabled: true,
@@ -55,7 +85,12 @@ const ChartArea = ({
                 family: "'Inter', sans-serif"
               }
             }
-          }
+          },
+          ...(type === 'doughnut' && {
+            doughnut: {
+              cutout: '70%'
+            }
+          })
         },
         scales: {
           x: {
@@ -82,10 +117,28 @@ const ChartArea = ({
     };
   }, [type, data, options]);
 
-  useEffect(() => {
-    if (!chartInstance.current) return;
-    isZoomed ? chartInstance.current.zoom(1.2) : chartInstance.current.resetZoom();
-  }, [isZoomed]);
+  const prepareChartData = (type, data) => {
+    if (type === 'doughnut') {
+      return {
+        labels: data.labels,
+        datasets: data.datasets.map((dataset, index) => ({
+          ...dataset,
+          backgroundColor: COLORS.slice(0, data.labels.length),
+          borderColor: '#fff',
+          borderWidth: 2
+        }))
+      };
+    }
+    return {
+      ...data,
+      datasets: data.datasets.map((dataset, index) => ({
+        ...dataset,
+        backgroundColor: COLORS[index % COLORS.length],
+        borderColor: COLORS[index % COLORS.length],
+        borderWidth: 2
+      }))
+    };
+  };
 
   return (
     <div className={styles.chartContainer}>
