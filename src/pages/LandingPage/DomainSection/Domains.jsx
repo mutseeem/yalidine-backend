@@ -1,8 +1,8 @@
-// Domains.js
 import React from 'react';
 import styles from './Domains.module.css';
 import DomainCard from './DomainCard';
 import { motion } from 'framer-motion';
+import { useNavigate } from "react-router-dom";
 import { 
   FaGraduationCap, 
   FaMicroscope, 
@@ -15,13 +15,16 @@ import {
 } from 'react-icons/fa';
 
 const Domains = () => {
-  const handleDomainClick = (domainNumber) => {
-    alert(`Navigating to Domain ${domainNumber} page\n\n(This will be replaced with actual navigation)`);
-    // In a real implementation, you would use:
-    // navigate(`/domains/${domainNumber}`);
-    // or similar routing logic
-  };
+  const navigate = useNavigate();
 
+  const handleDomainClick = (domainNumber) => {
+    if (domainNumber === "7") {
+      navigate("/chapter-home");
+    } else {
+      navigate(`/domain/${domainNumber}`);
+    }
+  };
+  
   const domainsData = [
     {
       name: 'FORMATION',
@@ -107,7 +110,7 @@ const Domains = () => {
       <div className={styles.domainGrid}>
         {domainsData.map((domain, index) => (
           <DomainCard
-            key={index}
+            key={domain.number}
             name={domain.name}
             number={domain.number}
             icon={domain.icon}

@@ -24,10 +24,10 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
   //TODO: get them from teh api
   const sidebarLinks = [
     { path: '/', name: 'Home', icons: [HomeIcon, HomeFocusIcon] },
-    { path: '/overview', name: 'Overview', icons: [EyeIcon, EyeFocusIcon] },
-    { path: '/politique', name: "Politique D'ouverture", icons: [FolderIcon, FolderFocusIcon] },
-    { path: '/partenariat', name: 'Partenariat et mobilité', icons: [FolderIcon, FolderFocusIcon] },
-    { path: '/connaissances', name: 'Échange de connaissances', icons: [FolderIcon, FolderFocusIcon] },
+    { path: '/chapter-home/overview', name: 'Overview', icons: [EyeIcon, EyeFocusIcon] },
+    { path: '/', name: "Politique D'ouverture", icons: [FolderIcon, FolderFocusIcon] },
+    { path: '/', name: 'Partenariat et mobilité', icons: [FolderIcon, FolderFocusIcon] },
+    { path: '/', name: 'Échange de connaissances', icons: [FolderIcon, FolderFocusIcon] },
   ];
 
   const handleItemTooltip = (event, itemName) => {
