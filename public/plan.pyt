@@ -3,6 +3,13 @@ src/
 |   |-- common/                # Shared, generic components (buttons, modals, etc.)
 |   |   |--DocumentCard.jsx           
 |   |   |--DocumentCard.css
+|   |   |-- ChartCard/
+|   |   |   |-- ChartCard.jsx
+|   |   |   |-- ChartCard.module.css
+|   |   |   |-- ToolsSideBar.jsx
+|   |   |   |-- ToolsSideBar.module.css
+|   |   |   |-- ChartArea.jsx
+|   |   |   |-- ChartArea.module.css
 |   |   |-- 
 |   |-- layout/                # Structural components (sidebar, navbar, etc.)
 |   |   |-- Sidebar/
