@@ -14,26 +14,19 @@ const routes = [
     path: "chapters",
     element: <ChapterHomeLayout />,
     children: [
-      // Overview at top level (not nested under chapterId)
       {
         path: "overview",
         element: <Overview />,
       },
-      // Dynamic chapter route with its own children
+      // Change this to match your data structure
       {
-        path: ":chapterId",
+        path: ":reference",  // Changed from :chapterId to :reference
         element: <ChapterPage />,
         children: [
           {
             index: true,
-            element: <LandingPage />,
+            element: <LandingPage />, // You might want to change this to a chapter-specific component
           },
-          // Add chapter-specific sub-routes here
-          // Example:
-          // {
-          //   path: "details",
-          //   element: <ChapterDetails />,
-          // }
         ],
       },
     ],
