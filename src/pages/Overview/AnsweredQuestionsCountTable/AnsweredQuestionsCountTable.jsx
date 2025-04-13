@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import styles from "./AnsweredQuestionsCountTable.module.css";
-import { DownloadIcon, DownloadIconFocus } from "../../assets/icons/icons";
-import { downloadChartAsImage } from "../../util/chart"; // Import the utility function
+import { DownloadIcon, DownloadIconFocus } from "../../../assets/icons/icons";
+import { downloadChartAsImage } from "../../../util/chart"; // Import the utility function
 
 const AnsweredQuestionsCountTable = ({ data }) => {
   const [isHovered, setIsHovered] = useState(false);

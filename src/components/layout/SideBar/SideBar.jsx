@@ -24,7 +24,7 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
   //TODO: get them from teh api
   const sidebarLinks = [
     { path: '/', name: 'Home', icons: [HomeIcon, HomeFocusIcon] },
-    { path: '/chapter-home/overview', name: 'Overview', icons: [EyeIcon, EyeFocusIcon] },
+    { path: '/chapters/overview', name: 'Overview', icons: [EyeIcon, EyeFocusIcon] },
     { path: '/', name: "Politique D'ouverture", icons: [FolderIcon, FolderFocusIcon] },
     { path: '/', name: 'Partenariat et mobilité', icons: [FolderIcon, FolderFocusIcon] },
     { path: '/', name: 'Échange de connaissances', icons: [FolderIcon, FolderFocusIcon] },

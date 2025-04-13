@@ -6,7 +6,7 @@ import Content from "./components/Content/Content";
 import Overview from "./pages/Overview/Overview";  // Corrected import path
 import "./App.css";
 
-function App() {
+function ChapterHome() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -27,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default ChapterHome;

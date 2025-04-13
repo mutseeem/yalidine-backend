@@ -19,7 +19,7 @@ const Domains = () => {
 
   const handleDomainClick = (domainNumber) => {
     if (domainNumber === "7") {
-      navigate("/chapter-home");
+      navigate("/chapters/overview");
     } else {
       navigate(`/domain/${domainNumber}`);
     }

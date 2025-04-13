@@ -1,5 +1,5 @@
 import styles from "./QuestionSingle.module.css";
-import { CheckMark, CrossMark, MissingMark } from "../../assets/icons/icons";
+import { CheckMark, CrossMark, MissingMark } from "../../../assets/icons/icons";
 
 const QuestionSingle = ({ question }) => {
   const getStatusIcon = (status) => {
