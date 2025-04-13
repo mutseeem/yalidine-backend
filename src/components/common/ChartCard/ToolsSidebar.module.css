@@ -1,0 +1,200 @@
+/* ToolsSidebar.module.css */
+.toolsSidebar {
+    --primary-color: #4361ee;
+    --primary-hover: #3a0ca3;
+    --active-bg: rgba(67, 97, 238, 0.15);
+    --border-color: rgba(234, 234, 234, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --text-color: #2c3e50;
+    --text-secondary: #7f8c8d;
+  
+    /* Fixed dimensions */
+    width: 50px;
+    height: 450px;
+    padding: 0.5rem 0;
+  
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  
+    /* Visual styling */
+    background: white;
+    border-radius: 10px 0 0 10px;
+    transition: all 0.2s ease;
+  
+    /* Move the sidebar up by 20px */
+    position: relative;
+    top: -60px; /* Adjust this value as needed */
+  }
+
+/* Button Groups - now stacked vertically */
+.chartTypeGroup,
+.viewGroup,
+.utilityGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Tool Button - compact square version */
+.toolButton {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolButton:hover {
+  background: var(--active-bg);
+  color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.toolButton.active {
+  background: var(--active-bg);
+  color: var(--primary-hover);
+}
+
+.toolButton svg {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.toolButton:hover svg {
+  transform: scale(1.1);
+}
+
+/* Hidden labels - show only on hover */
+.toolLabel {
+  position: absolute;
+  left: calc(100% + 8px);
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: var(--text-color);
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.toolButton:hover .toolLabel {
+  opacity: 1;
+}
+
+/* Compact Divider */
+.divider {
+  width: 60%;
+  height: 1px;
+  background: var(--border-color);
+  margin: 0.5rem 0;
+}
+
+/* Zoom Controls - compact version */
+.zoomControls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem;
+  background: rgba(67, 97, 238, 0.05);
+  border-radius: 8px;
+  width: 40px;
+  margin: 0 auto;
+}
+
+.zoomButton {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: none;
+  background: rgba(67, 97, 238, 0.1);
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.zoomButton:hover:not(.disabled) {
+  background: rgba(67, 97, 238, 0.2);
+}
+
+.zoomButton.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.zoomLevel {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  padding: 0.2rem 0;
+}
+
+/* Animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.toolButton:hover {
+  animation: pulse 1s ease infinite;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .toolsSidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    border-radius: 0 0 10px 10px;
+    padding: 0.5rem;
+    box-shadow: 
+      0 2px 8px var(--shadow-color),
+      inset 0 1px 0 var(--border-color);
+  }
+
+  .chartTypeGroup,
+  .viewGroup,
+  .utilityGroup {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .divider {
+    width: 1px;
+    height: 40px;
+    margin: 0 0.5rem;
+  }
+
+  .zoomControls {
+    flex-direction: row;
+    width: auto;
+    height: 40px;
+  }
+
+  .zoomLevel {
+    writing-mode: horizontal-tb;
+    transform: none;
+    padding: 0 0.3rem;
+  }
+}

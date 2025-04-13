@@ -5,6 +5,7 @@ import AnsweredQuestionsDonutChart from './AnsweredQuestionsDonutChart/AnsweredQ
 import QuestionList from './QuestionList/QuestionsList';
 import DocumentCard from '../../components/common/DocumentCard';
 import ChartCard from '../../components/common/ChartCard/ChartCard';
+import ToolsSidebar from '../../components/common/ChartCard/ToolsSidebar';
 import styles from './Overview.module.css';
 
 const Overview = () => {
@@ -52,7 +53,11 @@ const Overview = () => {
       onSettings={() => console.log('Settings clicked')}
       onFilter={() => console.log('Filter clicked')}
       onExpand={() => console.log('Expand clicked')}
+      
     />
+      
+
+      {/* <ToolsSidebar />*/}
     </div>
     
   );
