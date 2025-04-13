@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchFieldsData } from '../../services/api';
-import AnsweredQuestionsCountTable from './AnsweredQuestionsCountTable';
-import AnsweredQuestionsDonutChart from './AnsweredQuestionsDonutChart';
-import QuestionList from './QuestionsList';
+import AnsweredQuestionsCountTable from './AnsweredQuestionsCountTable/AnsweredQuestionsCountTable';
+import AnsweredQuestionsDonutChart from './AnsweredQuestionsDonutChart/AnsweredQuestionsDonutChart';
+import QuestionList from './QuestionList/QuestionsList';
+import DocumentCard from '../../components/common/DocumentCard';
 import styles from './Overview.module.css';
 
 const Overview = () => {
@@ -30,7 +31,9 @@ const Overview = () => {
         )}
       </div>
       <QuestionList data={data} />
+      <DocumentCard  title="testing" uploadDate="20/02/08" fileSize="89 MB" fileType="pdf"/>
     </div>
+    
   );
 };
 

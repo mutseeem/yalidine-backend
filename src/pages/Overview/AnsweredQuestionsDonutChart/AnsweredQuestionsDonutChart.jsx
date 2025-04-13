@@ -7,8 +7,8 @@ import {
   Legend,
 } from "chart.js";
 import styles from "./AnsweredQuestionsDonutChart.module.css";
-import { DownloadIcon, DownloadIconFocus } from "../../assets/icons/icons";
-import { downloadChartAsImage } from "../../util/chart";
+import { DownloadIcon, DownloadIconFocus } from "../../../assets/icons/icons";
+import { downloadChartAsImage } from "../../../util/chart";
 
 // Register Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);

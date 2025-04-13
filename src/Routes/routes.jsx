@@ -1,7 +1,9 @@
+// Routes/Routes.jsx
 import LandingPage from "../pages/LandingPage/LandingPage";
-import ChapterHomeLayout from "../pages/ChapterHome/ChapterHomeLayout"; // Renamed for clarity
-import Content from "../components/Content/Content"; // Import your content component
-import Overview from "../pages/Overview/Overview"; // Import your overview component
+import ChapterHomeLayout from "../pages/ChapterHome/ChapterHomeLayout";
+import ChapterPage from "../pages/ChapterPage/ChapterPage";
+import Overview from "../pages/Overview/Overview";
+import Content from "../components/Content/Content";
 
 const routes = [
   {
@@ -9,19 +11,32 @@ const routes = [
     element: <LandingPage />,
   },
   {
-    path: "/chapter-home",
+    path: "chapters",
     element: <ChapterHomeLayout />,
     children: [
-      {
-        index: true,
-        element: <Content />,
-      },
+      // Overview at top level (not nested under chapterId)
       {
         path: "overview",
         element: <Overview />,
       },
-      // Add other chapter-home sub-routes here
-    ]
+      // Dynamic chapter route with its own children
+      {
+        path: ":chapterId",
+        element: <ChapterPage />,
+        children: [
+          {
+            index: true,
+            element: <Content />,
+          },
+          // Add chapter-specific sub-routes here
+          // Example:
+          // {
+          //   path: "details",
+          //   element: <ChapterDetails />,
+          // }
+        ],
+      },
+    ],
   },
 ];
 
