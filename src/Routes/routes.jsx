@@ -3,7 +3,7 @@ import LandingPage from "../pages/LandingPage/LandingPage";
 import ChapterHomeLayout from "../pages/ChapterHome/ChapterHomeLayout";
 import ChapterPage from "../pages/ChapterPage/ChapterPage";
 import Overview from "../pages/Overview/Overview";
-import Content from "../components/Content/Content";
+
 
 const routes = [
   {
@@ -26,7 +26,7 @@ const routes = [
         children: [
           {
             index: true,
-            element: <Content />,
+            element: <LandingPage />,
           },
           // Add chapter-specific sub-routes here
           // Example:

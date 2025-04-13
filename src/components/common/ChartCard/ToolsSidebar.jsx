@@ -4,7 +4,6 @@ import {
   FaChartPie, 
   FaTable,
   FaChartArea,
-  FaArrowsAltH,
   FaExchangeAlt,
   FaDownload,
   FaSearchPlus,
@@ -13,43 +12,44 @@ import {
 import styles from './ToolsSidebar.module.css';
 
 const ToolsSidebar = ({ 
-  activeChartType = 'bar', // Default to bar chart
-  onChartTypeChange = (type) => alert(`Switched to ${type} chart`),
-  onCompare = () => alert('Compare mode activated'),
-  onDownload = () => alert('Download dialog opened'),
-  onSpacingChange = () => alert('Adjusting chart spacing'),
-  onZoomIn = () => alert('Zooming in'),
-  onZoomOut = () => alert('Zooming out'),
-  isZoomed = false
+  activeChartType = 'bar',
+  onChartTypeChange = () => {},
+  onCompare = () => {},
+  onDownload = () => {},
+  chartContainerRef,
+  onZoomIn = () => {},
+  onZoomOut = () => {},
+  zoomLevel = 1
 }) => {
   const chartTypes = [
     { type: 'bar', icon: <FaChartBar />, label: 'Bar Chart' },
     { type: 'line', icon: <FaChartLine />, label: 'Line Chart' },
-    { type: 'donut', icon: <FaChartPie />, label: 'Donut Chart' },
-    { type: 'histogram', icon: <FaChartArea />, label: 'Histogram' },
-    { type: 'table', icon: <FaTable />, label: 'Data Table' }
+    { type: 'doughnut', icon: <FaChartPie />, label: 'Doughnut Chart' },
+    { type: 'histogram', icon: <FaChartArea />, label: 'Histogram (Coming Soon)' },
+    { type: 'table', icon: <FaTable />, label: 'Data Table (Coming Soon)' }
   ];
 
-  // Unified click handler for chart type changes
   const handleChartTypeClick = (type) => {
+    if (type === 'histogram' || type === 'table') {
+      alert('This feature is coming soon!');
+      return;
+    }
     onChartTypeChange(type);
   };
 
-  // Toggle zoom handler
-  const handleZoomClick = () => {
-    isZoomed ? onZoomOut() : onZoomIn();
+  const handleCompareClick = () => {
+    alert('Compare feature is coming soon!');
   };
 
   return (
     <div className={styles.toolsSidebar}>
-      {/* Chart Type Buttons */}
       <div className={styles.chartTypeGroup}>
         {chartTypes.map((chart) => (
           <button
             key={chart.type}
             className={`${styles.toolButton} ${activeChartType === chart.type ? styles.active : ''}`}
             onClick={() => handleChartTypeClick(chart.type)}
-            aria-label={chart.label}
+            aria-label={chart.label.replace(/\(.*?\)/, '').trim()}
             data-tooltip={chart.label}
           >
             {chart.icon}
@@ -60,49 +60,49 @@ const ToolsSidebar = ({
 
       <div className={styles.divider} />
 
-      {/* View Tools */}
       <div className={styles.viewGroup}>
-        <button 
-          className={styles.toolButton}
-          onClick={onSpacingChange}
-          aria-label="Adjust spacing"
-          data-tooltip="Adjust spacing"
-        >
-          <FaArrowsAltH />
-          <span className={styles.toolLabel}>Spacing</span>
-        </button>
-        
-        <button 
-          className={`${styles.toolButton} ${isZoomed ? styles.active : ''}`}
-          onClick={handleZoomClick}
-          aria-label={isZoomed ? "Zoom out" : "Zoom in"}
-          data-tooltip={isZoomed ? "Zoom out" : "Zoom in"}
-        >
-          {isZoomed ? <FaSearchMinus /> : <FaSearchPlus />}
-          <span className={styles.toolLabel}>
-            {isZoomed ? "Zoom Out" : "Zoom In"}
-          </span>
-        </button>
+        <div className={styles.zoomControls}>
+          <button 
+            className={`${styles.zoomButton} ${zoomLevel <= 0.5 ? styles.disabled : ''}`}
+            onClick={onZoomOut}
+            disabled={zoomLevel <= 0.5}
+            aria-label="Zoom out"
+            data-tooltip="Zoom out"
+          >
+            <FaSearchMinus />
+          </button>
+          
+          <span className={styles.zoomLevel}>{Math.round(zoomLevel * 100)}%</span>
+          
+          <button 
+            className={`${styles.zoomButton} ${zoomLevel >= 3 ? styles.disabled : ''}`}
+            onClick={onZoomIn}
+            disabled={zoomLevel >= 3}
+            aria-label="Zoom in"
+            data-tooltip="Zoom in"
+          >
+            <FaSearchPlus />
+          </button>
+        </div>
       </div>
 
       <div className={styles.divider} />
 
-      {/* Utility Buttons */}
       <div className={styles.utilityGroup}>
         <button 
           className={styles.toolButton}
-          onClick={onCompare}
+          onClick={handleCompareClick}
           aria-label="Compare data"
-          data-tooltip="Compare data"
+          data-tooltip="Compare data (Coming Soon)"
         >
           <FaExchangeAlt />
-          <span className={styles.toolLabel}>Compare</span>
+          <span className={styles.toolLabel}>Compare (Soon)</span>
         </button>
         <button 
           className={styles.toolButton}
           onClick={onDownload}
           aria-label="Download chart"
-          data-tooltip="Download chart"
+          data-tooltip="Download as JPEG"
         >
           <FaDownload />
           <span className={styles.toolLabel}>Download</span>
