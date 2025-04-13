@@ -1,0 +1,40 @@
+.chapterContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  
+  .chapterHeader {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e1e4e8;
+  }
+  
+  .referenceCode {
+    font-size: 1.5rem;
+    color: #24292e;
+    margin: 0 0 8px 0;
+    font-family: monospace;
+  }
+  
+  .referenceTitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #424a53;
+    margin: 0;
+  }
+  
+  .questionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .noQuestions {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    border: 1px dashed #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
