@@ -18,14 +18,11 @@
   background: white;
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+ 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.chapterGroup:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
+
 
 .chapterHeader {
   display: flex;
