@@ -1,108 +1,130 @@
 .collapsibleSection {
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    background-color: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.collapsibleSection.open {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: #f6f8fa;
+  transition: background-color 0.2s;
+}
+
+.header:hover {
+  background-color: #eaeef2;
+}
+
+.questionCode {
+  font-family: monospace;
+  font-weight: 600;
+  color: #24292e;
+  min-width: 80px;
+  font-size: 0.9rem;
+}
+
+.questionTitle {
+  margin: 0;
+  flex-grow: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2f363d;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-right: 12px;
+}
+
+.status.answered {
+  background-color: #e6ffec;
+  color: #1a7f37;
+}
+
+.status.pending {
+  background-color: #fff8c5;
+  color: #7d4e00;
+}
+
+.arrow {
+  color: #57606a;
+  font-size: 0.9rem;
+}
+
+.content {
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.sectionTitle {
+  margin: 0 0 16px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #57606a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Documents grid - max 3 per row */
+.documentsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(33.333% - 11px), 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  max-width: 100%;
+}
+
+/* Charts grid - max 2 per row */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(50% - 10px), 1fr));
+  gap: 20px;
+  max-width: 100%;
+}
+
+@media (max-width: 1024px) {
+  /* For medium screens, reduce to max 2 documents per row */
+  .documentsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(calc(50% - 8px), 1fr));
   }
-  
-  .collapsibleSection.open {
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  /* For mobile, single column layout */
+  .documentsGrid,
+  .chartsGrid {
+    grid-template-columns: 1fr;
   }
   
   .header {
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    background-color: #f6f8fa;
-    transition: background-color 0.2s;
-  }
-  
-  .header:hover {
-    background-color: #eaeef2;
+    flex-wrap: wrap;
+    gap: 8px;
   }
   
   .questionCode {
-    font-family: monospace;
-    font-weight: 600;
-    color: #24292e;
-    min-width: 80px;
-    font-size: 0.9rem;
+    min-width: auto;
   }
-  
-  .questionTitle {
-    margin: 0;
-    flex-grow: 1;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #2f363d;
-  }
-  
-  .status {
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    margin-right: 12px;
-  }
-  
-  .status.answered {
-    background-color: #e6ffec;
-    color: #1a7f37;
-  }
-  
-  .status.pending {
-    background-color: #fff8c5;
-    color: #7d4e00;
-  }
-  
-  .arrow {
-    color: #57606a;
-    font-size: 0.9rem;
-  }
-  
-  .content {
-    padding: 20px;
-    background-color: #ffffff;
-  }
-  
-  .sectionTitle {
-    margin: 0 0 16px 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #57606a;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  
+}
+
+@media (min-width: 1600px) {
+  /* For very large screens, maintain max 3 documents and 2 charts */
   .documentsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  
   .chartsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  
-  @media (max-width: 768px) {
-    .documentsGrid,
-    .chartsGrid {
-      grid-template-columns: 1fr;
-    }
-    
-    .header {
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    
-    .questionCode {
-      min-width: auto;
-    }
-  }
+}

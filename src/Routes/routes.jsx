@@ -18,14 +18,13 @@ const routes = [
         path: "overview",
         element: <Overview />,
       },
-      // Change this to match your data structure
       {
-        path: ":reference",  // Changed from :chapterId to :reference
+        path: ":chapterId",
         element: <ChapterPage />,
         children: [
           {
             index: true,
-            element: <LandingPage />, // You might want to change this to a chapter-specific component
+            element: <LandingPage />,
           },
         ],
       },
