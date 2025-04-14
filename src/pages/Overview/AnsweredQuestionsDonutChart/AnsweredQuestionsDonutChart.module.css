@@ -44,7 +44,7 @@
   --button-text-color: var(--bg-white); /* Button text color */
 
   /* ========== HEIGHT SYSTEM FOR CHART AND TABLE ========== */
-  --component-min-height: 410px; /* Minimum height for both chart and table */
+  --component-min-height: 300px; /* Minimum height for both chart and table */
 }
 
 
