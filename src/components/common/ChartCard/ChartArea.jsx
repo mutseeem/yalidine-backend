@@ -88,20 +88,20 @@ const ChartArea = ({
           },
           ...(type === 'doughnut' && {
             doughnut: {
-              cutout: '70%'
+              cutout: '60%'
             }
           })
         },
         scales: {
           x: {
             grid: {
-              color: 'rgba(234, 234, 234, 0.5)',
+              color: 'rgba(234, 234, 234, 0.3)',
               drawBorder: false
             }
           },
           y: {
             grid: {
-              color: 'rgba(234, 234, 234, 0.5)',
+              color: 'rgba(234, 234, 234, 0.3)',
               drawBorder: false
             }
           }

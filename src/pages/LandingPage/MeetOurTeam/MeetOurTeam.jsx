@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './MeetOurTeam.module.css';
 import Profile from './Profile';
-import { ilyes, moatassim, amine, ramdani,kahloul  } from '../../../assets/images/images';
+import { ilyes, moatassim, amine, ramdani,kahloul ,meftah } from '../../../assets/images/images';
 
 
 //TODO: fix the linking f the icons , github and linkedin
@@ -54,7 +54,7 @@ const MeetOurTeam = () => {
         { url: '#', icon: 'fa-dribbble' }
       ],
     },{
-      picture: ilyes,
+      picture: meftah,
       role: 'BACK-END Dev',
       name: 'MEFTAH MOHAMED',
       socialLinks: [
