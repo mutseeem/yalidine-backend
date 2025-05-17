@@ -4,23 +4,6 @@ export const chapterData = [
       referenceTitle: "L’établissement a une politique d’ouverture à l’international.",
       questions: [
         {
-          questionId: "C1.1.1",
-          questionCode: "C1.1.1",
-          questionTitle: "Est-ce que L'établissement dispose d'une politique déclarée d'ouverture à l'international ?",
-          status: "answered",
-          questionAnswer: [
-            {
-              type: "DocumentType",
-              title: "Document décrivant la politique",
-              description: "Politique d'ouverture internationale officielle",
-              date: "2023-01-15",
-              size: "1.5 MB",
-              format: "PDF",
-              url: "/documents/politique-ouverture.pdf"
-            }
-          ]
-        },
-        {
           questionId: "C1.1.2",
           questionCode: "C1.1.2",
           questionTitle: "Est-ce que la politique d'ouverture sur l'international est communiquée ?",

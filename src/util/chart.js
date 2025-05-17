@@ -30,3 +30,5 @@ export const downloadChartAsImage = (chartElement, fileName) => {
     });
 };
 
+
+

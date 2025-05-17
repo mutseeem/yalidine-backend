@@ -26,6 +26,7 @@ const QuestionCollapsibleSection = ({ question }) => {
         </span>
       </div>
       
+      
       {isOpen && (
         <div className={styles.content}>
           {/* Documents Grid */}
@@ -33,8 +34,17 @@ const QuestionCollapsibleSection = ({ question }) => {
             <div className={styles.documentsContainer}>
               <h4 className={styles.sectionTitle}>Documents</h4>
               <div className={styles.documentsGrid}>
+                {console.log("Documents:", documents)}
                 {documents.map((doc, index) => (
-                  <DocumentCard key={`doc-${index}`} {...doc} />
+                  <DocumentCard
+                    key={`doc-${index}`}
+                    title={doc.title}
+                    uploadDate={doc.date}
+                    fileSize={doc.size}
+                    fileType={doc.fileType}
+                    isAvailable={doc.isAvailable}
+                    url={doc.url}
+                  />
                 ))}
               </div>
             </div>

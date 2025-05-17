@@ -1,8 +1,9 @@
-import { chapterData } from '../../components/content/dummyData';
+import { chapterData } from '../../components/Content/DummyData.jsx';
 import QuestionCollapsibleSection from '../../components/common/QuestionCollapsibleSection';
 import styles from './ChapterPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import FirstQuestion from '../../components/temp/firstQuestion.jsx';
 
 const ChapterPage = () => {
   return (
@@ -16,6 +17,10 @@ const ChapterPage = () => {
               <span className={styles.tooltipText}>{chapter.referenceTitle}</span>
             </div>
           </div>
+
+          {/* Render FirstQuestion only in the first block */}
+          {index === 0 && <FirstQuestion />}
+
           <div className={styles.questionsList}>
             {chapter.questions.map(question => (
               <QuestionCollapsibleSection

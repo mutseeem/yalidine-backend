@@ -1,4 +1,3 @@
-// components/common/DocumentCard/DocumentCard.jsx
 import { 
     FaTimesCircle,
     FaFilePdf, 
@@ -8,17 +7,25 @@ import {
     FaFileDownload,
     FaCloudDownloadAlt
   } from 'react-icons/fa';
+  import {triggerFileDownload} from '../../util/utils.js' ; 
   import { FiDownload } from 'react-icons/fi';
   import { HiOutlineDownload } from 'react-icons/hi';
   import styles from "./DocumentCard.module.css";
+  
   
   const DocumentCard = ({ 
     title = 'Untitled Document',
     uploadDate = 'Unknown Date',
     fileSize = '0 KB',
     fileType = 'pdf',
-    isAvailable = true
+    isAvailable = true,
+    url
   }) => {
+    
+    const handleDownload = () => {
+
+    }
+
     // File type icon mapping with custom color
     const fileIcons = {
       pdf: <FaFilePdf className={styles['file-type-icon']} />,
@@ -26,12 +33,12 @@ import {
       txt: <FaFileAlt className={styles['file-type-icon']} />,
       unavailable: <FaTimesCircle className={styles['unavailable-icon']} />
     };
-  
+
     // Get the appropriate icon
     const FileIcon = isAvailable 
       ? (fileIcons[fileType.toLowerCase()] || fileIcons.pdf)
       : fileIcons.unavailable;
-  
+    console.log("DocumentCard props:", { title, uploadDate, fileSize, fileType, isAvailable ,url});
     return (
       <div className={`${styles['document-card']} ${!isAvailable ? styles.unavailable : ''}`}>
         <div className={styles['file-icon-wrapper']}>
@@ -47,12 +54,23 @@ import {
         </div>
         
         {isAvailable ? (
-          <button className={styles['download-btn']} aria-label={`Download ${title}`}>
-            <HiOutlineDownload className={styles['download-icon']} />
-          </button>
-        ) : (
-          <span className={styles['unavailable-label']}>Unavailable</span>
-        )}
+              <button
+                className={styles['download-btn']}
+                aria-label={`Download ${title}`}
+                onClick={() =>
+                  triggerFileDownload({
+                    url,
+                    title,
+                    uploadDate
+                  })
+                }
+              >
+                <HiOutlineDownload className={styles['download-icon']} />
+              </button>
+            ) : (
+              <span className={styles['unavailable-label']}>Unavailable</span>
+            )}
+
       </div>
     );
   };
