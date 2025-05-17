@@ -37,7 +37,6 @@ export const fetchFirstQuestionCH1_1_1 = async () => {
     try {
         const username1 = '';
         const password1 = '';
-  
         const API_URL = "http://localhost:8085/CAQ/RELEX/CH1-1-1/";
 
         const response = await axios.get(API_URL, {
@@ -54,21 +53,114 @@ export const fetchFirstQuestionCH1_1_1 = async () => {
     }
 };
 
-export const fetchSecondQuestionCH1_1_2 = async () => {
-    try{
 
+
+export const fetchSecondQuestionCH1_1_2 = async () => {
+    try {
         const API_URL = "http://localhost:8085/CAQ/RELEX/CH1-1-2/";
         const response = await axios.get(API_URL, {
-            auth:{
-                
+            auth: {
+                // Add your authentication credentials here if needed
+                username: 'your_username',
+                password: 'your_password'
             }
-        })
-    }catch(error){
-        console.error("Error fetching the CH1-1-2 :", error);
-        throw error ; 
+        });
+
+        const apiData = response.data;
+
+        // 1. Process communication plan (DocumentType)
+        const communicationPlan = apiData.plans_communication_externe[0];
+        const documentAnswer = {
+            type: "DocumentType",
+            title: communicationPlan.titre,
+            description: "Plan de communication externe de la politique",
+            date: communicationPlan.anne,
+            size: "2.1 MB", // You may need to calculate this from actual data
+            format: "PDF",
+            url: communicationPlan.downloadLink
+        };
+
+        // 2. Process actions for chart data
+        const yearData = {
+            '2022': { atelier: 0, 'evenement cult': 0, 'conference internatuional': 0 },
+            '2023': { atelier: 0, 'evenement cult': 0, 'conference internatuional': 0 },
+            '2024': { atelier: 0, 'evenement cult': 0, 'conference internatuional': 0 }
+        };
+
+        apiData.actions_sensibilisation.forEach(action => {
+            if (yearData[action.anne] && yearData[action.anne][action.context] !== undefined) {
+                yearData[action.anne][action.context]++;
+            }
+        });
+
+        // 3. Prepare chart data
+        const years = ['2022', '2023', '2024'];
+        const chartData = {
+            labels: years,
+            datasets: [
+                {
+                    label: 'Conférences internationales',
+                    data: years.map(year => yearData[year]['conference internatuional']),
+                    backgroundColor: '#3a0ca3',
+                },
+                {
+                    label: 'Ateliers de sensibilisation',
+                    data: years.map(year => yearData[year]['atelier']),
+                    backgroundColor: '#7209b7',
+                },
+                {
+                    label: 'Événements culturels',
+                    data: years.map(year => yearData[year]['evenement cult']),
+                    backgroundColor: '#f72585',
+                }
+            ]
+        };
+
+        // 4. Build the final question object
+        return {
+            questionId: "C1.1.2",
+            questionCode: "C1.1.2",
+            questionTitle: "Est-ce que la politique d’ouverture sur l’international est communiquée ?",
+            status: "answered",
+            questionAnswer: [
+                documentAnswer,
+                {
+                    type: "ChartType",
+                    title: "Actions de sensibilisation",
+                    subTitle: "Activités menées durant les 3 dernières années (2022-2024)",
+                    chartData: chartData,
+                    chartOptions: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Activités de sensibilisation par année',
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        },
+                        scales: {
+                            x: {
+                                stacked: true,
+                            },
+                            y: {
+                                stacked: true,
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                }
+            ]
+        };
+
+    } catch (error) {
+        console.error("Error fetching the CH1-1-2:", error);
+        throw error;
     }
-
-
 };
 
 

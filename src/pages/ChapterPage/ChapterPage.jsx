@@ -4,6 +4,7 @@ import styles from './ChapterPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import FirstQuestion from '../../components/temp/firstQuestion.jsx';
+import SecondQuestion from '../../components/temp/SecondQuestion.jsx';
 
 const ChapterPage = () => {
   return (
@@ -19,7 +20,7 @@ const ChapterPage = () => {
           </div>
 
           {/* Render FirstQuestion only in the first block */}
-          {index === 0 && <FirstQuestion />}
+          {index === 0 && <SecondQuestion/> && <FirstQuestion /> }
 
           <div className={styles.questionsList}>
             {chapter.questions.map(question => (

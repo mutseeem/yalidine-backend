@@ -6,16 +6,34 @@ const SecondQuestion = () => {
     const { data, error, isLoading } = useQuery({
         queryKey: ['secondQuestion'],
         queryFn: fetchSecondQuestionCH1_1_2,
-    }); 
+    });
 
-    //TODO:we need to make a design here a good one instead of a text ; same goeas everywhere we fetch data  
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Error loading question data.</div>;
+    if (isLoading) return <div className="p-4 text-center">Loading question data...</div>;
+    if (error) return <div className="p-4 text-center text-red-500">Error loading question data: {error.message}</div>;
 
-    return(
-        <></>
+    return (
+        <div className="p-4">
+            {data && (
+                <QuestionCollapsibleSection 
+                    question={{
+                        ...data,
+                        // Ensure the questionAnswer array has the correct structure
+                        questionAnswer: data.questionAnswer.map(answer => {
+                            if (answer.type === "DocumentType") {
+                                return {
+                                    ...answer,
+                                    // Add any missing properties needed by DocumentCard
+                                    fileType: answer.format || 'pdf',
+                                    isAvailable: true // Or determine based on your logic
+                                };
+                            }
+                            return answer;
+                        })
+                    }} 
+                />
+            )}
+        </div>
     );
-
-}
+};
 
 export default SecondQuestion;
