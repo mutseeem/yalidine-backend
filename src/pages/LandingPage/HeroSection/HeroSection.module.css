@@ -1,6 +1,44 @@
-/* ===== HERO SECTION STYLES ===== */
-.root {
-  /*41B8D5*/
+:root {
+  /* ─── COLORS ─────────────────────────────── */
+  --color-primary: #48cbec;
+  --color-secondary: #0ed3a5;
+  --color-primary-light: rgba(72, 203, 236, 0.1); /* Adjusted for better visibility on dark background */
+  --color-primary-shadow: rgba(72, 203, 236, 0.2); /* Adjusted for better visibility on dark background */
+  --color-background: #011319f7;
+  --color-background-light: #fafaff;
+  --color-text: #fafaff;
+  --color-text-secondary: rgba(255, 255, 255, 0.9);
+  --color-border: rgba(72, 203, 236, 0.1); /* Adjusted for better visibility on dark background */
+
+  /* ─── Typography  ────────────────────────── */
+  --font-family: 'Inter', sans-serif;
+  --font-size-base: 16px;
+  --font-size-sm: 0.95rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-weight-small: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  --font-weight-bolder: 700;
+  --letter-spacing-wide: 0.8px;
+
+  /* ─── Spacing  ────────────────────────── */
+  --spacing-xxs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.25rem;
+  --spacing-xl: 1.5rem;
+  --spacing-xxl: 2rem;
+  --spacing-xxxl: 2.5rem;
+
+  /* ─── Effects  ────────────────────────── */
+  --blur-intensity: blur(12px);
+  --shadow-sm: 0 4px 30px rgba(0, 0, 0, 0.1);
+  --shadow-primary: 0 0 15px rgba(72, 203, 236, 0.3); /* Adjusted for better visibility on dark background */
+  --shadow-primary-lg: 0 0 20px rgba(72, 203, 236, 0.3); /* Adjusted for better visibility on dark background */
+  --shadow-text: 0 0 8px rgba(72, 203, 236, 0.2); /* Adjusted for better visibility on dark background */
 }
 
 .hero {
@@ -11,8 +49,7 @@
   max-width: 1920px;
   margin: 0 auto;
   gap: 3rem;
-  background: linear-gradient(160deg, #ffffff, #f1f1f1);
-  
+  background: var(--color-background); /* Use the background color variable */
 }
 
 .leftContent {
@@ -26,8 +63,8 @@
 
 /* ===== BADGE STYLES ===== */
 .badge {
-  background: rgba(14, 211, 165, 0.1);
-  color: #0ed3a5;
+  background: rgba(14, 211, 165, 0.2); /* Slightly adjusted for better contrast */
+  color: var(--color-secondary);
   padding: 0.4rem 0.8rem;
   border-radius: 2rem;
   font-size: 0.8rem;
@@ -40,23 +77,21 @@
   font-size: clamp(2rem, 5vw, 3.2rem); /* Responsive font size */
   font-weight: 700;
   line-height: 1.2;
-  color: #00141B;
+  color: var(--color-text); /* Use the text color variable */
   margin: 0;
 }
 
 .highlight {
-  /*0ed3c9*/
-  background: linear-gradient(90deg, #0ed3b5, #41B8D5);
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); /* Using primary and secondary */
   -webkit-background-clip: text;
   background-clip: text;
-
   color: transparent;
 }
 
 .heroSubtitle {
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.5;
-  color: #00141bb7;
+  color: var(--color-text-secondary); /* Use the secondary text color variable */
   margin: 0.5rem 0;
 }
 
@@ -69,8 +104,8 @@
 }
 
 .primaryButton {
-  background: #41B8D5;
-  color: white;
+  background: var(--color-primary);
+  color: var(--color-background); /* Inverted text color for primary button */
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
@@ -90,9 +125,9 @@
 }
 
 .secondaryButton {
-  background: white;
-  color: #00141B;
-  border: 2px solid #41B8D5;
+  background: transparent; /* Make the background transparent */
+  color: var(--color-text); /* Use the text color variable */
+  border: 2px solid var(--color-primary);
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -113,13 +148,13 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(253, 254, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(72, 203, 236, 0.2), transparent); /* Adjusted highlight */
   transition: left 0.7s ease;
 }
 
 .secondaryButton:hover {
-  background-color: rgba(21, 245, 186, 0.08);
-  box-shadow: 0 0 15px rgba(21, 245, 186, 0.1);
+  background-color: rgba(72, 203, 236, 0.1); /* Adjusted hover background */
+  box-shadow: 0 0 15px rgba(72, 203, 236, 0.2); /* Adjusted hover shadow */
   transform: translateY(-1px);
 }
 
@@ -138,7 +173,7 @@
 
 .trustedText {
   font-size: 0.8rem;
-  color: #777;
+  color: var(--color-text-secondary); /* Use the secondary text color variable */
 }
 
 .logoGrid {
@@ -150,7 +185,7 @@
 .logoItem {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #444;
+  color: var(--color-text); /* Use the text color variable */
 }
 
 /* ===== RIGHT CONTENT ===== */
@@ -182,20 +217,20 @@
     padding: 4rem 2rem;
     gap: 2rem;
   }
-  
+
   .leftContent {
     align-items: center;
     max-width: 100%;
   }
-  
+
   .heroButtons {
     justify-content: center;
   }
-  
+
   .trustedBy {
     justify-content: center;
   }
-  
+
   .rightContent {
     width: 100%;
     margin-top: 1.5rem;
@@ -208,18 +243,18 @@
     padding: 3rem 1.5rem;
     min-height: auto;
   }
-  
+
   .heroButtons {
     flex-direction: column;
     width: 100%;
   }
-  
-  .primaryButton, 
+
+  .primaryButton,
   .secondaryButton {
     width: 100%;
     justify-content: center;
   }
-  
+
   .logoGrid {
     justify-content: center;
   }
@@ -230,11 +265,11 @@
     margin-top: 15px;
     font-size: 2rem;
   }
-  
+
   .heroSubtitle {
     font-size: 1rem;
   }
-  
+
   .badge {
     font-size: 0.7rem;
   }

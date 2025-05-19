@@ -1,2 +1,11 @@
 https://github.com/airbnb/javascript
 https://kentcdodds.com/blog/aha-programming 
+
+
+when using get hub  --------------------------------------
+feat: — for new features
+fix: — for bug fixes
+refactor: — for code improvements without behavior changes
+docs: — documentation updates
+chore: — maintenance tasks (e.g., tooling, dependencies)
+test: — adding or fixing tests

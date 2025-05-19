@@ -1,42 +1,83 @@
-/* Navbar.module.css */
+:root {
+  /* ─── COLORS ─────────────────────────────── */
+  --color-primary: #48cbec;
+  --color-primary-light: rgba(21, 245, 186, 0.1);
+  --color-primary-shadow: rgba(21, 182, 245, 0.2);
+  --color-background: #011319f7;
+  --color-background-light: #fafaff;
+  --color-text: #fafaff;
+  --color-text-secondary: rgba(255, 255, 255, 0.9);
+  --color-border: rgba(21, 245, 186, 0.1);
+
+  /* ─── Typography  ────────────────────────── */
+  --font-family: 'Inter', sans-serif;
+  --font-size-base: 16px;
+  --font-size-sm: 0.95rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-weight-small: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  --font-weight-bolder: 700;
+  --letter-spacing-wide: 0.8px;
+
+  /* ─── Spacing  ────────────────────────── */
+  --spacing-xxs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.25rem;
+  --spacing-xl: 1.5rem;
+  --spacing-xxl: 2rem;
+  --spacing-xxxl: 2.5rem;
+
+  /* ─── Effects  ────────────────────────── */
+  --blur-intensity: blur(12px);
+  --shadow-sm: 0 4px 30px rgba(0, 0, 0, 0.1);
+  --shadow-primary: 0 0 15px rgba(21, 245, 186, 0.1);
+  --shadow-primary-lg: 0 0 20px rgba(21, 245, 186, 0.1);
+  --shadow-text: 0 0 8px rgba(21, 182, 245, 0.2);
+}
+
+/* ────────────────────────────────────────── */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  font-family: 'Inter', sans-serif;
-  padding: 1.25rem 2.5rem;
-  background-color: rgba(1, 19, 25, 0.969); 
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  font-family: var(--font-family);
+  padding: var(--spacing-lg) var(--spacing-xxl);
+  background-color: var(--color-background);
+  -webkit-backdrop-filter: var(--blur-intensity);
+  backdrop-filter: var(--blur-intensity);
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(21, 245, 186, 0.1);
-  
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-lg) var(--spacing-xxxl);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--spacing-sm);
   transition: transform 0.2s ease;
-  
 }
 
 .logoImg {
-  margin-right: 10px;
-  height: 1.5rem;
-  width: 1.5rem;
-  filter: drop-shadow(0 0 8px rgba(21, 182, 245, 0.2));
+  margin-right: var(--spacing-sm);
+  height: var(--spacing-xl);
+  width: var(--spacing-xl);
+  filter: drop-shadow(var(--shadow-text));
 }
 
 .logoText {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: white;
-  letter-spacing: 0.5px;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bolder);
+  color: var(--color-text);
+  letter-spacing: var(--letter-spacing-wide);
   background: linear-gradient(to right, #ffffff, #e0e0e0);
   -webkit-background-clip: text;
   background-clip: text;
@@ -45,16 +86,16 @@
 
 .navLinks {
   display: flex;
-  gap: 2rem;
+  gap: var(--spacing-xxl);
 }
 
 .navLink {
   position: relative;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 0.5rem 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-small);
+  padding: var(--spacing-xs) 0;
   transition: all 0.2s ease;
 }
 
@@ -65,12 +106,12 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #48cbec;
+  background: var(--color-primary);
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navLink:hover {
-  color: #48cbec;
+  color: var(--color-primary);
 }
 
 .navLink:hover::after {
@@ -79,17 +120,19 @@
 
 .navRight {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md);
   align-items: center;
 }
 
 .loginButton {
   background: transparent;
-  border: 2px solid #48cbec;
-  color: #48cbec;
-  padding: 0.5rem 1.25rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
+  border: 0px solid var(--color-primary);
+  color: var(--color-background-light);
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border-radius: var(--spacing-xs);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  letter-spacing: var(--letter-spacing-wide);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -103,13 +146,14 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(253, 254, 255, 0.177), transparent);
-  transition: left 0.5s ease;
+  /*background: linear-gradient(90deg, transparent, rgba(253, 254, 255, 0.177), transparent);*/
+  transition: left 0.4s ease;
 }
 
 .loginButton:hover {
-  background-color: rgba(21, 245, 186, 0.08);
-  box-shadow: 0 0 15px rgba(21, 245, 186, 0.1);
+  color: var(--color-primary);
+  /*background-color: var(--color-primary-light);
+  box-shadow: var(--shadow-primary);*/
 }
 
 .loginButton:hover::before {
@@ -118,14 +162,17 @@
 
 .signUp {
   margin-right: 60px;
-  background-color: #48cbec;
-  color: #00141B;
-  padding: 0.5rem 1.25rem;
-  border: 2px solid #48cbec;
-  border-radius: 0.5rem;
-  font-weight: 600;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--spacing-xs);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  letter-spacing: var(--letter-spacing-wide);
+  
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -142,9 +189,9 @@
 }
 
 .signUp:hover {
-  background-color: #48cbec;
-  border-color: #48cbec;
-  box-shadow: 0 0 20px rgba(21, 245, 186, 0.2);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-primary-lg);
 }
 
 .signUp:hover::before {
@@ -162,7 +209,7 @@
 
   .navLinks {
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--spacing-xs);
     width: 100%;
   }
 
@@ -175,14 +222,15 @@
     justify-content: flex-start;
     margin-top: 0.5rem;
   }
-  
+
   .loginButton,
   .signUp {
     width: 100%;
     text-align: center;
     padding: 0.75rem;
+    font-size: 0.9rem;
   }
-  
+
   .signUp {
     margin-right: 0;
   }
@@ -193,7 +241,8 @@
     padding: 1.25rem 2rem;
   }
   
+
   .navLinks {
-    gap: 1.5rem;
+    gap: var(--spacing-md);
   }
 }
