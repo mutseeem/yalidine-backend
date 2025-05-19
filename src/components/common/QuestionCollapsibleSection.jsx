@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import DocumentCard from './DocumentCard';
+import DocumentCard from './DocumentCard/DocumentCard';
 import ChartCard from './ChartCard/ChartCard';
 import styles from './QuestionCollapsibleSection.module.css';
 
 const QuestionCollapsibleSection = ({ question }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const documents = question.questionAnswer.filter(item => item.type === "DocumentType");
+  const documents = question.questionAnswer.filter(item => item.type ===  "DocumentType");
   const charts = question.questionAnswer.filter(item => item.type === "ChartType");
 
   return (
