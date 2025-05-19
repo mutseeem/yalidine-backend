@@ -98,13 +98,13 @@ const Navbar = () => {
     if (!element){
       Logger.error('Navbar', 'handleScroll', `Element with ID ${id} not found.`);
       return;
+     
     }
     
     element.scrollIntoView({ 
       behavior: 'smooth', 
       block: 'center',
     });
-
   };
 
   //FIXME: fix the signup button to fuction correctly

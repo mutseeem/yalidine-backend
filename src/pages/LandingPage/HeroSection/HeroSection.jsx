@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 
-//TODO: chnage teh picture of the profile , make somthing better !!! 
+//TODO: chnage the picture of the profile , make somthing better !!! 
 
 const HeroSection = () => {
   const containerVariants = {
