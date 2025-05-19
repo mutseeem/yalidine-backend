@@ -1,16 +1,32 @@
+## This is the project structure ## 
+
+
 src/
-|-- components/                # Reusable UI components
+|-- assests/                   # Resources 
+|   |-- icons/                 # This folder contains the SVG-PNG icons used in the project 
+|   |-- images/                # This folder contains the JPEG files used in the project 
+|   |-- docs/                  # This folder contains the PDF , WORD , PPT files used in the project 
+|
+|-- components/                # Reusable UI components 
 |   |-- common/                # Shared, generic components (buttons, modals, etc.)
-|   |   |--DocumentCard.jsx           
-|   |   |--DocumentCard.css
-|   |   |-- ChartCard/
+|   |   |-- ChartCard/         # The ChartData Card 
 |   |   |   |-- ChartCard.jsx
 |   |   |   |-- ChartCard.module.css
 |   |   |   |-- ToolsSideBar.jsx
 |   |   |   |-- ToolsSideBar.module.css
 |   |   |   |-- ChartArea.jsx
 |   |   |   |-- ChartArea.module.css
-|   |   |-- 
+|   |   |   |
+|   |   |-- DocumentCard/      # The Document Card 
+|   |   |   |-- DocumentCard.jsx
+|   |   |   |-- DocumentCard.module.css
+|   |   |   |
+|   |   |-- QuestionCollapsibleSection.jsx          #the question collapsible section (it might call either the chart card or the document card or both)
+|   |   |-- QuestionCollapsibleSection.module.css
+|   |   |
+|   |-- common/                #Dummy data for the project to test the UI 
+|   |   |-- DummyData.jsx  
+|   |   |
 |   |-- layout/                # Structural components (sidebar, navbar, etc.)
 |   |   |-- Sidebar/
 |   |   |   |-- AccountMenu.jsx
@@ -20,10 +36,10 @@ src/
 |   |   |   |-- Navbar.jsx
 |   |   |   |-- Navbar.module.css
 |   |   |-- Footer/
-|   |   |   |-- 
-|   |   |   |-- 
-|   |-- layout/ 
-|   |   |   |-- ChapterContent.jsx 
+|   |   |   | 
+|   |-- temp/
+|   |   |-- FirstQuestion.jsx    ##just a temp componenet that fetch the first question using API CALL 
+|   |   |-- SecondQuestion.jsx   ##just a temp componenet that fetch the Second question using API CALL            
 |
 |
 |-- mocks/

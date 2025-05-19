@@ -1,4 +1,4 @@
-// Routes/Routes.jsx
+//Routes/Routes.jsx
 import LandingPage from "../pages/LandingPage/LandingPage";
 import ChapterHomeLayout from "../pages/ChapterHome/ChapterHomeLayout";
 import ChapterPage from "../pages/ChapterPage/ChapterPage";
@@ -12,7 +12,7 @@ const routes = [
   },
   {
     path: "chapters",
-    element: <ChapterHomeLayout />,
+    element: <ChapterHomeLayout />, // needs to be fixed after this 
     children: [
       {
         path: "overview",
