@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
-import { chart6 } from '../../../assets/images/images';
-import styles from './HeroSection.module.css';
+import styles from './HeroSection.module.css'; // Import HeroSection specific styles
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { chart6 } from '../../../assets/images/images';
 
 
-//TODO: chnage the picture of the profile , make somthing better !!! 
+const HeroSection = () => { // Removed navigateTo prop as it's no longer needed for this functionality
 
-const HeroSection = () => {
+  // animation section , can be changed later .
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -31,26 +31,41 @@ const HeroSection = () => {
     },
   };
 
+  // Re-introducing a local handleScroll if you prefer, or rely purely on href + CSS
+  // For consistency with Navbar's NavItem, it's good to prevent default.
+  const handleLocalScroll = (e, id) => {
+    e.preventDefault(); // Prevent default anchor jump
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' }); // 'start' is common for hero links
+    }
+    // You could also use the shared handleScroll from utils if you re-import it
+    // handleScroll(id, 'start');
+  };
+
+
   return (
     <section className={styles.hero}>
-      {/* Left Content */}
+      {/* ─── Left Content ────────────────────────── */}
       <motion.div
         className={styles.leftContent}
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
+        {/*badge*/}
         <motion.div variants={itemVariants} className={styles.badge}>
           <span>Guided by RNAQ-ESRS</span>
         </motion.div>
 
+        {/*title*/}
         <motion.h1 variants={itemVariants} className={styles.heroTitle}>
           Transform Your{' '}
           <motion.span
             className={styles.highlight}
             initial={{ backgroundSize: "0% 100%" }}
             animate={{ backgroundSize: "100% 100%" }}
-            transition={{ 
+            transition={{
               duration: 0.4,
               delay: 0.15,
               ease: "easeOut"
@@ -60,23 +75,26 @@ const HeroSection = () => {
           </motion.span>
         </motion.h1>
 
-        <motion.p 
-          variants={itemVariants} 
+        {/*subtitle*/}
+        <motion.p
+          variants={itemVariants}
           className={styles.heroSubtitle}
           transition={{ delay: 0.1 }}
         >
           A practical solution designed to enhance productivity and trust in universities by supporting quality assurance processes and streamlining workflows.
         </motion.p>
 
-        <motion.div 
-          variants={itemVariants} 
+        {/*buttons*/}
+        <motion.div
+          variants={itemVariants}
           className={styles.heroButtons}
           transition={{ delay: 0.15 }}
         >
+          {/*START NOW BUTTON */}
           <motion.button
-            whileHover={{ 
-              scale: 1.02,
-              boxShadow: "0 2px 10px rgba(2, 37, 29, 0.1)"
+            whileHover={{
+              scale: 1.01,
+              boxShadow: "rgba(82, 220, 255, 0.1)"
             }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.1 }}
@@ -85,23 +103,26 @@ const HeroSection = () => {
             Start now
             <FontAwesomeIcon icon={faArrowRight} className={styles.buttonIcon} />
           </motion.button>
-          
-          <motion.button
-            whileHover={{ 
-              scale: 1.02,
+
+          {/* LEARN MORE BUTTON - Now links to the #about section directly */}
+          <motion.a
+            href="#about" // Set href to the target section ID, matching Navbar's pattern
+            onClick={(e) => handleLocalScroll(e, 'about')} // Use local handler to prevent default and scroll
+            whileHover={{
+              scale: 1.01,
               backgroundColor: "rgba(65, 184, 213, 0.1)"
             }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={{ scale: 0.99 }}
             transition={{ duration: 0.1 }}
-            className={styles.secondaryButton}
+            className={styles.secondaryButton} // Reuses the existing button styles
           >
             <FontAwesomeIcon icon={faCircleInfo} className={styles.buttonIcon} />
             Learn more
-          </motion.button>
+          </motion.a>
         </motion.div>
 
-        {/*TODO: Add a link to the trusted by section , and uncomment it when we are ready to use it
-        <motion.div 
+        {/*TODO: Add a link to the trusted , and uncomment it when we are ready to use it
+        <motion.div
           variants={itemVariants}
           className={styles.trustedBy}
           transition={{ delay: 0.2 }}
@@ -118,13 +139,13 @@ const HeroSection = () => {
         */}
       </motion.div>
 
-      
-      {/* Right Content */}
+
+      {/* ─── right Content ────────────────────────── */}
       <motion.div
         className={styles.rightContent}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ 
+        transition={{
           duration: 0.3,
           delay: 0.25,
           ease: "easeOut"
@@ -142,7 +163,7 @@ const HeroSection = () => {
           }}
         >
           <img
-            src={chart6}
+            src={chart6} // Use chart6Placeholder or chart6 if locally imported
             alt="Analytics Dashboard"
             loading="eager"
             className={styles.dashboardImage}
