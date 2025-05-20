@@ -1,18 +1,35 @@
+html {
+  font-size: 125%; /* Sets the base font size for the entire document to 125% of the browser's default (usually 16px * 1.25 = 20px) */
+  scroll-behavior: smooth; /* Smooth scrolling for potential anchor links */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: #000F14; /* A very dark base for the gradient, ensures smooth transition */
+  color: var(--color-text);
+}
+
 :root {
   /* ─── COLORS ─────────────────────────────── */
   --color-primary: #48cbec;
   --color-secondary: #0ed3a5;
-  --color-primary-light: rgba(72, 203, 236, 0.1); /* Adjusted for better visibility on dark background */
-  --color-primary-shadow: rgba(72, 203, 236, 0.2); /* Adjusted for better visibility on dark background */
-  --color-background: #011319f7;
+  --color-primary-light: rgba(72, 203, 236, 0.1);
+  --color-primary-shadow: rgba(72, 203, 236, 0.2);
+  --color-background: #011319f7; /* Original dark background, kept for consistency with other components */
   --color-background-light: #fafaff;
   --color-text: #fafaff;
   --color-text-secondary: rgba(255, 255, 255, 0.9);
-  --color-border: rgba(72, 203, 236, 0.1); /* Adjusted for better visibility on dark background */
+  --color-border: rgba(72, 203, 236, 0.1);
 
-  /* ─── Typography  ────────────────────────── */
+  /* New gradient and spot colors for background depth */
+  --gradient-start: #000F14; /* Deep dark blue, matches body for seamless top */
+  --gradient-end: #011E26;   /* Slightly lighter, greenish-blue dark for bottom */
+  --spot-color: rgba(255, 255, 255, 0.03); /* Very subtle white for the blurred spots */
+
+  /* ─── Typography ────────────────────────── */
   --font-family: 'Inter', sans-serif;
-  --font-size-base: 16px;
+  --font-size-base: 1rem; /* Now 1rem is 20px because html font-size is 125% */
   --font-size-sm: 0.95rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.125rem;
@@ -21,9 +38,9 @@
   --font-weight-medium: 500;
   --font-weight-bold: 600;
   --font-weight-bolder: 700;
-  --letter-spacing-wide: 0.8px;
+  --letter-spacing-wide: 1px;
 
-  /* ─── Spacing  ────────────────────────── */
+  /* ─── Spacing (will scale with font-size-base) ───────────────── */
   --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;
   --spacing-sm: 0.75rem;
@@ -33,12 +50,12 @@
   --spacing-xxl: 2rem;
   --spacing-xxxl: 2.5rem;
 
-  /* ─── Effects  ────────────────────────── */
-  --blur-intensity: blur(12px);
-  --shadow-sm: 0 4px 30px rgba(0, 0, 0, 0.1);
-  --shadow-primary: 0 0 15px rgba(72, 203, 236, 0.3); /* Adjusted for better visibility on dark background */
-  --shadow-primary-lg: 0 0 20px rgba(72, 203, 236, 0.3); /* Adjusted for better visibility on dark background */
-  --shadow-text: 0 0 8px rgba(72, 203, 236, 0.2); /* Adjusted for better visibility on dark background */
+  /* ─── Effects ────────────────────────── */
+  --blur-intensity: blur(15px);
+  --shadow-sm: 0 5px 38px rgba(0, 0, 0, 0.1);
+  --shadow-primary: 0 0 19px rgba(72, 203, 236, 0.3);
+  --shadow-primary-lg: 0 0 25px rgba(72, 203, 236, 0.3);
+  --shadow-text: 0 0 10px rgba(72, 203, 236, 0.2);
 }
 
 .hero {
@@ -49,40 +66,125 @@
   max-width: 1920px;
   margin: 0 auto;
   gap: 3rem;
-  background: var(--color-background); /* Use the background color variable */
+  /* Apply the new gradient background for depth */
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  position: relative; /* Crucial for positioning pseudo-elements */
+  overflow: hidden; /* Ensures background spots are clipped */
+  isolation: isolate; /* Creates a new stacking context for proper z-index and blur */
+}
+
+/* Blurred spots for background depth and subtle movement */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%; /* Make them circular */
+  background: var(--spot-color); /* The subtle white color for spots */
+  filter: blur(120px); /* Heavy blur to make them look like soft, ethereal glows */
+  z-index: 0; /* Behind content (z-index 1) but above the main background gradient */
+  pointer-events: none; /* Ensures they don't block mouse interactions */
+}
+
+.hero::before {
+  width: 700px;
+  height: 700px;
+  top: -200px;
+  left: -250px;
+  /* Subtle animation to shift them slightly, creating depth */
+  animation: spotFloatOne 18s ease-in-out infinite alternate;
+}
+
+.hero::after {
+  width: 800px;
+  height: 800px;
+  bottom: -300px;
+  right: -350px;
+  /* Different animation duration and delay for varied movement */
+  animation: spotFloatTwo 22s ease-in-out infinite alternate;
+}
+
+/* Keyframe animations for the floating spots */
+@keyframes spotFloatOne {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 20px) scale(1.02); }
+}
+
+@keyframes spotFloatTwo {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-25px, -15px) scale(1.01); }
+}
+
+/* Ensure main content layers correctly above the background spots */
+.leftContent,
+.rightContent {
+  position: relative;
+  z-index: 1; /* Puts the content above the background spots */
 }
 
 .leftContent {
   margin-left: 3rem;
-  flex: 1;
+  flex: 2.2; /* Increased to make it a bit bigger */
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  max-width: 600px;
+  max-width: 850px;
 }
 
 /* ===== BADGE STYLES ===== */
 .badge {
-  background: rgba(14, 211, 165, 0.2); /* Slightly adjusted for better contrast */
+  background: rgba(15, 210, 164, 0.2);
   color: var(--color-secondary);
   padding: 0.4rem 0.8rem;
   border-radius: 2rem;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   width: fit-content;
+  position: relative; /* Needed for pseudo-element positioning */
+  overflow: hidden; /* Ensures shimmer is clipped to the badge */
+}
+
+/* Shimmer effect for the badge */
+.badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -200%; /* Start far left */
+  width: 200%; /* Wider than the badge to ensure full sweep */
+  height: 100%;
+  /* Adjusted linear gradient for a slightly softer, more diffuse shimmer */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 25%, /* More subtle white shimmer */
+    rgba(255, 255, 255, 0.4) 50%,   /* Slightly stronger peak */
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 100%
+  );
+  /* Animation runs once, then stays at the end state (forwards) */
+  animation: shimmer 2s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Optimized cubic-bezier for a smoother entry/exit */
+  transform: skewX(-20deg); /* Optional: Adds a slight angled effect to the shimmer */
+}
+
+@keyframes shimmer {
+  0% {
+    left: -200%;
+  }
+  100% {
+    left: 100%; /* Ends precisely at the right edge for a clean finish */
+  }
 }
 
 /* ===== TYPOGRAPHY ===== */
 .heroTitle {
-  font-size: clamp(2rem, 5vw, 3.2rem); /* Responsive font size */
-  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: var(--font-weight-bolder);
   line-height: 1.2;
-  color: var(--color-text); /* Use the text color variable */
+  color: var(--color-text);
   margin: 0;
 }
 
 .highlight {
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); /* Using primary and secondary */
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -91,7 +193,7 @@
 .heroSubtitle {
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.5;
-  color: var(--color-text-secondary); /* Use the secondary text color variable */
+  color: var(--color-text-secondary);
   margin: 0.5rem 0;
 }
 
@@ -99,46 +201,47 @@
 .heroButtons {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
 }
 
 .primaryButton {
   background: var(--color-primary);
-  color: var(--color-background); /* Inverted text color for primary button */
+  color: var(--color-background);
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  transition: background 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
 .primaryButton:hover {
-  background: #3aa8c3;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(65, 184, 213, 0.3);
+  background: #46ddff;
+  transform: translateY(-0.15rem);
+  box-shadow: 0 8px 15px rgba(65, 184, 213, 0.4);
 }
 
 .secondaryButton {
-  background: transparent; /* Make the background transparent */
-  color: var(--color-text); /* Use the text color variable */
-  border: 2px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  border: 0.125rem solid var(--color-primary);
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.2s ease-out, border-color 0.2s ease-out;
+  text-decoration: none; /* ADDED: Removes the underline */
 }
 
 .secondaryButton::before {
@@ -148,14 +251,15 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(72, 203, 236, 0.2), transparent); /* Adjusted highlight */
-  transition: left 0.7s ease;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .secondaryButton:hover {
-  background-color: rgba(72, 203, 236, 0.1); /* Adjusted hover background */
-  box-shadow: 0 0 15px rgba(72, 203, 236, 0.2); /* Adjusted hover shadow */
-  transform: translateY(-1px);
+  background-color: rgba(72, 203, 236, 0.15);
+  color: var(--color-text);
+  box-shadow: 0 0 22px rgba(72, 203, 236, 0.1);
+  transform: translateY(-0.1rem);
 }
 
 .secondaryButton:hover::before {
@@ -167,13 +271,13 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
 }
 
 .trustedText {
   font-size: 0.8rem;
-  color: var(--color-text-secondary); /* Use the secondary text color variable */
+  color: var(--color-text-secondary);
 }
 
 .logoGrid {
@@ -184,16 +288,18 @@
 
 .logoItem {
   font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--color-text); /* Use the text color variable */
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
 }
 
 /* ===== RIGHT CONTENT ===== */
 .rightContent {
-  flex: 1;
+  flex: 0.5;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .chartContainer {
@@ -204,23 +310,34 @@
 
 .dashboardImage {
   width: 100%;
-  height: auto;
   max-width: 550px;
+  height: auto;
 }
 
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
 @media (max-width: 1024px) {
   .hero {
-    margin-top: 15px;
+    margin-top: 1.875rem;
     flex-direction: column;
     text-align: center;
     padding: 4rem 2rem;
     gap: 2rem;
   }
 
+  /* Adjust background spots for smaller screens */
+  .hero::before,
+  .hero::after {
+    filter: blur(100px); /* Keep high blur */
+    opacity: 0.025; /* Slightly less visible */
+  }
+  .hero::before { width: 500px; height: 500px; top: -150px; left: -200px; }
+  .hero::after { width: 600px; height: 600px; bottom: -200px; right: -250px; }
+
+
   .leftContent {
     align-items: center;
     max-width: 100%;
+    margin-left: 0;
   }
 
   .heroButtons {
@@ -239,10 +356,19 @@
 
 @media (max-width: 640px) {
   .hero {
-    margin-top: 15px;
+    margin-top: 1.875rem;
     padding: 3rem 1.5rem;
     min-height: auto;
   }
+
+  /* Adjust background spots for mobile */
+  .hero::before,
+  .hero::after {
+    filter: blur(80px);
+    opacity: 0.02;
+  }
+  .hero::before { width: 400px; height: 400px; top: -100px; left: -150px; }
+  .hero::after { width: 500px; height: 500px; bottom: -150px; right: -200px; }
 
   .heroButtons {
     flex-direction: column;
@@ -262,7 +388,7 @@
 
 @media (max-width: 480px) {
   .heroTitle {
-    margin-top: 15px;
+    margin-top: 2.5rem;
     font-size: 2rem;
   }
 
