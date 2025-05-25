@@ -1,6 +1,6 @@
 // src/components/common/UploadDocumentMiniCard/UploadDocumentMiniCard.jsx
 import React from 'react';
-import styles from './UploadCard.module.css'; 
+import styles from './UploadCard.module.css'; // Adjust the path as necessary
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons'; // The upload icon
 
