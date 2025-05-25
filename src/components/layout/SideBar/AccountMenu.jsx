@@ -1,14 +1,19 @@
 import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from './SideBar.module.css';
+// Assume styles are imported from AccountMenu.module.css
+// The user specified 'SideBar.module.css', but typically menu-specific styles
+// would be in a dedicated file like AccountMenu.module.css for better organization.
+// I'll keep the import as SideBar.module.css per your input, but advise
+// ensuring styles are correctly targeting .contextMenu and .menuItem classes.
+import styles from './SideBar.module.css'; // Using SideBar.module.css as specified
 
-export default function AccountMenu({ 
-  menuPosition, 
-  onClose, 
-  onSettingsClick, 
-  onLogoutClick, 
-  onContactClick, 
-  onQAClick 
+export default function AccountMenu({
+  menuPosition,
+  onClose,
+  onSettingsClick,
+  onLogoutClick,
+  onContactClick,
+  onQAClick
 }) {
   const menuRef = useRef(null);
 
@@ -26,55 +31,58 @@ export default function AccountMenu({
   }, []);
 
   return (
-    <div 
+    <div
       ref={menuRef}
+      // Assuming 'contextMenu' class is defined in SideBar.module.css or a new file
       className={styles.contextMenu}
       style={{
         top: `${menuPosition.top}px`,
         left: `${menuPosition.left}px`,
-        transform: 'translateY(-100%)'
+        transform: 'translateY(-100%)', // This lifts the menu above the click point
       }}
     >
       <ul>
         <li>
-          <button 
-            className={styles.menuItem}
+          <button
+            className={styles.menuItem} // Assuming 'menuItem' class is defined
             onClick={() => {
               onSettingsClick();
-              onClose();
+              onClose(); // Close menu after action
             }}
           >
             Settings
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={styles.menuItem}
             onClick={() => {
+              // Call the logout function passed from Sidebar.
+              // This function already handles navigation and state clearing.
               onLogoutClick();
-              onClose();
+              // No need to call onClose() here, as navigation will unmount this component.
             }}
           >
             Log Out
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={styles.menuItem}
             onClick={() => {
               onContactClick();
-              onClose();
+              onClose(); // Close menu after action
             }}
           >
             Contact Us
           </button>
         </li>
         <li>
-          <button 
+          <button
             className={styles.menuItem}
             onClick={() => {
               onQAClick();
-              onClose();
+              onClose(); // Close menu after action
             }}
           >
             Q&A
@@ -85,6 +93,7 @@ export default function AccountMenu({
   );
 }
 
+// PropTypes for type-checking props
 AccountMenu.propTypes = {
   menuPosition: PropTypes.shape({
     top: PropTypes.number,
@@ -92,14 +101,16 @@ AccountMenu.propTypes = {
   }).isRequired,
   onClose: PropTypes.func.isRequired,
   onSettingsClick: PropTypes.func,
-  onLogoutClick: PropTypes.func,
+  onLogoutClick: PropTypes.func, // The logout function prop
   onContactClick: PropTypes.func,
   onQAClick: PropTypes.func,
 };
 
+// Default props provide fallback functions if a prop is not explicitly passed.
+// This prevents errors if a component doesn't pass a specific click handler.
 AccountMenu.defaultProps = {
-  onSettingsClick: () => alert('Settings clicked'),
-  onLogoutClick: () => alert('Logout clicked'),
-  onContactClick: () => alert('Contact Us clicked'),
-  onQAClick: () => alert('Q&A clicked'),
+  onSettingsClick: () => console.log('Settings clicked (default)'),
+  onLogoutClick: () => console.log('Logout clicked (default)'), // Keep console log as default
+  onContactClick: () => console.log('Contact Us clicked (default)'),
+  onQAClick: () => console.log('Q&A clicked (default)'),
 };

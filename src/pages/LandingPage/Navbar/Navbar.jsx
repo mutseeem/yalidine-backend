@@ -3,6 +3,7 @@ import { AppLogo } from '../../../assets/icons/icons';
 import styles from './Navbar.module.css';
 import PropTypes from 'prop-types';
 import Logger from '../../../util/Logger';
+import { useNavigate } from 'react-router-dom'; // <--- New: Import useNavigate
 
 //TODO: change the logo .
 
@@ -11,28 +12,29 @@ import Logger from '../../../util/Logger';
  * - Logo area
  * - Navigation links
  * - Right-side buttons (Log in and Sign up)
- * 
+ *
  * @component
  * @example
  * return <Navbar />
- * 
+ *
  * @returns {JSX.Element} The rendered Navbar component.
- * 
+ *
  * @see {@link https://www.framer.com/motion/|Framer Motion} for animation details.
- * 
+ *
  * @author Izemmouren Ilyes
  */
 const Navbar = () => {
   const navItems = ['Home', 'About', 'Domains', 'Devs', 'Contact', 'FAQ'];
+  const navigate = useNavigate(); // <--- New: Initialize useNavigate
 
   /**
    * Logo subcomponent that displays the logo and text with animation.
-   * 
+   *
    * @component
    * @returns {JSX.Element} The rendered Logo component.
    * @example
    * return <Logo />
-  */
+   */
   const Logo = () => (
     <div className={styles.logo}>
       {/* Logo Animation */}
@@ -64,12 +66,12 @@ const Navbar = () => {
    * @param {Object} props
    * @param {string} props.item - The name of the navigation item.
    * @param {function} props.onClick - Callback function triggered on click with the item id.
-   * 
+   *
    * @returns {JSX.Element} The rendered navigation link component.
    *
    * @example
    * return <NavItem item="Home" onClick={handleScroll} />
- */
+   */
   const NavItem = ({ item, onClick }) => (
     <a
       href={`#${item.toLowerCase()}`}
@@ -86,38 +88,38 @@ const Navbar = () => {
     item: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
   };
-  
+
   /**
    * function to scroll into a specific element by ID.
-   * 
+   *
    * @function handleScroll
-   * @param {String} id - the id of the element 
+   * @param {String} id - the id of the element
    */
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (!element){
       Logger.error('Navbar', 'handleScroll', `Element with ID ${id} not found.`);
       return;
-     
+
     }
-    
-    element.scrollIntoView({ 
-      behavior: 'smooth', 
+
+    element.scrollIntoView({
+      behavior: 'smooth',
       block: 'center',
     });
   };
 
-  //FIXME: fix the signup button to fuction correctly
+  // FIX: Redirect to /signup page
   const handleSignUpClick = () => {
-    alert('Sign Up button clicked! Redirect functionality will be implemented later.');
+    navigate('/signup'); // <--- Fixed: Use navigate to go to the signup page
   };
 
-  //FIXME: fix the login button to function correctly
+  // FIX: Redirect to /login page
   const handleLoginClick = () => {
-    alert('Log In button clicked! Redirect functionality will be implemented later.');
+    navigate('/login'); // <--- Fixed: Use navigate to go to the login page
   };
 
-  
+
   return (
     <motion.header
       initial={{ y: -50, opacity: 0 }}
@@ -150,4 +152,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
