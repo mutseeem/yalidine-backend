@@ -1,20 +1,27 @@
-import { 
+import {
   FaTimesCircle,
-  FaFilePdf, 
-  FaFileWord, 
+  FaFilePdf,
+  FaFileWord,
   FaFileAlt,
+  FaEdit,   // New: Edit Icon
+  FaTrash,  // New: Delete Icon
 } from 'react-icons/fa';
 import { HiOutlineDownload } from 'react-icons/hi';
 import { useState, useEffect } from 'react';
 import styles from "./DocumentCard.module.css";
 
-const DocumentCard = ({ 
+const DocumentCard = ({
   title = 'Untitled Document',
   uploadDate = 'Unknown Date',
   fileSize = '0 KB',
   fileType = 'pdf',
   isAvailable = true,
-  url // This can be a blob URL (blob:...) or regular URL
+  url, // This can be a blob URL (blob:...) or regular URL
+  // New props for edit/delete functionality
+  showEditButton = false,   // Defaults to false
+  showDeleteButton = false, // Defaults to false
+  onEditClick,              // Callback for edit button click
+  onDeleteClick,            // Callback for delete button click
 }) => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [blobData, setBlobData] = useState(null);
@@ -68,7 +75,7 @@ const DocumentCard = ({
           document.body.removeChild(link);
           URL.revokeObjectURL(blobUrl);
         }, 100);
-      } 
+      }
       // For regular URLs
       else if (typeof blobData === 'string') {
         window.open(blobData, '_blank');
@@ -89,7 +96,7 @@ const DocumentCard = ({
     unavailable: <FaTimesCircle className={styles['unavailable-icon']} />
   };
 
-  const FileIcon = isAvailable 
+  const FileIcon = isAvailable
     ? (fileIcons[fileType.toLowerCase()] || fileIcons.pdf)
     : fileIcons.unavailable;
 
@@ -98,7 +105,7 @@ const DocumentCard = ({
       <div className={styles['file-icon-wrapper']}>
         {FileIcon}
       </div>
-      
+
       <div className={styles['file-details']}>
         <h3 className={styles['file-title']}>{title}</h3>
         <div className={styles['file-meta']}>
@@ -106,20 +113,45 @@ const DocumentCard = ({
           <span className={styles['file-size']}>{fileSize}</span>
         </div>
       </div>
-      
+
       {isAvailable ? (
-        <button
-          className={styles['download-btn']}
-          aria-label={`Download ${title || 'Document'}`}
-          onClick={handleDownload}
-          disabled={isDownloading || !blobData}
-        >
-          {isDownloading ? (
-            <span className={styles['download-spinner']}></span>
-          ) : (
-            <HiOutlineDownload className={styles['download-icon']} />
+        <div className={styles['actions-group']}> {/* New: Group action buttons */}
+          {/* Download Button */}
+          <button
+            className={styles['download-btn']}
+            aria-label={`Download ${title || 'Document'}`}
+            onClick={handleDownload}
+            disabled={isDownloading || !blobData}
+          >
+            {isDownloading ? (
+              <span className={styles['download-spinner']}></span>
+            ) : (
+              <HiOutlineDownload className={styles['download-icon']} />
+            )}
+          </button>
+
+          {/* Edit Button (Conditional) */}
+          {showEditButton && (
+            <button
+              className={styles['edit-btn']}
+              aria-label={`Edit ${title || 'Document'}`}
+              onClick={onEditClick} // Pass the click handler
+            >
+              <FaEdit className={styles['edit-icon']} />
+            </button>
           )}
-        </button>
+
+          {/* Delete Button (Conditional) */}
+          {showDeleteButton && (
+            <button
+              className={styles['delete-btn']}
+              aria-label={`Delete ${title || 'Document'}`}
+              onClick={onDeleteClick} // Pass the click handler
+            >
+              <FaTrash className={styles['delete-icon']} />
+            </button>
+          )}
+        </div>
       ) : (
         <span className={styles['unavailable-label']}>Unavailable</span>
       )}
