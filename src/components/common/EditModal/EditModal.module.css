@@ -1,0 +1,182 @@
+/* src/components/common/EditModal/EditModal.module.css */
+
+/* Using consistent variables from your theme */
+.modalOverlay {
+    --primary-color: #C12862;
+    --primary-hover: #A02050;
+    --icon-bg: #f8f0f3;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --border-color: rgba(234, 234, 234, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeInOverlay 0.3s forwards;
+}
+
+.modalContent {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideInModal 0.3s forwards;
+}
+
+.closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+    color: var(--primary-color);
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin: 0;
+}
+
+.modalDescription {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.editForm { /* Renamed from .uploadForm */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.uploadArea {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+}
+
+.uploadArea:hover {
+    background-color: var(--icon-bg);
+    border-color: var(--primary-color);
+}
+
+.fileIcon { /* New style for the PDF icon */
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.uploadText {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.inputGroup label {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.inputGroup input {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.inputGroup input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(193, 40, 98, 0.2);
+}
+
+/* Style for the read-only ID input */
+.readOnlyInput {
+    background-color: #f0f0f0; /* Light gray background */
+    cursor: not-allowed;
+}
+
+
+.submitButton {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+.submitButton:disabled {
+    background-color: #a0a8b4;
+    cursor: not-allowed;
+}
+
+.statusMessage {
+    font-size: 0.85rem;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Animations */
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInModal {
+    from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}

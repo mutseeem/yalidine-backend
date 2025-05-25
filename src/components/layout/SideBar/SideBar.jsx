@@ -51,6 +51,11 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
       name: 'Échange de connaissances', 
       icons: [FolderIcon, FolderFocusIcon] 
     },
+    {
+      path: '/chapters/chapter-page-Insert', // <--- THIS IS THE CRUCIAL CHANGE
+      name: 'Create New Chapter', // Updated name for clarity
+      icons: [FolderIcon, FolderFocusIcon]
+    }
   ];
 
   const handleItemTooltip = (event, itemName) => {

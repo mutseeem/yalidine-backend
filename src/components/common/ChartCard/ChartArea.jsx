@@ -21,6 +21,7 @@ const ChartArea = ({
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
+  //TODO:fix the zoom area 
   const handleZoom = (factor) => {
     if (!chartInstance.current) return;
     

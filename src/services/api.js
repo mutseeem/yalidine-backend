@@ -53,8 +53,6 @@ export const fetchFirstQuestionCH1_1_1 = async () => {
     }
 };
 
-
-
 export const fetchSecondQuestionCH1_1_2 = async () => {
     try {
         const API_URL = "http://localhost:8085/CAQ/RELEX/CH1-1-2/";
@@ -163,4 +161,105 @@ export const fetchSecondQuestionCH1_1_2 = async () => {
     }
 };
 
+export const InsertFirstQuestionCH1_1_1 = async (file, titre, context, anne) => {
+    
+    if (!file || !titre || !context || !anne) {
+        throw new Error("All upload parameters (file, titre, context, anne) are required.");
+    }
 
+    // create a new object of FormData to hold the file and other data
+    const formData = new FormData();
+    formData.append('file', file);       //file
+    formData.append('titre', titre);     //title
+    formData.append('context', context); //context
+    formData.append('anne', anne);       //anne
+
+    // api url
+    const API_URL = 'http://localhost:8085/CAQ/RELEX/CH1-1-1/upload';
+
+    try {
+        //post request to upload the file
+        const response = await axios.post(API_URL, formData, {
+            //headers: {
+            //    'Authorization':
+            //}
+        });
+
+        console.log('File uploaded successfully for CH1-1-1:', response.data);
+        return response.data;
+
+    } catch (error) {
+
+        console.error('Error uploading file to CH1-1-1:', error);
+
+        //error 
+        if (axios.isAxiosError(error)) {
+            console.error('Axios error response:', error.response?.data);
+            console.error('Axios error status:', error.response?.status);
+            console.error('Axios error headers:', error.response?.headers);
+            // related to data itself
+            throw new Error(error.response?.data?.message || `Upload failed with status: ${error.response?.status}`);
+        } else {
+            // other erros
+            throw new Error('An unexpected error occurred during the upload process.');
+        }
+    }
+};
+
+export const updateFirtQuestionCH1_1_1 = async (documentId, newFile = null, titre, context, anne) => {
+    if (!documentId) {
+        throw new Error("Document ID is required for updating a document.");
+    }
+
+    const formData = new FormData();
+    if (newFile) {
+        formData.append('file', newFile);
+    }
+    if (titre !== undefined && titre !== null) {
+        formData.append('titre', titre);
+    }
+    if (context !== undefined && context !== null) {
+        formData.append('context', context);
+    }
+    if (anne !== undefined && anne !== null) {
+        formData.append('anne', anne);
+    }
+
+    // API URL declared directly inside the function, using template literals for ID
+    const API_URL = `http://localhost:8085/CAQ/RELEX/CH1-1-1/${documentId}/update`;
+
+    try {
+        const response = await axios.patch(API_URL, formData); // Using axios directly
+        console.log(`Document ${documentId} updated successfully:`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error updating document ${documentId}:`, error);
+        if (axios.isAxiosError(error)) {
+            throw new Error(error.response?.data?.message || `Update failed with status: ${error.response?.status}`);
+        } else {
+            throw new Error('An unexpected error occurred during document update.');
+        }
+    }
+};
+
+export const deleteFirstQuestionCH1_1_1 = async (documentId) => {
+    if (!documentId) {
+        throw new Error("Document ID is required for deleting a document.");
+    }
+
+    // FIX: Correctly form the API_URL for the DELETE endpoint
+    const API_URL = `http://localhost:8085/CAQ/RELEX/CH1-1-1/${documentId}/delete`;
+
+    try {
+        const response = await axios.delete(API_URL); // Use axios.delete for DELETE requests
+        console.log(`Document ${documentId} deleted successfully:`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error deleting document ${documentId}:`, error);
+        if (axios.isAxiosError(error)) {
+            throw new Error(error.response?.data?.message || `Deletion failed with status: ${error.response?.status}`);
+        } else {
+            throw new Error('An unexpected error occurred during document deletion.');
+        }
+    }
+};

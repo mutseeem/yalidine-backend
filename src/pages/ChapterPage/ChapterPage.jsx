@@ -19,7 +19,7 @@ const ChapterPage = () => {
             </div>
           </div>
 
-          {/* Render FirstQuestion only in the first block */}
+          
           {index === 0 && <SecondQuestion/> && <FirstQuestion /> }
 
           <div className={styles.questionsList}>
