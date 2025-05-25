@@ -1,62 +1,64 @@
-/* ================= ROOT VARIABLES ================= */
+/* — IMPORTS ————————————————— */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* — ROOT VARIABLES ————————————————— */
 :root {
-  /* ================= COLOR VARIABLES ================= */
-  /* Background Colors */
+  /* — COLOR VARIABLES — */
   --sidebar-bg: #00141B; /* Main sidebar background */
   --sidebar-bg-gradient-start: #00141B; /* Gradient start color */
   --sidebar-bg-gradient-mid: #041c24; /* Gradient mid color */
   --sidebar-bg-gradient-end: #00141B; /* Gradient end color */
   --sidebar-border: #003245; /* Sidebar right border */
-  
-  /* Text Colors */
+
+  /* — Text Colors — */
   --text-primary: #FFFFFF; /* Primary white text */
   --text-secondary: #f5fcff; /* Slightly off-white for secondary text */
   --text-email: #cdf0ff; /* Light blue for email text */
   --text-active: #ffffff; /* White text for active items */
-  
-  /* Interactive Element Colors */
+
+  /* — Interactive Element Colors — */
   --item-hover-bg: rgb(65, 184, 213); /* Background on hover */
   --item-active-bg: #41b8d5; /* Background for active items */
   --profile-border: #41b8d5; /* Profile picture border */
   --separator-color: #ffffff7b; /* Color for separators with opacity */
-  
-  /* Effects */
+
+  /* — Effects — */
   --sidebar-shadow: rgba(0, 20, 27, 0.3); /* Shadow color */
   --focus-glow: 0 0 0 2px rgba(81, 220, 255, 0.3); /* Focus outline glow */
-  
-  /* ================= SIZE VARIABLES ================= */
-  /* Layout Sizes */
+
+  /* — SIZE VARIABLES — */
+  /* — Layout Sizes — */
   --sidebar-collapsed-width: 80px; /* Collapsed state width */
   --sidebar-expanded-width: 280px; /* Expanded state width */
-  
-  /* Spacing */
+
+  /* — Spacing — */
   --header-padding: 24px 24px; /* Header padding (top/bottom left/right) */
   --item-padding: 11px 14px; /* Padding for navigation items */
   --item-margin: 6px 15px; /* Margin for navigation items */
   --separator-margin: 16px 20px; /* Margin for separators */
   --icon-spacing: 20px; /* Space between icon and text */
-  
-  /* Element Sizes */
+
+  /* — Element Sizes — */
   --logo-size: 30px; /* App logo dimensions */
   --icon-size: 22px; /* Standard icon dimensions */
   --profile-size: 38px; /* Profile picture dimensions */
-  
-  /* Border Properties */
+
+  /* — Border Properties — */
   --item-radius: 8px; /* Border radius for items */
   --item-hover-radius: 8px; /* Border radius on hover (can differ) */
   --profile-border-width: 2px; /* Profile picture border width */
-  
-  /* Typography */
+
+  /* — Typography — */
   --font-size-small: 12px; /* Small text (e.g., email) */
   --font-size-base: 0.9375rem; /* Standard text size (15px) */
   --font-size-xlarge: 17px; /* Large text (e.g., username) */
   --font-size-large: 1.375rem; /* Very large text (e.g., brand) */
-  
-  /* Animation */
+
+  /* — Animation — */
   --transition-speed: 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Standard transition */
 }
 
-/* ================= TOGGLE BUTTON STYLES ================= */
+/* — TOGGLE BUTTON STYLES ————————————————— */
 /* Container for the toggle button */
 .toggleButtonContainer {
   position: fixed;
@@ -115,7 +117,7 @@
   transform: rotate(180deg); /* Rotate 180 degrees */
 }
 
-/* ================= BASE SIDEBAR STYLES ================= */
+/* — BASE SIDEBAR STYLES ————————————————— */
 /* Main sidebar container */
 .sidebar {
   position: fixed;
@@ -123,8 +125,8 @@
   top: 0;
   bottom: 0;
   width: var(--sidebar-collapsed-width); /* Collapsed width */
-  background: linear-gradient(180deg, 
-    var(--sidebar-bg-gradient-start), 
+  background: linear-gradient(180deg,
+    var(--sidebar-bg-gradient-start),
     var(--sidebar-bg-gradient-mid),
     var(--sidebar-bg-gradient-end)); /* Gradient background */
   display: flex;
@@ -149,7 +151,7 @@
   width: var(--sidebar-expanded-width);
 }
 
-/* ================= HEADER STYLES ================= */
+/* — HEADER STYLES ————————————————— */
 /* Header section */
 .header {
   display: flex;
@@ -192,7 +194,7 @@
   to { opacity: 1; transform: translateX(0); } /* End at normal position */
 }
 
-/* ================= ICON STYLES ================= */
+/* — ICON STYLES ————————————————— */
 /* Container for icons */
 .iconContainer {
   position: relative;
@@ -219,7 +221,7 @@
   transform: scale(0.9); /* Slightly smaller */
 }
 
-/* ================= NAVIGATION ITEMS ================= */
+/* — NAVIGATION ITEMS ————————————————— */
 /* Scrollable area for navigation items */
 .sidebarItems {
   flex: 1; /* Take up remaining space */
@@ -294,7 +296,7 @@
   to { opacity: 1; transform: translateX(0); } /* End at normal position */
 }
 
-/* ================= INTERACTION STATES ================= */
+/* — INTERACTION STATES ————————————————— */
 /* Hover state for navigation items */
 .sidebarItem:hover {
   background: var(--item-hover-bg); /* Highlight background */
@@ -337,7 +339,7 @@
   background-color: transparent; /* No hover background */
 }
 
-/* ================= FOOTER SECTION ================= */
+/* — FOOTER SECTION ————————————————— */
 /* Account section */
 .accountSection {
   display: flex;
@@ -452,7 +454,7 @@
   opacity: 0.3; /* Slightly transparent */
 }
 
-/* ================= HOVER TOOLTIP STYLES ================= */
+/* — HOVER TOOLTIP STYLES ————————————————— */
 .hoverTooltip {
   position: absolute;
   z-index: 1100;
@@ -466,23 +468,21 @@
   box-shadow: var(--sidebar-shadow);
   animation: fadeInTooltip 0.15s ease-out;
   margin-top: 5px;
-  
+
 }
 
 @keyframes fadeInTooltip {
-  from { 
-    opacity: 0; 
+  from {
+    opacity: 0;
     transform: translateX(-10px);
-    /* Start 10px to the left */
   }
-  to { 
-    opacity: 1; 
+  to {
+    opacity: 1;
     transform: translateX(0);
-    /* End at normal position */
   }
 }
 
-/* ================= Account Menu  ================= */
+/* — Account Menu ————————————————— */
 /* Context Menu */
 .contextMenu {
   position: absolute;
@@ -520,11 +520,11 @@
 
 /* Animation */
 @keyframes fadeInUp {
-  from { 
-    opacity: 0; 
+  from {
+    opacity: 0;
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(-100%) translateX(0); 
+  to {
+    opacity: 1;
+    transform: translateY(-100%) translateX(0);
   }
 }

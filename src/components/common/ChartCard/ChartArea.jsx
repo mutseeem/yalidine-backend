@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import { Chart } from 'chart.js/auto';
 import zoomPlugin from 'chartjs-plugin-zoom';
 import styles from './ChartArea.module.css';
 
+// register the zoom plugin globally
 Chart.register(zoomPlugin);
 
 const COLORS = [
@@ -11,40 +12,40 @@ const COLORS = [
   '#560bad', '#480ca8'
 ];
 
-const ChartArea = ({
+// allow parent ChartCard to get a direct reference to methods
+const ChartArea = forwardRef(({
   type = 'bar',
   data,
   options = {},
   zoomLevel = 1,
   onZoomChange = () => {}
-}) => {
-  const chartRef = useRef(null);
+}, ref) => {
+  const chartCanvasRef = useRef(null);
   const chartInstance = useRef(null);
 
-  //TODO:fix the zoom area 
-  const handleZoom = (factor) => {
-    if (!chartInstance.current) return;
-    
-    const zoom = chartInstance.current.options.plugins.zoom.zoom;
-    const currentZoom = zoom.wheel?.enabled ? zoom.wheel.speed : 0.1;
-    
-    // Simulate wheel zoom with the given factor
-    const deltaY = factor > 1 ? -1 : 1;
-    const wheelEvent = new WheelEvent('wheel', {
-      deltaY,
-      clientX: chartRef.current.width / 2,
-      clientY: chartRef.current.height / 2,
-    });
-    
-    chartRef.current.dispatchEvent(wheelEvent);
-    onZoomChange(factor);
-  };
+  // expose specific methods to the parent component via the ref
+  useImperativeHandle(ref, () => ({
+    // programmatically zoom the chart
+    performZoomChange(factor) {
+      if (chartInstance.current) {
+        chartInstance.current.zoom(factor);
+      }
+    },
+    // reset the chart's zoom and pan to its initial state
+    resetChartZoom() {
+      if (chartInstance.current) {
+        chartInstance.current.resetZoom();
+      }
+    }
+  }));
 
+  // initialize and destroy the Chart.js instance
   useEffect(() => {
-    if (!chartRef.current) return;
+    if (!chartCanvasRef.current) return;
 
-    const ctx = chartRef.current.getContext('2d');
-    
+    const ctx = chartCanvasRef.current.getContext('2d');
+
+    // destroy any existing chart instance
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
@@ -64,14 +65,17 @@ const ChartArea = ({
         plugins: {
           zoom: {
             zoom: {
-              wheel: { 
+              wheel: {
                 enabled: true,
                 speed: 0.1
               },
-              pinch: { 
-                enabled: true 
+              pinch: {
+                enabled: true
               },
               mode: 'xy',
+              onZoomComplete: ({ chart }) => {
+                // optional: callback for user-initiated zoom
+              },
             },
             pan: {
               enabled: true,
@@ -111,6 +115,7 @@ const ChartArea = ({
       }
     });
 
+    // cleanup function: destroy chart instance on unmount or re-render
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
@@ -118,11 +123,12 @@ const ChartArea = ({
     };
   }, [type, data, options]);
 
+  // prepare chart data based on type
   const prepareChartData = (type, data) => {
     if (type === 'doughnut') {
       return {
         labels: data.labels,
-        datasets: data.datasets.map((dataset, index) => ({
+        datasets: data.datasets.map((dataset) => ({
           ...dataset,
           backgroundColor: COLORS.slice(0, data.labels.length),
           borderColor: '#fff',
@@ -143,9 +149,12 @@ const ChartArea = ({
 
   return (
     <div className={styles.chartContainer}>
-      <canvas ref={chartRef} />
+      <canvas ref={chartCanvasRef} />
     </div>
   );
-};
+});
+
+
+ChartArea.displayName = 'ChartArea';
 
 export default ChartArea;

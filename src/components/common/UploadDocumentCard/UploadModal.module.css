@@ -1,23 +1,19 @@
-/* src/components/common/UploadModal/UploadModal.module.css */
-
-/* Define variables within this component's scope if they are not globally defined elsewhere,
-   or ensure they align with your global theme variables.
-   I'm using the colors from your DocumentCard.module.css to ensure consistency. */
+/* -- Variables -- */
 .modalOverlay {
     --primary-color: #C12862;
     --primary-hover: #A02050;
-    --icon-bg: #f8f0f3; /* Light background for icons/upload area */
-    --text-primary: #2c3e50; /* Darker text for headings/labels */
-    --text-secondary: #7f8c8d; /* Lighter text for descriptions/status */
-    --border-color: rgba(234, 234, 234, 0.8); /* Light border color */
-    --shadow-color: rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    --icon-bg: #f8f0f3;
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --border-color: rgba(234, 234, 234, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.08);
 
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Slightly less dark overlay for light mode */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,11 +22,12 @@
     animation: fadeInOverlay 0.3s forwards;
 }
 
+/* -- Modal Content Box -- */
 .modalContent {
-    background: white; /* White background for the modal content */
+    background: white;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 8px 25px var(--shadow-color); /* Use defined shadow color */
+    box-shadow: 0 8px 25px var(--shadow-color);
     width: 90%;
     max-width: 450px;
     position: relative;
@@ -42,6 +39,7 @@
     animation: slideInModal 0.3s forwards;
 }
 
+/* -- Close Button -- */
 .closeButton {
     position: absolute;
     top: 15px;
@@ -49,39 +47,41 @@
     background: none;
     border: none;
     font-size: 1.5rem;
-    color: var(--text-secondary); /* Use text-secondary for close icon */
+    color: var(--text-secondary);
     cursor: pointer;
     transition: color 0.2s ease;
 }
 
 .closeButton:hover {
-    color: var(--primary-color); /* Use primary color on hover, or a specific danger color */
-    /* If you want a specific "danger" red for closing, you could define: --danger-color: #e74c3c; and use it here */
+    color: var(--primary-color);
 }
 
+/* -- Modal Header -- */
 .modalTitle {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-primary); /* Use text-primary for titles */
+    color: var(--text-primary);
     text-align: center;
     margin: 0;
 }
 
 .modalDescription {
     font-size: 0.9rem;
-    color: var(--text-secondary); /* Use text-secondary for descriptions */
+    color: var(--text-secondary);
     text-align: center;
     margin-bottom: 15px;
 }
 
+/* -- Upload Form -- */
 .uploadForm {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* -- Upload Area for File Input -- */
 .uploadArea {
-    border: 2px dashed var(--border-color); /* Use border-color for dashed border */
+    border: 2px dashed var(--border-color);
     border-radius: 8px;
     padding: 20px;
     text-align: center;
@@ -95,22 +95,23 @@
 }
 
 .uploadArea:hover {
-    background-color: var(--icon-bg); /* Use icon-bg for a subtle hover */
-    border-color: var(--primary-color); /* Primary color for border on hover */
+    background-color: var(--icon-bg);
+    border-color: var(--primary-color);
 }
 
 .uploadIcon {
     font-size: 2.5rem;
-    color: var(--primary-color); /* Use primary color for the icon */
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 
 .uploadText {
     font-size: 0.95rem;
-    color: var(--text-secondary); /* Use text-secondary for description text */
+    color: var(--text-secondary);
     margin: 0;
 }
 
+/* -- Input Groups (Label + Input) -- */
 .inputGroup {
     display: flex;
     flex-direction: column;
@@ -119,27 +120,28 @@
 
 .inputGroup label {
     font-size: 0.85rem;
-    color: var(--text-primary); /* Use text-primary for labels */
+    color: var(--text-primary);
     font-weight: 500;
 }
 
 .inputGroup input {
     padding: 10px 12px;
-    border: 1px solid var(--border-color); /* Use border-color for input borders */
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 1rem;
-    color: var(--text-primary); /* Use text-primary for input text */
+    color: var(--text-primary);
 }
 
 .inputGroup input:focus {
     outline: none;
-    border-color: var(--primary-color); /* Primary color for focus border */
-    box-shadow: 0 0 0 2px rgba(193, 40, 98, 0.2); /* Use primary color for shadow */
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(193, 40, 98, 0.2);
 }
 
+/* -- Submit Button -- */
 .submitButton {
-    background-color: var(--primary-color); /* Use primary color for button background */
-    color: white; /* White text on primary button */
+    background-color: var(--primary-color);
+    color: white;
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
@@ -151,22 +153,23 @@
 }
 
 .submitButton:hover:not(:disabled) {
-    background-color: var(--primary-hover); /* Use primary-hover for hover state */
+    background-color: var(--primary-hover);
 }
 
 .submitButton:disabled {
-    background-color: #a0a8b4; /* Consistent disabled button color */
+    background-color: #a0a8b4;
     cursor: not-allowed;
 }
 
+/* -- Status Message -- */
 .statusMessage {
     font-size: 0.85rem;
     margin-top: 10px;
     text-align: center;
-    color: var(--text-secondary); /* Use text-secondary for status messages */
+    color: var(--text-secondary);
 }
 
-/* Animations */
+/* -- Animations -- */
 @keyframes fadeInOverlay {
     from { opacity: 0; }
     to { opacity: 1; }

@@ -49,12 +49,13 @@ export default function Navbar({ isExpanded }) {
    * // TODO: Consider using a localization library for multilingual support 
    */
   const getPageTitle = () => {
+    // 0 - use the pathname within the location hook to get the current route (path or url) 
     const pathSegments = location.pathname.split("/").filter(Boolean);
     
     // 1 - Default to 'Home' if no path segments exist
     if (pathSegments.length === 0) return "Home";
     
-    // 2 - Format the last segment as title
+    // 2 - transfor the last segment to a title . 
     const lastSegment = pathSegments[pathSegments.length - 1];
     return lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1);
   };
@@ -111,7 +112,8 @@ export default function Navbar({ isExpanded }) {
         </h1>
       </div>
 
-      {/* Navigation Controls */}
+      {/* right section */}
+      {/*TODO: it has no finctionality , it is here for future purposes */}
       <div 
         className={styles.rightSection} 
         aria-label="Navigation controls"

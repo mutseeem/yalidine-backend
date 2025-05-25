@@ -3,10 +3,11 @@ import {
   FaFilePdf,
   FaFileWord,
   FaFileAlt,
-  FaEdit,   // New: Edit Icon
-  FaTrash,  // New: Delete Icon
+  FaEdit,
+  FaTrash,
+  FaFileDownload, 
 } from 'react-icons/fa';
-import { HiOutlineDownload } from 'react-icons/hi';
+
 import { useState, useEffect } from 'react';
 import styles from "./DocumentCard.module.css";
 
@@ -16,41 +17,34 @@ const DocumentCard = ({
   fileSize = '0 KB',
   fileType = 'pdf',
   isAvailable = true,
-  url, // This can be a blob URL (blob:...) or regular URL
-  // New props for edit/delete functionality
-  showEditButton = false,   // Defaults to false
-  showDeleteButton = false, // Defaults to false
-  onEditClick,              // Callback for edit button click
-  onDeleteClick,            // Callback for delete button click
+  url,
+  showEditButton = true,
+  showDeleteButton = true,
+  onEditClick,
+  onDeleteClick,
 }) => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [blobData, setBlobData] = useState(null);
 
-  // Convert blob URL to downloadable blob object
   useEffect(() => {
     const prepareBlob = async () => {
       if (!url || !isAvailable) return;
-
       try {
-        // If it's already a blob URL (blob:...)
         if (url.startsWith('blob:')) {
           const response = await fetch(url);
           const blob = await response.blob();
           setBlobData(blob);
         } else if (url.startsWith('data:')) {
-          // Handle data URLs (base64)
           const response = await fetch(url);
           const blob = await response.blob();
           setBlobData(blob);
         } else {
-          // Regular URL, keep as is
           setBlobData(url);
         }
       } catch (error) {
         console.error('Error preparing blob:', error);
       }
     };
-
     prepareBlob();
   }, [url, isAvailable]);
 
@@ -59,11 +53,8 @@ const DocumentCard = ({
       console.error('Download failed: No valid data available');
       return;
     }
-
     setIsDownloading(true);
-
     try {
-      // For Blob objects (from blob URLs or data URLs)
       if (blobData instanceof Blob) {
         const blobUrl = URL.createObjectURL(blobData);
         const link = document.createElement('a');
@@ -75,9 +66,7 @@ const DocumentCard = ({
           document.body.removeChild(link);
           URL.revokeObjectURL(blobUrl);
         }, 100);
-      }
-      // For regular URLs
-      else if (typeof blobData === 'string') {
+      } else if (typeof blobData === 'string') {
         window.open(blobData, '_blank');
       }
     } catch (error) {
@@ -88,7 +77,6 @@ const DocumentCard = ({
     }
   };
 
-  // File type icon mapping
   const fileIcons = {
     pdf: <FaFilePdf className={styles['file-type-icon']} />,
     word: <FaFileWord className={styles['file-type-icon']} />,
@@ -115,8 +103,7 @@ const DocumentCard = ({
       </div>
 
       {isAvailable ? (
-        <div className={styles['actions-group']}> {/* New: Group action buttons */}
-          {/* Download Button */}
+        <div className={styles['actions-group']}>
           <button
             className={styles['download-btn']}
             aria-label={`Download ${title || 'Document'}`}
@@ -126,27 +113,25 @@ const DocumentCard = ({
             {isDownloading ? (
               <span className={styles['download-spinner']}></span>
             ) : (
-              <HiOutlineDownload className={styles['download-icon']} />
+              <FaFileDownload className={styles['download-icon']} /> 
             )}
           </button>
 
-          {/* Edit Button (Conditional) */}
           {showEditButton && (
             <button
               className={styles['edit-btn']}
               aria-label={`Edit ${title || 'Document'}`}
-              onClick={onEditClick} // Pass the click handler
+              onClick={onEditClick}
             >
               <FaEdit className={styles['edit-icon']} />
             </button>
           )}
 
-          {/* Delete Button (Conditional) */}
           {showDeleteButton && (
             <button
               className={styles['delete-btn']}
               aria-label={`Delete ${title || 'Document'}`}
-              onClick={onDeleteClick} // Pass the click handler
+              onClick={onDeleteClick}
             >
               <FaTrash className={styles['delete-icon']} />
             </button>

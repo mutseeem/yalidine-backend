@@ -1,24 +1,26 @@
-import { 
-  FaChartBar, 
-  FaChartLine, 
-  FaChartPie, 
+import {
+  FaChartBar,
+  FaChartLine,
+  FaChartPie,
   FaTable,
   FaChartArea,
   FaExchangeAlt,
   FaDownload,
   FaSearchPlus,
-  FaSearchMinus
+  FaSearchMinus,
+  FaSyncAlt 
 } from 'react-icons/fa';
 import styles from './ToolsSidebar.module.css';
 
-const ToolsSidebar = ({ 
+const ToolsSidebar = ({
   activeChartType = 'bar',
   onChartTypeChange = () => {},
   onCompare = () => {},
   onDownload = () => {},
-  chartContainerRef,
+  chartContainerRef, 
   onZoomIn = () => {},
   onZoomOut = () => {},
+  onResetZoom = () => {},
   zoomLevel = 1
 }) => {
   const chartTypes = [
@@ -62,7 +64,8 @@ const ToolsSidebar = ({
 
       <div className={styles.viewGroup}>
         <div className={styles.zoomControls}>
-          <button 
+
+          <button
             className={`${styles.zoomButton} ${zoomLevel <= 0.5 ? styles.disabled : ''}`}
             onClick={onZoomOut}
             disabled={zoomLevel <= 0.5}
@@ -71,10 +74,10 @@ const ToolsSidebar = ({
           >
             <FaSearchMinus />
           </button>
-          
+
           <span className={styles.zoomLevel}>{Math.round(zoomLevel * 100)}%</span>
-          
-          <button 
+
+          <button
             className={`${styles.zoomButton} ${zoomLevel >= 3 ? styles.disabled : ''}`}
             onClick={onZoomIn}
             disabled={zoomLevel >= 3}
@@ -84,12 +87,22 @@ const ToolsSidebar = ({
             <FaSearchPlus />
           </button>
         </div>
+        {/* reset Zoom Button */}
+        <button
+          className={`${styles.toolButton} ${styles.resetButton}`}
+          onClick={onResetZoom}
+          aria-label="Reset zoom"
+          data-tooltip="Reset Zoom"
+        >
+          <FaSyncAlt />
+          <span className={styles.toolLabel}>Reset Zoom</span>
+        </button>
       </div>
 
       <div className={styles.divider} />
 
       <div className={styles.utilityGroup}>
-        <button 
+        <button
           className={styles.toolButton}
           onClick={handleCompareClick}
           aria-label="Compare data"
@@ -98,7 +111,7 @@ const ToolsSidebar = ({
           <FaExchangeAlt />
           <span className={styles.toolLabel}>Compare (Soon)</span>
         </button>
-        <button 
+        <button
           className={styles.toolButton}
           onClick={onDownload}
           aria-label="Download chart"

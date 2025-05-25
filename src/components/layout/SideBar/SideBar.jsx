@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SideBar.module.css';
 import { useAuth } from '../../../contexts/AuthContext';
@@ -26,7 +26,7 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
 
   const userRole = getUserRole();
 
-  // Define ALL possible sidebar links with their required roles
+  // the possible links and their roles
   const allSidebarLinks = [
     {
       path: '/',
@@ -63,13 +63,13 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
     },
     {
       path: '/chapters/chapter-page-Insert',
-      name: "Insert Chapter",
+      name: "Politique D'ouverture",
       icons: [FolderIcon, FolderFocusIcon],
       roles: ['admin'] // Only admin can see the Insert page
     }
   ];
 
-  // Filter links based on the user's role
+  // 1) we show the buttons based on the user role 
   const filteredSidebarLinks = allSidebarLinks.filter(link => {
     if (!isLoggedIn) {
       return link.roles.includes('guest');
@@ -78,11 +78,12 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
     }
   });
 
+  // positioning and displaying the tooltip on hover 
   const handleItemTooltip = (event, itemName) => {
     if (!isExpanded) {
       const rect = event.currentTarget.getBoundingClientRect();
       setHoverPosition({
-        top: rect.top + window.scrollY,
+        top: rect.top + window.scrollY - 6 ,
         left: rect.right + window.scrollX + 10
       });
       setHoveredItem(itemName);
@@ -93,6 +94,7 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
     setHoveredItem(null);
   };
 
+  // click event for the account section 
   const handleAccountClick = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
     setMenuPosition({
@@ -102,11 +104,11 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
     setShowAccountMenu(true);
   };
 
-  // This function handles the actual logout and redirection
+  // This function handles the actual logout 
   const handleLogoutClick = () => {
-    logout(); // Calls the logout function from AuthContext
-    navigate('/login'); // Redirects to the login page
-    setShowAccountMenu(false); // Closes the account menu
+    logout(); //logout in auth context
+    navigate('/login'); // go back to the login page 
+    setShowAccountMenu(false); 
   };
 
   return (
@@ -209,7 +211,7 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
             <img src={Profile} alt="User Profile" className={styles.profilePicture} />
             {isExpanded && (
               <div className={styles.userDetails}>
-                {/* Display dynamic user details */}
+                {/* account menu otpions */}
                 <span className={styles.itemUserName}>
                   {isLoggedIn ? (userRole === 'guest' ? 'Guest User' : currentUser?.username || 'User') : 'Not Logged In'}
                 </span>
