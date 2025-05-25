@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './SideBar.module.css';
-
-//FIXME: split this component into smaller components later 
+import { useAuth } from '../../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 import {
   FolderIcon, FolderFocusIcon,
@@ -13,7 +13,7 @@ import {
   MenuDots, AppLogo, ArrowIcon
 } from '../../../assets/icons/icons';
 import Profile from '../../../assets/images/profile.png';
-import AccountMenu from './AccountMenu.jsx'; // Import the new component
+import AccountMenu from './AccountMenu.jsx';
 
 export default function Sidebar({ isExpanded, setIsExpanded }) {
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -21,42 +21,62 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
   const [showAccountMenu, setShowAccountMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
 
-  //TODO: get them from teh api
-  const sidebarLinks = [
-    { 
-      path: '/', 
-      name: 'Home', 
-      icons: [HomeIcon, HomeFocusIcon] 
-    },
-    { 
-      path: '/chapters/overview', 
-      name: 'Overview', 
-      icons: [EyeIcon, EyeFocusIcon] 
-    },
-    { 
-      path: '/chapters/politique-ouverture', 
-      chapterId: "1", // Actual ID from your backend
-      name: "Politique D'ouverture", 
-      icons: [FolderIcon, FolderFocusIcon] 
-    },
-    { 
-      path: '/chapters/partenariat-mobilite', 
-      chapterId: "2",
-      name: 'Partenariat et mobilité', 
-      icons: [FolderIcon, FolderFocusIcon] 
-    },
-    { 
-      path: '/chapters/echange-connaissances', 
-      chapterId: "3",
-      name: 'Échange de connaissances', 
-      icons: [FolderIcon, FolderFocusIcon] 
+  const { isLoggedIn, getUserRole, logout, currentUser } = useAuth();
+  const navigate = useNavigate();
+
+  const userRole = getUserRole();
+
+  // Define ALL possible sidebar links with their required roles
+  const allSidebarLinks = [
+    {
+      path: '/',
+      name: 'Home',
+      icons: [HomeIcon, HomeFocusIcon],
+      roles: ['viewer', 'admin', 'guest']
     },
     {
-      path: '/chapters/chapter-page-Insert', // <--- THIS IS THE CRUCIAL CHANGE
-      name: 'Create New Chapter', // Updated name for clarity
-      icons: [FolderIcon, FolderFocusIcon]
+      path: '/chapters/overview',
+      name: 'Overview',
+      icons: [EyeIcon, EyeFocusIcon],
+      roles: ['admin'] // Only admin can see Overview
+    },
+    {
+      path: '/chapters/politique-ouverture',
+      chapterId: "1",
+      name: "Politique D'ouverture",
+      icons: [FolderIcon, FolderFocusIcon],
+      roles: ['viewer', 'guest'] // Viewer and Guest can see this chapter
+    },
+    {
+      path: '/chapters/partenariat-mobilite',
+      chapterId: "2",
+      name: 'Partenariat et mobilité',
+      icons: [FolderIcon, FolderFocusIcon],
+      roles: ['viewer', 'guest'] // Viewer and Guest can see this chapter
+    },
+    {
+      path: '/chapters/echange-connaissances',
+      chapterId: "3",
+      name: 'Échange de connaissances',
+      icons: [FolderIcon, FolderFocusIcon],
+      roles: ['viewer', 'guest'] // Viewer and Guest can see this chapter
+    },
+    {
+      path: '/chapters/chapter-page-Insert',
+      name: "Insert Chapter",
+      icons: [FolderIcon, FolderFocusIcon],
+      roles: ['admin'] // Only admin can see the Insert page
     }
   ];
+
+  // Filter links based on the user's role
+  const filteredSidebarLinks = allSidebarLinks.filter(link => {
+    if (!isLoggedIn) {
+      return link.roles.includes('guest');
+    } else {
+      return link.roles.includes(userRole);
+    }
+  });
 
   const handleItemTooltip = (event, itemName) => {
     if (!isExpanded) {
@@ -82,11 +102,18 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
     setShowAccountMenu(true);
   };
 
+  // This function handles the actual logout and redirection
+  const handleLogoutClick = () => {
+    logout(); // Calls the logout function from AuthContext
+    navigate('/login'); // Redirects to the login page
+    setShowAccountMenu(false); // Closes the account menu
+  };
+
   return (
     <div>
       {/* Tooltip */}
       {!isExpanded && hoveredItem && (
-        <div 
+        <div
           className={styles.hoverTooltip}
           style={{
             top: `${hoverPosition.top}px`,
@@ -102,12 +129,15 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
         <AccountMenu
           menuPosition={menuPosition}
           onClose={() => setShowAccountMenu(false)}
+          // FIX: Pass the prop using the correct name 'onLogoutClick'
+          onLogoutClick={handleLogoutClick}
+          // Assuming other AccountMenu props like onSettingsClick, onContactClick, onQAClick are also passed here
         />
       )}
 
       {/* Toggle Button */}
       <div className={`${styles.toggleButtonContainer} ${isExpanded ? styles.expanded : ''}`}>
-        <button 
+        <button
           className={styles.toggleButton}
           onClick={() => setIsExpanded(prev => !prev)}
           aria-label="Toggle sidebar"
@@ -118,21 +148,21 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
 
       {/* Sidebar Container */}
       <div className={`${styles.sidebar} ${isExpanded ? styles.expanded : ''}`}>
-        
+
         {/* Header */}
         <div className={styles.header}>
-          <img src={AppLogo} alt="App Logo" className={styles.appLogo} /> 
+          <img src={AppLogo} alt="App Logo" className={styles.appLogo} />
           <span className={styles.brandName}>RNAQES</span>
         </div>
 
-        <div className={styles.separator}></div> 
+        <div className={styles.separator}></div>
 
         {/* Navigation */}
         <ul className={styles.sidebarItems}>
-          {/* Menu Toggle */}
+          {/* Menu Toggle (always visible) */}
           <li className={styles.sidebarItem}>
-            <div 
-              className={`${styles.sidebarLink} ${styles.noHover}`} 
+            <div
+              className={`${styles.sidebarLink} ${styles.noHover}`}
               onClick={() => setIsExpanded(prev => !prev)}
               onMouseEnter={(e) => handleItemTooltip(e, 'Menu')}
               onMouseLeave={handleItemLeave}
@@ -144,10 +174,10 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
             </div>
           </li>
 
-          {/* Sidebar Links */}
-          {sidebarLinks.map(({ path, name, icons }, index) => (
+          {/* Dynamically rendered Sidebar Links based on filteredSidebarLinks */}
+          {filteredSidebarLinks.map(({ path, name, icons }, index) => (
             <div key={path}>
-              <li 
+              <li
                 className={styles.sidebarItem}
                 onMouseEnter={(e) => handleItemTooltip(e, name)}
                 onMouseLeave={handleItemLeave}
@@ -172,15 +202,22 @@ export default function Sidebar({ isExpanded, setIsExpanded }) {
 
         {/* Footer */}
         <div className={styles.footer}>
-          <div 
-            className={styles.accountSection} 
+          <div
+            className={styles.accountSection}
             onClick={handleAccountClick}
           >
             <img src={Profile} alt="User Profile" className={styles.profilePicture} />
             {isExpanded && (
               <div className={styles.userDetails}>
-                <span className={styles.itemUserName}>Ilyes Izmr</span>
-                <span className={styles.itemEmail}>i.izemmouren@gmail.com</span>
+                {/* Display dynamic user details */}
+                <span className={styles.itemUserName}>
+                  {isLoggedIn ? (userRole === 'guest' ? 'Guest User' : currentUser?.username || 'User') : 'Not Logged In'}
+                </span>
+                <span className={styles.itemEmail}>
+                  {isLoggedIn ? (currentUser?.email || 'N/A') : 'N/A'}
+                </span>
+                {/* Display role */}
+                {isLoggedIn && <span className={styles.itemRole}>Role: {userRole}</span>}
               </div>
             )}
             <div className={styles.logoutButton}>

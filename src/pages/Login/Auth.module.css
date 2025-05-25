@@ -1,0 +1,144 @@
+/* src/pages/LoginPage/Auth.module.css or src/pages/SignUpPage/Auth.module.css */
+.authContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+.authForm {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.authForm h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup label {
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.inputGroup input,
+.inputGroup select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.inputGroup input:focus,
+.inputGroup select:focus {
+  outline: none;
+  border-color: #C12862; /* Your primary color */
+  box-shadow: 0 0 0 2px rgba(193, 40, 98, 0.2);
+}
+
+.authButton {
+  background-color: #C12862; /* Your primary color */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.authButton:hover {
+  background-color: #A02050; /* Your primary-hover color */
+}
+
+.error {
+  color: #e74c3c;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.switchAuth {
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+}
+
+.switchAuth a {
+  color: #C12862; /* Your primary color */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.switchAuth a:hover {
+  text-decoration: underline;
+}
+
+.goBack {
+  text-align: center;
+  font-size: 0.9em;
+  margin-top: 10px; /* Add some space above it */
+}
+
+.goBack a {
+  color: #777; /* A subtle color for the link */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.goBack a:hover {
+  color: #C12862; /* Your primary color on hover */
+  text-decoration: underline;
+}
+
+.authContainerDivider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #a0a0a0;
+  margin: 20px 0;
+  font-size: 0.9em;
+}
+
+.authContainerDivider::before,
+.authContainerDivider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.authContainerDivider:not(:empty)::before {
+  margin-right: .25em;
+}
+
+.authContainerDivider:not(:empty)::after {
+  margin-left: .25em;
+}
+
+/* New: Styles for the Guest Button */
+.guestButton {
+  background-color: #6c757d; /* A neutral color for guest button */
+  margin-top: 10px; /* Space between the divider and button */
+}
+
+.guestButton:hover {
+  background-color: #5a6268; /* Darker on hover */
+}
