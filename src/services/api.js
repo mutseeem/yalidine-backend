@@ -263,3 +263,171 @@ export const deleteFirstQuestionCH1_1_1 = async (documentId) => {
         }
     }
 };
+
+/* SECOND QUESTION AREA 
+export const uploadPlanCommunicationExterneDocument = async (planId, file, titre, context, anne) => {
+    if (!planId || !file || !titre || !context || !anne) {
+        throw new Error("All upload parameters (planId, file, titre, context, anne) are required for external communication plan upload.");
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('titre', titre);
+    formData.append('context', context);
+    formData.append('anne', anne);
+
+    const API_URL = `http://localhost:8085/CAQ/plan-de-communication-externe/${planId}/upload`;
+
+    try {
+        const response = await axios.post(API_URL, formData);
+        console.log(`Document uploaded for plan ${planId} successfully:`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error uploading document for plan ${planId}:`, error);
+        if (axios.isAxiosError(error)) {
+            throw new Error(error.response?.data?.message || `Upload failed with status: ${error.response?.status}`);
+        } else {
+            throw new Error('An unexpected error occurred during document upload.');
+        }
+    }
+};
+
+export const updatePlanCommunicationExterneDocument = async (documentId, newFile = null, titre, context, anne) => {
+    if (!documentId) {
+        throw new Error("Document ID is required for updating external communication plan document.");
+    }
+
+    const formData = new FormData();
+    if (newFile) {
+        formData.append('file', newFile);
+    }
+    if (titre !== undefined && titre !== null) {
+        formData.append('titre', titre);
+    }
+    if (context !== undefined && context !== null) {
+        formData.append('context', context);
+    }
+    if (anne !== undefined && anne !== null) {
+        formData.append('anne', anne);
+    }
+
+    const API_URL = `http://localhost:8085/CAQ/plan-de-communication-externe/${documentId}/update`;
+
+    try {
+        const response = await axios.patch(API_URL, formData);
+        console.log(`Document ${documentId} (plan-de-communication-externe) updated successfully:`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error updating document ${documentId} (plan-de-communication-externe):`, error);
+        if (axios.isAxiosError(error)) {
+            throw new Error(error.response?.data?.message || `Update failed with status: ${error.response?.status}`);
+        } else {
+            throw new Error('An unexpected error occurred during document update.');
+        }
+    }
+};
+
+
+export const deletePlanCommunicationExterneDocument = async (documentId) => {
+    if (!documentId) {
+        throw new Error("Document ID is required for deleting external communication plan document.");
+    }
+
+    const API_URL = `http://localhost:8085/CAQ/plan-de-communication-externe/${documentId}/delete`;
+
+    try {
+        const response = await axios.delete(API_URL);
+        console.log(`Document ${documentId} (plan-de-communication-externe) deleted successfully:`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error deleting document ${documentId} (plan-de-communication-externe):`, error);
+        if (axios.isAxiosError(error)) {
+            throw new Error(error.response?.data?.message || `Deletion failed with status: ${error.response?.status}`);
+        } else {
+            throw new Error('An unexpected error occurred during document deletion.');
+        }
+    }
+};
+
+export const uploadActionSensibilisationDocument = async (actionId, file, titre, context, anne) => {
+    if (!actionId || !file || !titre || !context || !anne) {
+        throw new Error("All upload parameters (actionId, file, titre, context, anne) are required for awareness action upload.");
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('titre', titre);
+    formData.append('context', context);
+    formData.append('anne', anne);
+
+    const API_URL = `http://localhost:8085/CAQ/action-de-sensibilisation/${actionId}/upload`;
+
+    try {
+        const response = await axios.post(API_URL, formData);
+        console.log(`Document uploaded for action ${actionId} successfully:`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error uploading document for action ${actionId}:`, error);
+        if (axios.isAxiosError(error)) {
+            throw new Error(error.response?.data?.message || `Upload failed with status: ${error.response?.status}`);
+        } else {
+            throw new Error('An unexpected error occurred during document upload.');
+        }
+    }
+};
+
+export const updateActionSensibilisationDocument = async (documentId, newFile = null, titre, context, anne) => {
+    if (!documentId) {
+        throw new Error("Document ID is required for updating awareness action document.");
+    }
+
+    const formData = new FormData();
+    if (newFile) {
+        formData.append('file', newFile);
+    }
+    if (titre !== undefined && titre !== null) {
+        formData.append('titre', titre);
+    }
+    if (context !== undefined && context !== null) {
+        formData.append('context', context);
+    }
+    if (anne !== undefined && anne !== null) {
+        formData.append('anne', anne);
+    }
+
+    const API_URL = `http://localhost:8085/CAQ/action-de-sensibilisation/${documentId}/update`;
+
+    try {
+        const response = await axios.patch(API_URL, formData);
+        console.log(`Document ${documentId} (action-de-sensibilisation) updated successfully:`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error updating document ${documentId} (action-de-sensibilisation):`, error);
+        if (axios.isAxiosError(error)) {
+            throw new Error(error.response?.data?.message || `Update failed with status: ${error.response?.status}`);
+        } else {
+            throw new Error('An unexpected error occurred during document update.');
+        }
+    }
+};
+
+export const deleteActionSensibilisationDocument = async (documentId) => {
+    if (!documentId) {
+        throw new Error("Document ID is required for deleting awareness action document.");
+    }
+
+    const API_URL = `http://localhost:8085/CAQ/action-de-sensibilisation/${documentId}/delete`;
+
+    try {
+        const response = await axios.delete(API_URL);
+        console.log(`Document ${documentId} (action-de-sensibilisation) deleted successfully:`, response.data);
+        return response.data;
+    } catch (error) {
+        console.error(`Error deleting document ${documentId} (action-de-sensibilisation):`, error);
+        if (axios.isAxiosError(error)) {
+            throw new Error(error.response?.data?.message || `Deletion failed with status: ${error.response?.status}`);
+        } else {
+            throw new Error('An unexpected error occurred during document deletion.');
+        }
+    }
+}; */

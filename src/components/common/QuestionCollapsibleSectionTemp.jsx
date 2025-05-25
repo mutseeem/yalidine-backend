@@ -3,15 +3,16 @@ import DocumentCard from './DocumentCard/DocumentCard';
 import ChartCard from './ChartCard/ChartCard';
 import UploadCard from "../common/UploadDocumentCard/UploadCard";
 import UploadModal from '../common/UploadDocumentCard/UploadModal';
-import EditModal from '../common/EditModal/EditModal'; 
-import { InsertFirstQuestionCH1_1_1, updateFirtQuestionCH1_1_1, deleteFirstQuestionCH1_1_1 } from '../../services/api'; 
+import EditModal from '../common/EditModal/EditModal';
+// REMOVED: Direct API imports (InsertFirstQuestionCH1_1_1, updateFirtQuestionCH1_1_1, deleteFirstQuestionCH1_1_1)
 import styles from './QuestionCollapsibleSection.module.css';
 
-const QuestionCollapsibleSectionTemp = ({ question }) => {
+// Added new props: onUploadApi, onUpdateApi, onDeleteApi
+const QuestionCollapsibleSectionTemp = ({ question, onUploadApi, onUpdateApi, onDeleteApi }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false); // New: State for Edit Modal
-  const [documentToEdit, setDocumentToEdit] = useState(null); // New: State to hold document data for editing
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [documentToEdit, setDocumentToEdit] = useState(null);
 
   const allDocuments = question.questionAnswer.filter(item => item.type === "DocumentType" && item.id);
   const charts = question.questionAnswer.filter(item => item.type === "ChartType");
@@ -27,21 +28,24 @@ const QuestionCollapsibleSectionTemp = ({ question }) => {
   const openUploadModal = () => setIsUploadModalOpen(true);
   const closeUploadModal = () => setIsUploadModalOpen(false);
 
-  // New: Handlers for Edit Modal
   const openEditModal = (documentData) => {
-    setDocumentToEdit(documentData); // Store the document data to be edited
+    setDocumentToEdit(documentData);
     setIsEditModalOpen(true);
   };
   const closeEditModal = () => {
     setIsEditModalOpen(false);
-    setDocumentToEdit(null); // Clear document data when modal closes
+    setDocumentToEdit(null);
   };
 
+  // This handler now calls the 'onUploadApi' prop
   const handleFileUpload = async (file, titre, context, anne) => {
+    if (!onUploadApi) {
+      throw new Error("onUploadApi function is not provided to QuestionCollapsibleSectionTemp.");
+    }
     try {
-      const response = await InsertFirstQuestionCH1_1_1(file, titre, context, anne);
+      const response = await onUploadApi(file, titre, context, anne);
       console.log('Document uploaded successfully:', response);
-      // TODO: Re-fetch or update state
+      // TODO: Invalidate query or trigger re-fetch in the parent component
       return response;
     } catch (error) {
       console.error('Error uploading document:', error);
@@ -49,24 +53,25 @@ const QuestionCollapsibleSectionTemp = ({ question }) => {
     }
   };
 
-  // Handler for the Edit button click
   const handleEditDocumentClick = (documentId) => {
-    // Find the full document object using its ID
     const docToEdit = allDocuments.find(doc => doc.id === documentId);
     if (docToEdit) {
-      openEditModal(docToEdit); // Pass the entire document object to the modal
+      openEditModal(docToEdit);
     } else {
       console.error(`Document with ID ${documentId} not found for editing.`);
       alert("Document not found for editing.");
     }
   };
 
-  // New: Handler for updating the document via the Edit Modal
+  // This handler now calls the 'onUpdateApi' prop
   const handleUpdateDocument = async (documentId, newFile, titre, context, anne) => {
+    if (!onUpdateApi) {
+      throw new Error("onUpdateApi function is not provided to QuestionCollapsibleSectionTemp.");
+    }
     try {
-      const response = await updateFirtQuestionCH1_1_1(documentId, newFile, titre, context, anne);
+      const response = await onUpdateApi(documentId, newFile, titre, context, anne);
       console.log('Document updated successfully:', response);
-      // TODO: Re-fetch the question data or update the state here to reflect the changes.
+      // TODO: Invalidate query or trigger re-fetch in the parent component
       return response;
     } catch (error) {
       console.error('Error updating document:', error);
@@ -74,22 +79,25 @@ const QuestionCollapsibleSectionTemp = ({ question }) => {
     }
   };
 
-  // Dummy Function for Delete - Now with a proper call if implemented
+  // This handler now calls the 'onDeleteApi' prop
   const handleDeleteDocument = async (documentId) => {
+    if (!onDeleteApi) {
+      throw new Error("onDeleteApi function is not provided to QuestionCollapsibleSectionTemp.");
+    }
     console.log(`Attempting to delete document with ID: ${documentId}`);
     if (!documentId) {
-        alert("Cannot delete: Document ID is missing.");
-        return;
+      alert("Cannot delete: Document ID is missing.");
+      return;
     }
 
     if (window.confirm(`Are you sure you want to delete document with ID: ${documentId}?`)) {
-        try {
-            await deleteFirstQuestionCH1_1_1(documentId); // Use the actual API call
-            alert(`Document ${documentId} deleted successfully!`);
-            // TODO: Re-fetch the question data or update the state here to reflect the deletion.
-        } catch (error) {
-            alert(`Failed to delete document ${documentId}: ${error.message || 'An unknown error occurred.'}`);
-        }
+      try {
+        await onDeleteApi(documentId); // Use the provided prop function
+        alert(`Document ${documentId} deleted successfully!`);
+        // TODO: Invalidate query or trigger re-fetch in the parent component
+      } catch (error) {
+        alert(`Failed to delete document ${documentId}: ${error.message || 'An unknown error occurred.'}`);
+      }
     }
   };
 
@@ -118,7 +126,7 @@ const QuestionCollapsibleSectionTemp = ({ question }) => {
               <div className={styles.documentsGrid}>
                 {latestDocument ? (
                   <DocumentCard
-                    key={`doc-${latestDocument.id}`} // Use ID as key now that it's available
+                    key={`doc-${latestDocument.id}`}
                     title={latestDocument.title}
                     uploadDate={latestDocument.date}
                     fileSize={latestDocument.size}
@@ -127,7 +135,7 @@ const QuestionCollapsibleSectionTemp = ({ question }) => {
                     url={latestDocument.url}
                     showEditButton={true}
                     showDeleteButton={true}
-                    onEditClick={() => handleEditDocumentClick(latestDocument.id)} // Pass ID to handler
+                    onEditClick={() => handleEditDocumentClick(latestDocument.id)}
                     onDeleteClick={() => handleDeleteDocument(latestDocument.id)}
                   />
                 ) : (
@@ -155,15 +163,16 @@ const QuestionCollapsibleSectionTemp = ({ question }) => {
       <UploadModal
         isOpen={isUploadModalOpen}
         onClose={closeUploadModal}
+        // No uploadTargetId/Type for this modal, as it's for CH1-1-1 only.
+        // It will call handleFileUpload which then calls onUploadApi(file, titre, context, anne)
         onUpload={handleFileUpload}
       />
 
-      {/* New: The Edit Modal, conditionally rendered */}
       <EditModal
         isOpen={isEditModalOpen}
         onClose={closeEditModal}
-        initialDocumentData={documentToEdit} // Pass the document data to be edited
-        onUpdate={handleUpdateDocument} // Pass the update API handler
+        initialDocumentData={documentToEdit}
+        onUpdate={handleUpdateDocument}
       />
     </>
   );
