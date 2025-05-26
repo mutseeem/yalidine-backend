@@ -1,35 +1,23 @@
-html {
-  font-size: 125%; /* Sets the base font size for the entire document to 125% of the browser's default (usually 16px * 1.25 = 20px) */
-  scroll-behavior: smooth; /* Smooth scrolling for potential anchor links */
-}
-
-body {
-  margin: 0;
-  font-family: var(--font-family);
-  background: #000F14; /* A very dark base for the gradient, ensures smooth transition */
-  color: var(--color-text);
-}
-
 :root {
   /* ─── COLORS ─────────────────────────────── */
   --color-primary: #48cbec;
   --color-secondary: #0ed3a5;
   --color-primary-light: rgba(72, 203, 236, 0.1);
   --color-primary-shadow: rgba(72, 203, 236, 0.2);
-  --color-background: #011319f7; /* Original dark background, kept for consistency with other components */
+  --color-background: #011319f7; 
   --color-background-light: #fafaff;
   --color-text: #fafaff;
   --color-text-secondary: rgba(255, 255, 255, 0.9);
   --color-border: rgba(72, 203, 236, 0.1);
 
-  /* New gradient and spot colors for background depth */
-  --gradient-start: #000F14; /* Deep dark blue, matches body for seamless top */
-  --gradient-end: #011E26;   /* Slightly lighter, greenish-blue dark for bottom */
-  --spot-color: rgba(255, 255, 255, 0.03); /* Very subtle white for the blurred spots */
+
+  --gradient-start: #000F14; 
+  --gradient-end: #011E26;  
+  --spot-color: rgba(255, 255, 255, 0.03); 
 
   /* ─── Typography ────────────────────────── */
   --font-family: 'Inter', sans-serif;
-  --font-size-base: 1rem; /* Now 1rem is 20px because html font-size is 125% */
+  --font-size-base: 1rem;
   --font-size-sm: 0.95rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.125rem;
@@ -277,7 +265,7 @@ body {
 
 .trustedText {
   font-size: 0.8rem;
-  color: var(--color-text-secondary);
+  color: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
 }
 
 .logoGrid {

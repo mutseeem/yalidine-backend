@@ -30,7 +30,7 @@
 .teamGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem 2rem; /* Increased vertical gap (first value) */
+  gap: 3rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }

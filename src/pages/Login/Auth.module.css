@@ -1,144 +1,345 @@
-/* src/pages/LoginPage/Auth.module.css or src/pages/SignUpPage/Auth.module.css */
+
+/* ===== Main Container & Background ===== */
 .authContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f2f5;
-  padding: 20px;
+  background-color: #000F14; /* Deep dark background */
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Subtle Background Glows */
+.authContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 15% 75%, rgba(14, 211, 165, 0.02) 0%, transparent 25%),
+        radial-gradient(circle at 85% 25%, rgba(65, 184, 213, 0.02) 0%, transparent 30%);
+    z-index: 0;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* ===== Auth Form Card Styling ===== */
 .authForm {
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  
+  padding: 45px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35),
+              0 0 0 1px rgba(255, 255, 255, 0.06);
+  border: 2px solid rgb(255, 255, 255);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.4s ease-out;
+  animation: fadeInForm 0.6s ease-out;
 }
 
+@keyframes fadeInForm {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Form Title ===== */
 .authForm h2 {
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+  font-size: 2.4em;
+  font-weight: 800;
+  margin-bottom: 35px;
+  line-height: 1.2;
+  background: linear-gradient(to right, #0ed3a5, #41B8D5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.025em;
 }
 
+/* ===== Input Fields, Labels, and Icons (CLEANER STYLE) ===== */
 .inputGroup {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  margin-bottom: 15px;
 }
 
-.inputGroup label {
-  margin-bottom: 5px;
-  color: #555;
-  font-size: 0.9em;
-}
-
+/* Shared styles for input and select */
 .inputGroup input,
 .inputGroup select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1em;
+  width: 100%;
+  padding: 10px 0 6px 40px; /* Padding for text, shifted right for icon */
+  border: none;
+  border-bottom: 1px solid #444; /* Only bottom border */
+  font-size: 1.05em;
+  background: transparent; /* Transparent background */
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Include padding in width */
+  border-radius: 0; /* Remove border radius for clean bottom-border look */
 }
 
+/* Specific select styles */
+.inputGroup select {
+  -webkit-appearance: none; /* Remove default browser styling */
+  -moz-appearance: none;
+  appearance: none;
+  /* Custom arrow for select (lighter color for dark background) */
+  background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e0e0e0"%3e%3cpath d="M7 10l5 5 5-5z"/%3e%3c/svg%3e');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 1.2em;
+  padding-right: 40px; /* Make space for custom arrow */
+
+  /* Styles for the select dropdown list (collapsed state) */
+  background-color: #1a2c40; /* Dark background for the select itself */
+  color: #e0e0e0; /* Light text color for the select */
+  border-radius: 8px; /* Added border-radius for select for consistency with form inputs */
+}
+
+/* --- Styling for individual OPTION elements (BROWSER SUPPORT VARIES GREATLY) --- */
+/* These styles might not apply consistently to the expanded dropdown list items. */
+.inputGroup select option {
+  background-color: #1a2c40; /* Dark background for dropdown options */
+  color: #e0e0e0; /* White text for dropdown options */
+  padding: 8px 15px; /* Add some padding to options */
+}
+
+/* Attempt to style option hover. This is UNRELIABLE across browsers. */
+.inputGroup select option:hover {
+  background-color: #41B8D5; /* Blue accent on hover */
+  color: #000F14; /* Dark text on blue hover */
+}
+/* --- END OF OPTION STYLING --- */
+
+
+.inputGroup label {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  color: #a0a0a0;
+  font-size: 1em;
+  transition: all 0.25s ease-out;
+  pointer-events: none;
+  z-index: 1;
+  background-color: transparent;
+  transform-origin: left center;
+}
+
+/* Floating Label effect for input AND select */
+.inputGroup input:focus + label,
+.inputGroup input:valid + label,
+.inputGroup select:focus + label,
+.inputGroup select:valid + label {
+  top: -18px;
+  left: 0;
+  font-size: 0.78em;
+  color: #15F5BA;
+  background-color: transparent;
+  transform: translateY(0) scale(1);
+}
+
+/* Input Bottom Bar Animation for input AND select */
+.inputBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #15F5BA;
+  transition: width 0.4s ease;
+  z-index: 2;
+}
+
+.inputGroup input:focus ~ .inputBar,
+.inputGroup input:valid ~ .inputBar,
+.inputGroup select:focus ~ .inputBar,
+.inputGroup select:valid ~ .inputBar {
+  width: 100%;
+}
+
+/* Input Icons */
+.inputIcon {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #a0a0a0;
+  font-size: 1.2em;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+/* Icon color change on focus for both input and select */
+.inputGroup input:focus ~ .inputIcon,
+.inputGroup select:focus ~ .inputIcon {
+    color: #15F5BA;
+}
+
+/* Password Toggle Icon */
+.passwordToggle {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  color: #a0a0a0;
+  font-size: 1.2em;
+  cursor: pointer;
+  z-index: 3;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.passwordToggle:hover {
+  color: #15F5BA;
+}
+
+/* Focus outline for inputs and select */
 .inputGroup input:focus,
 .inputGroup select:focus {
   outline: none;
-  border-color: #C12862; /* Your primary color */
-  box-shadow: 0 0 0 2px rgba(193, 40, 98, 0.2);
+  border-bottom-color: #15F5BA;
+  box-shadow: none;
 }
 
+/* ===== Primary Action Button ===== */
 .authButton {
-  background-color: #C12862; /* Your primary color */
-  color: white;
-  padding: 12px;
+  background: linear-gradient(90deg, #15F5BA, #41B8D5);
+  color: #000F14;
+  padding: 16px 30px;
   border: none;
-  border-radius: 4px;
-  font-size: 1.1em;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 178, 216, 0.35);
+  letter-spacing: 0.04em;
+  margin-top: 20px;
+  transform: translateY(0);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .authButton:hover {
-  background-color: #A02050; /* Your primary-hover color */
+  box-shadow: 0 12px 30px rgba(0, 176, 216, 0.326);
+  background: linear-gradient(90deg, #0ed3a5, #00b4d8);
 }
 
+/* Subtle shimmer effect on button hover */
+.authButton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  opacity: 0;
+  z-index: 1;
+}
+
+.authButton:hover::after {
+ 
+  opacity: 1;
+}
+
+/* ===== Error Message Styling ===== */
 .error {
-  color: #e74c3c;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
-  padding: 10px;
-  border-radius: 4px;
-  text-align: center;
-}
-
-.switchAuth {
+  color: #ffcccc;
+  background-color: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.25);
+  padding: 12px 15px;
+  border-radius: 8px;
   text-align: center;
   font-size: 0.9em;
-  color: #777;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
 
-.switchAuth a {
-  color: #C12862; /* Your primary color */
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.switchAuth a:hover {
-  text-decoration: underline;
-}
-
+/* ===== Auth Switch & Go Back Links ===== */
+.switchAuth,
 .goBack {
   text-align: center;
   font-size: 0.9em;
-  margin-top: 10px; /* Add some space above it */
+  color: #c0c0c0;
+  margin-top: 15px;
 }
 
+.switchAuth a,
 .goBack a {
-  color: #777; /* A subtle color for the link */
+  color: #41B8D5;
   text-decoration: none;
-  transition: color 0.2s ease;
+  font-weight: 500;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
+.switchAuth a:hover,
 .goBack a:hover {
-  color: #C12862; /* Your primary color on hover */
+  color: #0ed3a5;
   text-decoration: underline;
 }
 
-.authContainerDivider {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #a0a0a0;
-  margin: 20px 0;
-  font-size: 0.9em;
-}
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .authForm {
+    padding: 30px;
+    max-width: 95%;
+    border-radius: 15px;
+    gap: 20px;
+  }
 
-.authContainerDivider::before,
-.authContainerDivider::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid #ddd;
-}
+  .authForm h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
 
-.authContainerDivider:not(:empty)::before {
-  margin-right: .25em;
-}
+  .inputGroup label {
+    font-size: 0.9em;
+    left: 35px;
+  }
+  /* Adjust input/select padding for icon on mobile */
+  .inputGroup input,
+  .inputGroup select {
+    font-size: 0.9em;
+    padding-left: 35px;
+  }
 
-.authContainerDivider:not(:empty)::after {
-  margin-left: .25em;
-}
+  .inputIcon {
+      font-size: 1.1em;
+      top: 11px;
+  }
+  .passwordToggle {
+      font-size: 1.1em;
+      top: 11px;
+  }
 
-/* New: Styles for the Guest Button */
-.guestButton {
-  background-color: #6c757d; /* A neutral color for guest button */
-  margin-top: 10px; /* Space between the divider and button */
-}
+  .authButton {
+    padding: 14px 20px;
+    font-size: 1.05em;
+  }
 
-.guestButton:hover {
-  background-color: #5a6268; /* Darker on hover */
+  .error {
+    padding: 10px;
+    font-size: 0.85em;
+  }
+
+  .switchAuth, .goBack {
+    font-size: 0.8em;
+  }
 }

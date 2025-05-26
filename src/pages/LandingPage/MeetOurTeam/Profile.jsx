@@ -8,7 +8,6 @@ const Profile = ({ picture, role, name, socialLinks }) => {
     <motion.div 
       className={styles.profile}
       whileHover={{
-        y: -10,
         transition: { duration: 0.2 }
       }}
     >
@@ -19,7 +18,7 @@ const Profile = ({ picture, role, name, socialLinks }) => {
             alt={name} 
             className={styles.picture}
             whileHover={{
-              scale: 1.05,
+              scale: 1.00,
               transition: { duration: 0.3 }
             }}
           />
@@ -38,8 +37,7 @@ const Profile = ({ picture, role, name, socialLinks }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ 
-                  y: -3,
-                  color: '#15F5BA',
+                  color: '#00b4d8',
                   transition: { duration: 0.1 }
                 }}
               >

@@ -1,11 +1,9 @@
 import { chapterData } from '../../components/Content/DummyData.jsx';
-import QuestionCollapsibleSectionTemp from '../../components/common/QuestionCollapsibleSectionTemp.jsx';
 import QuestionCollapsibleSection from '../../components/common/QuestionCollapsibleSection.jsx';
 import styles from './ChapterPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import FirstQuestionInsert from '../../components/temp/FirstQuestionInsert.jsx';
-//import SecondQuestionInsert from '../../components/temp/SecondQuestionInsert.jsx';
 import SecondQuestion from '../../components/temp/SecondQuestion.jsx';
 
 const ChapterPageInsert = () => {

@@ -21,7 +21,9 @@ const Domains = () => {
     if (domainNumber === "7") {
       navigate("/chapters/overview");
     } else {
-      navigate(`/domain/${domainNumber}`);
+      //navigate(`/domain/${domainNumber}`);
+      navigate(`/`);
+      alert("This domain is not yet available.");
     }
   };
   
