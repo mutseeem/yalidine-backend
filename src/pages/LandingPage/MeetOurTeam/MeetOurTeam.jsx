@@ -14,8 +14,8 @@ const MeetOurTeam = () => {
       role: 'Supervisor',
       name: 'Pr.KAHLOUL LAID',
       socialLinks: [
-        { url: '#', icon: 'fa-linkedin' },
-        { url: '#', icon: 'fa-facebook' }
+        { url: 'https://www.linkedin.com/in/laid-kahloul-85768245/', icon: 'fa-linkedin' },
+        { url: 'https://www.facebook.com/kahloul.laid', icon: 'fa-facebook' }
       ],
     },
     {
@@ -23,26 +23,26 @@ const MeetOurTeam = () => {
       role: 'Supervisor',
       name: 'Dr.RAMDANI MOHAMED',
       socialLinks: [
-        { url: '#', icon: 'fa-linkedin' },
-        { url: '#', icon: 'fa-Facebook' }
+        { url: 'https://www.linkedin.com/in/mohamed-ramdani-cazador2009/', icon: 'fa-linkedin' },
+        { url: 'https://www.facebook.com/mohamed.ramdani.772662', icon: 'fa-facebook' }
       ],
     },
     {
       picture: amine,
-      role: 'Team leader & BACK-END Dev',
+      role: 'Supervisor',
       name: 'CHABI AMINE',
       socialLinks: [
-        { url: '#', icon: 'fa-linkedin' },
-        { url: '#', icon: 'fa-github' }
+        { url: 'https://www.linkedin.com/in/amine-chabi-a90b7822a/', icon: 'fa-linkedin' },
+        { url: 'https://github.com/Amine2000s', icon: 'fa-github' },
       ],
     },
     {
-      picture: ilyes,
-      role: 'UI/UX & Front-end Dev',
-      name: 'IZEMMOUREN ILYES',
+      picture: meftah,
+      role: 'BACK-END Dev',
+      name: 'MEFTAH MOHAMED',
       socialLinks: [
-        { url: '#', icon: 'fa-linkedin' },
-        { url: '#', icon: 'fa-dribbble' }
+        { url: 'https://github.com/hama-Key', icon: 'fa-github' },
+        { url: 'https://www.facebook.com/mohamed.meftah.882820', icon: 'fa-facebook' }
       ],
     },
     {
@@ -50,18 +50,19 @@ const MeetOurTeam = () => {
       role: 'BACK-END Dev',
       name: 'MOURKSI MOATASSAM',
       socialLinks: [
-        { url: '#', icon: 'fa-linkedin' },
-        { url: '#', icon: 'fa-dribbble' }
+        { url: 'https://github.com/mutseeem', icon: 'fa-github' },
+        { url: 'https://www.linkedin.com/in/el-moatassam-mourksi-55908a320/', icon: 'fa-linkedin' }
       ],
-    },{
-      picture: meftah,
-      role: 'BACK-END Dev',
-      name: 'MEFTAH MOHAMED',
+    },
+    {
+      picture: ilyes,
+      role: 'UI/UX & Front-end Dev',
+      name: 'IZEMMOUREN ILYES',
       socialLinks: [
-        { url: '#', icon: 'fa-linkedin' },
-        { url: '#', icon: 'fa-dribbble' }
+        { url: 'https://www.linkedin.com/in/ilyes-izemmouren-901798337/', icon: 'fa-linkedin' },
+        { url: 'https://github.com/Ilyes0izmr', icon: 'fa-github' }
       ],
-    }
+    },
   ];
 
   return (

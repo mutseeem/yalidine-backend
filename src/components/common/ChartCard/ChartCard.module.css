@@ -4,8 +4,8 @@
     --text-secondary: #6c757d;
     --border-color: rgba(234, 234, 234, 0.8);
     
-    width: 600px; /* Fixed width */
-    height: 500px; /* Extra height for header */
+    width: 600px; 
+    height: 550px; 
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -37,13 +37,13 @@
   
   .content {
     display: flex;
-    height: 400px; /* Chart + tools height */
+    height: 400px; 
     gap: 0.5rem;
   }
   
   .chartWrapper {
-    width: 550px; /* Fixed chart width */
+    width: 550px; 
     height: 400px;
   }
   
-  /* Toolbar will automatically take remaining 50px width */
+ 

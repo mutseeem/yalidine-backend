@@ -69,12 +69,20 @@
 }
 
 .role {
-  color: #41B8D5;
-  font-size: 0.85rem;
+  
+  background: rgba(65, 184, 213, 0.15); 
+  color: #41B8D5; 
+  margin-left: -5px;
+  padding: 0.2rem 0.7rem; 
+  border-radius: 9999px; 
+  font-size: 0.6rem; 
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.6rem;
+  letter-spacing: 0.5px; 
+  width: fit-content; 
+  border: 1px solid rgba(65, 184, 213, 0.3); 
+  margin-bottom: 0.8rem; 
+  line-height: 1; 
 }
 
 .nameAndIcons {
@@ -84,7 +92,7 @@
 }
 
 .name {
-  font-size: 0.95rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.3px;
   white-space: nowrap;
@@ -96,10 +104,10 @@
   margin-bottom: 40px;
 }
 
-/* LARGER ICONS WITH PROPER ALIGNMENT */
+
 .socialLinks {
   display: flex;
-  gap: 0.8rem;
+  gap: 0.3rem;
   align-items: center; /* Perfect vertical centering */
   margin-bottom: 20px;
 }
@@ -118,7 +126,7 @@
 
 .socialLinks a:hover {
   color: #15F5BA;
-  transform: translateY(-2px);
+  /*transform: translateY(-2px);*/
 }
 
 /* Hover Effects */

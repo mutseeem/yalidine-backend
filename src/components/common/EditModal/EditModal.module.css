@@ -1,6 +1,7 @@
-/* src/components/common/EditModal/EditModal.module.css */
+/* -- EditModal Component Styles -- */
 
-/* Using consistent variables from your theme */
+/* -- Variables -- */
+/* Ensure these align with your global theme variables */
 .modalOverlay {
     --primary-color: #C12862;
     --primary-hover: #A02050;
@@ -8,45 +9,51 @@
     --text-primary: #2c3e50;
     --text-secondary: #7f8c8d;
     --border-color: rgba(234, 234, 234, 0.8);
-    --shadow-color: rgba(0, 0, 0, 0.08);
+    --shadow-color: rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for modals */
+    --transition-speed: 0.3s ease;
+}
 
+/* -- Modal Overlay -- */
+.modalOverlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6); /* Consistent darker overlay */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     opacity: 0;
-    animation: fadeInOverlay 0.3s forwards;
+    animation: fadeInOverlay var(--transition-speed) forwards;
 }
 
+/* -- Modal Content Box -- */
 .modalContent {
     background: white;
-    padding: 25px;
+    padding: 30px; /* Slightly increased padding */
     border-radius: 12px;
-    box-shadow: 0 8px 25px var(--shadow-color);
+    box-shadow: 0 10px 30px var(--shadow-color); /* Enhanced shadow */
     width: 90%;
-    max-width: 450px;
+    max-width: 480px; /* Slightly wider max-width for better form layout */
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px; /* Increased gap for more breathing room */
     opacity: 0;
     transform: translateY(-20px);
-    animation: slideInModal 0.3s forwards;
+    animation: slideInModal var(--transition-speed) forwards;
 }
 
+/* -- Close Button -- */
 .closeButton {
     position: absolute;
     top: 15px;
     right: 15px;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Slightly larger icon */
     color: var(--text-secondary);
     cursor: pointer;
     transition: color 0.2s ease;
@@ -56,8 +63,9 @@
     color: var(--primary-color);
 }
 
+/* -- Modal Header -- */
 .modalTitle {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Larger title */
     font-weight: 700;
     color: var(--text-primary);
     text-align: center;
@@ -65,22 +73,24 @@
 }
 
 .modalDescription {
-    font-size: 0.9rem;
+    font-size: 1rem; /* Slightly larger description */
     color: var(--text-secondary);
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Adjusted margin */
 }
 
-.editForm { /* Renamed from .uploadForm */
+/* -- Edit Form -- */
+.editForm {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px; /* Increased gap between form groups */
 }
 
+/* -- Upload Area for File Input -- */
 .uploadArea {
     border: 2px dashed var(--border-color);
     border-radius: 8px;
-    padding: 20px;
+    padding: 25px; /* Increased padding */
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -88,7 +98,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 120px;
+    min-height: 140px; /* Increased height */
 }
 
 .uploadArea:hover {
@@ -96,62 +106,66 @@
     border-color: var(--primary-color);
 }
 
-.fileIcon { /* New style for the PDF icon */
-    font-size: 2.5rem;
+.fileIcon {
+    font-size: 3rem; /* Larger icon */
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Increased margin */
 }
 
 .uploadText {
-    font-size: 0.95rem;
+    font-size: 1rem; /* Slightly larger text */
     color: var(--text-secondary);
     margin: 0;
 }
 
+/* -- Input Groups (Label + Input) -- */
 .inputGroup {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px; /* Space between label and input */
 }
 
 .inputGroup label {
-    font-size: 0.85rem;
+    font-size: 0.9rem; /* Slightly larger label */
     color: var(--text-primary);
     font-weight: 500;
 }
 
 .inputGroup input {
-    padding: 10px 12px;
+    padding: 12px 15px; /* Increased padding for inputs */
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 1rem;
+    border-radius: 8px; /* Slightly more rounded inputs */
+    font-size: 1.05rem; /* Slightly larger input text */
     color: var(--text-primary);
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding in width */
 }
 
 .inputGroup input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(193, 40, 98, 0.2);
+    box-shadow: 0 0 0 3px rgba(193, 40, 98, 0.2); /* Stronger focus glow */
 }
 
-/* Style for the read-only ID input */
+/* -- Read-Only ID Input -- */
 .readOnlyInput {
-    background-color: #f0f0f0; /* Light gray background */
-    cursor: not-allowed;
+    background-color: #f5f5f5; /* Lighter grey for read-only */
+    cursor: default; /* Change cursor to default */
+    opacity: 0.8; /* Slightly less prominent */
 }
 
-
+/* -- Submit Button -- */
 .submitButton {
     background-color: var(--primary-color);
     color: white;
-    padding: 12px 20px;
+    padding: 14px 25px; /* Increased padding for larger button */
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 1.1rem; /* Larger font size */
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 10px;
+    margin-top: 15px; /* Increased top margin */
 }
 
 .submitButton:hover:not(:disabled) {
@@ -163,20 +177,21 @@
     cursor: not-allowed;
 }
 
+/* -- Status Message -- */
 .statusMessage {
-    font-size: 0.85rem;
+    font-size: 0.95rem; /* Slightly larger message */
     margin-top: 10px;
     text-align: center;
     color: var(--text-secondary);
 }
 
-/* Animations */
+/* -- Animations -- */
 @keyframes fadeInOverlay {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
 @keyframes slideInModal {
-    from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    from { opacity: 0; transform: translateY(-30px) scale(0.97); } /* Slightly more pronounced slide-in */
     to { opacity: 1; transform: translateY(0) scale(1); }
 }

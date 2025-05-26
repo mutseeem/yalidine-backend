@@ -1,3 +1,5 @@
+/*TODO: this dummy data should be imported from a general API that returns the list based on a similar structure */
+
 export const chapterData = [
     {
       reference: "C1.1",

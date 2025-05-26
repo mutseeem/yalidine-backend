@@ -1,336 +1,333 @@
-/* src/components/common/DocumentCard/DocumentCard.module.css */
+/* -- DocumentCard Component Styles -- */
+:root {
+  --primary-color: #C12862;
+  --primary-hover: #A02050;
+  --icon-bg: #f8f0f3;
+  --icon-hover-bg: #f0e0e6;
+  --unavailable-color: #ccc;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --border-color: rgba(234, 234, 234, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.08);
 
-/* --- CSS Variables (Global or within this scope) --- */
+  --transition-speed: 0.25s ease;
+  --icon-transition-speed: 0.2s ease;
+  --button-hover-alpha: 0.1;
+}
+
 .document-card {
-    --primary-color: #C12862;
-    --primary-hover: #A02050;
-    --icon-bg: #f8f0f3;
-    --icon-hover-bg: #f0e0e6;
-    --unavailable-color: #ccc;
-    --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
-    --border-color: rgba(234, 234, 234, 0.8);
-    --shadow-color: rgba(0, 0, 0, 0.08);
-
-    /* --- Base Document Card Styling --- */
-    display: flex;
-    align-items: center; /* Aligns items vertically in the center */
-    gap: 10px;
-    width: 360px;
-    padding: 16px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 3px 8px var(--shadow-color);
-    border: 1px solid var(--border-color);
-    transition: all 0.25s ease;
-    position: relative;
-    overflow: hidden;
-    height: auto; /* Allow height to adjust based on content */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 360px;
+  height: 100px;
+  padding: 15px 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-speed);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Hover effect for all document-card elements */
 .document-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
-    border-color: rgba(234, 234, 234, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+  border-color: rgba(234, 234, 234, 0.9);
 }
 
-/* File Icon Wrapper - Default for DocumentCard */
 .file-icon-wrapper {
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    background: var(--icon-bg);
-    padding: 10px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
+  flex-shrink: 0;
+  width: 55px;
+  height: 55px;
+  background: var(--icon-bg);
+  padding: 9px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--icon-transition-speed);
+  position: relative;
+  overflow: hidden;
 }
 
-/* Decorative after element for the icon wrapper */
 .file-icon-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
 }
 
-/* Hover effect for the icon wrapper */
 .document-card:hover .file-icon-wrapper {
-    background: var(--icon-hover-bg);
-    transform: scale(1.05);
+  background: var(--icon-hover-bg);
+  transform: none;
 }
 
-/* File Type Icons (PDF, Word, etc.) */
 .file-type-icon {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    transition: transform 0.2s ease;
+  font-size: 1.9rem;
+  color: var(--primary-color);
+  transition: none;
 }
 
 .document-card:hover .file-type-icon {
-    transform: scale(1.08);
+  transform: none;
 }
 
-/* Icon for unavailable documents */
 .unavailable-icon {
-    font-size: 1.5rem;
-    color: var(--unavailable-color);
+  font-size: 1.9rem;
+  color: var(--unavailable-color);
 }
 
-/* File Details Section */
 .file-details {
-    flex-grow: 1;
-    min-width: 0; /* Allows text to truncate */
-    overflow: hidden;
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* File Title */
 .file-title {
-    margin: 0 0 6px 0;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    white-space: nowrap; /* Keep title on a single line */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis if text overflows */
-    position: relative;
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
 }
 
-/* Underline animation for file title on hover */
 .file-title::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1.5px;
-    background: var(--primary-color);
-    transition: width 0.2s ease;
+  content: none;
 }
 
-.document-card:hover .file-title::after {
-    width: 100%;
-}
-
-/* File Metadata (Date, Size) */
 .file-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
 
-/* Dot separator between meta items */
 .file-meta span:first-child {
-    position: relative;
-    padding-right: 8px;
+  position: relative;
+  padding-right: 10px;
 }
 
 .file-meta span:first-child::after {
-    content: '•';
-    position: absolute;
-    right: -3px;
-    color: var(--text-secondary);
-    opacity: 0.6;
+  content: '•';
+  position: absolute;
+  right: -4px;
+  color: var(--text-secondary);
+  opacity: 0.6;
 }
 
-/* Download Button */
-.download-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-    margin-left: auto; /* Pushes button to the right */
-    transition: all 0.2s ease;
-    border-radius: 50%;
-    display: flex; /* For icon centering */
-    align-self: flex-start; /* Align to the top right */
+.actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-left: auto;
+  align-self: center;
+  padding-left: 10px;
 }
 
-.download-btn:hover {
-    background: rgba(193, 40, 98, 0.1);
+.download-btn,
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  transition: background-color var(--button-hover-speed, 0.2s ease), color var(--button-hover-speed, 0.2s ease);
 }
 
-.download-icon {
-    font-size: 1.125rem;
-    color: var(--primary-color);
-    transition: all 0.2s ease;
+.download-icon,
+.edit-icon,
+.delete-icon {
+  font-size: 1.2rem;
+  transition: all var(--icon-transition-speed);
+  color: var(--action-icon-color);
 }
 
-.download-btn:hover .download-icon {
-    color: var(--primary-hover);
-}
+.download-btn:hover { background: rgba(193, 40, 98, var(--button-hover-alpha)); }
+.download-icon { color: var(--text-primary); }
+.download-btn:hover .download-icon { color: #25c46c; }
 
-/* Unavailable Document Card State */
+.edit-btn:hover { background: rgba(67, 97, 238, var(--button-hover-alpha)); }
+.edit-icon { color: var(--text-primary); }
+.edit-btn:hover .edit-icon { color: #354fd4; }
+
+.delete-btn:hover { background: rgba(231, 76, 60, var(--button-hover-alpha)); }
+.delete-icon { color: var(--text-primary); }
+.delete-btn:hover .delete-icon { color: #c0392b; }
+
 .document-card.unavailable {
-    background: repeating-linear-gradient(
-        45deg,
-        #fafafa,
-        #fafafa 10px,
-        #f5f5f5 10px,
-        #f5f5f5 20px
-    );
+  background: repeating-linear-gradient(
+    45deg,
+    #fafafa,
+    #fafafa 10px,
+    #f5f5f5 10px,
+    #f5f5f5 20px
+  );
 }
 
 .document-card.unavailable:hover {
-    transform: none; /* No lift effect for unavailable cards */
-    box-shadow: 0 3px 8px var(--shadow-color); /* No increased shadow */
+  transform: none;
+  box-shadow: 0 3px 8px var(--shadow-color);
 }
 
-/* --- Specific Overrides for UploadDocumentMiniCard --- */
-.upload-mini-card {
-    /* Transforms base DocumentCard into the Upload Card visual */
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    text-align: center; /* Center text */
-    min-height: 180px; /* Give it a sufficient height */
-    cursor: pointer; /* Explicitly show it's clickable */
-}
-
-/* Keep the general hover effect from .document-card */
-.upload-mini-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
-    border-color: rgba(234, 234, 234, 0.9);
-}
-
-/* Overrides for .file-icon-wrapper specifically within the upload mini card */
-.upload-mini-card .file-icon-wrapper {
-    width: 70px; /* Larger icon area */
-    height: 70px; /* Larger icon area */
-    padding: 0; /* Remove padding as the icon handles its own size */
-    border: 2px dashed var(--border-color); /* Dashed border for upload feel */
-    margin-bottom: 10px; /* Space below the icon */
-}
-
-/* Override .file-icon-wrapper::after for the upload card if you don't want the gradient overlay */
-.upload-mini-card .file-icon-wrapper::after {
-    content: none; /* Remove the overlay gradient effect */
-}
-
-/* Hover effect for the icon wrapper within the upload mini card */
-.upload-mini-card:hover .file-icon-wrapper {
-    background: var(--icon-hover-bg);
-    border-color: var(--primary-color); /* Highlight dashed border on hover */
-    transform: none; /* Prevent additional scaling from base .file-icon-wrapper:hover */
-}
-
-/* Style for the FontAwesome upload icon itself */
-.upload-main-icon {
-    font-size: 3rem; /* Larger icon size */
-    color: var(--primary-color);
-    transition: transform 0.2s ease;
-}
-
-/* Subtle lift for the upload icon on hover */
-.upload-mini-card:hover .upload-main-icon {
-    transform: translateY(-3px);
-}
-
-/* Overrides for .file-details specifically within the upload mini card */
-.upload-mini-card .file-details {
-    flex-grow: 0; /* Prevent it from expanding horizontally unnecessarily */
-    min-width: unset;
-    overflow: visible;
-    width: 100%; /* Take full width within its flex container */
-    text-align: center;
-}
-
-/* Overrides for .file-title specifically within the upload mini card */
-.upload-mini-card .file-title {
-    font-size: 1.1rem; /* Slightly larger title for the upload card */
-    margin: 0; /* Remove default margins */
-    white-space: normal; /* Allow title to wrap */
-    overflow: visible; /* Prevent text truncation */
-    text-overflow: unset;
-    line-height: 1.3;
-}
-
-/* Hide the underline animation for the upload card title */
-.upload-mini-card .file-title::after {
-    display: none;
-}
-
-/* Style for the placeholder text "Click to add a file" */
-.upload-placeholder-text {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-top: 5px;
-    margin-bottom: 0;
-}
-
-
-/* --- Responsive Adjustments (Applies to all document-cards) --- */
 @media (max-width: 480px) {
-    .document-card {
-        width: 100%;
-        gap: 14px;
-        padding: 14px;
-    }
+  .document-card {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 15px;
+    margin-right: 0;
+  }
 
-    .file-icon-wrapper {
-        width: 46px;
-        height: 46px;
-        padding: 8px;
-    }
+  .file-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+    margin-bottom: 5px;
+  }
 
-    .file-type-icon {
-        font-size: 1.375rem;
-    }
+  .file-type-icon { font-size: 1.8rem; }
+  .file-details { text-align: left; width: 100%; }
+  .file-title { white-space: normal; }
+  .file-meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+  .file-meta span:first-child { padding-right: 0; }
+  .file-meta span:first-child::after { content: '•'; }
 
-    .file-title {
-        font-size: 0.875rem;
-    }
+  @media (max-width: 320px) {
+      .file-meta {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 2px;
+      }
+      .file-meta span:first-child::after { content: none; }
+  }
 
-    .file-meta {
-        font-size: 0.75rem;
-    }
+  .actions-group {
+    flex-direction: row;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: flex-end;
+    align-self: flex-end;
+    margin-top: 10px;
+  }
 
-    /* Adjust upload mini card responsiveness */
-    .upload-mini-card {
-        min-height: 160px; /* Slightly adjust height for smaller screens */
-    }
-
-    .upload-mini-card .file-icon-wrapper {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 8px;
-    }
-
-    .upload-main-icon {
-        font-size: 2.5rem;
-    }
-
-    .upload-mini-card .file-title {
-        font-size: 1rem;
-    }
-
-    .upload-placeholder-text {
-        font-size: 0.85rem;
-    }
+  .download-btn, .edit-btn, .delete-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+  }
 }
 
-
-/* --- Animation (Applies to all document-cards) --- */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .document-card {
-    animation: fadeInUp 0.35s ease-out forwards;
+  animation: fadeInUp 0.35s ease-out forwards;
+}
+
+.upload-mini-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+
+  width: 360px;
+  height: 100px;
+  padding: 15px 20px;
+  
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+
+  min-height: unset;
+}
+
+.upload-mini-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+  border-color: rgba(234, 234, 234, 0.9);
+}
+
+.upload-mini-card .file-icon-wrapper {
+  width: 55px;
+  height: 55px;
+  padding: 9px;
+  
+  border: none;
+  margin-bottom: 0;
+  margin-right: 0;
+}
+
+.upload-mini-card .file-icon-wrapper::after {
+  content: '';
+}
+
+.upload-mini-card:hover .file-icon-wrapper {
+  background: var(--icon-hover-bg);
+  transform: none;
+  border-color: transparent;
+}
+
+.upload-main-icon {
+  font-size: 1.9rem;
+  color: var(--primary-color);
+  transition: transform var(--icon-transition-speed);
+}
+
+.upload-mini-card:hover .upload-main-icon {
+  transform: none;
+}
+
+.upload-mini-card .file-details {
+  text-align: left;
+  min-width: 0;
+  flex-grow: 1;
+}
+
+.upload-mini-card .file-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.upload-mini-card .file-title::after {
+  display: none;
+}
+
+.upload-placeholder-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0;
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

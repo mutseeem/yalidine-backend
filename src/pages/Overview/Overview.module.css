@@ -1,13 +1,10 @@
 
-/* ========== BASE STYLES ========== */
-
-
 .overviewContainer {
     width: 100%;
     max-width: 1200px; /* Limit max width for better readability */
     margin: 0 auto; /* Center the container */
     padding: 24px;
-    
+  
   }
   
   .title {
@@ -26,19 +23,9 @@
     align-items: stretch; /* Ensure both components have the same height */
   }
   
-  .tableSection,
-  .chartSection {
-    flex: 1; /* Allow both sections to grow equally */
-    min-width: 0; /* Prevent overflow issues */
-  }
-  
-  .chartSection {
 
-   
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center the chart vertically */
-  }
+  
+
   
   /* ========== RESPONSIVE DESIGN ========== */
   @media (max-width: 768px) {

@@ -13,7 +13,7 @@ function ChapterHomeLayout() {
       <div className="app-body">
         <Sidebar isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
         <div className={`main-content ${isExpanded ? "expanded" : ""}`}>
-          <Outlet /> {/* This renders the matched child route */}
+          <Outlet /> 
         </div>
       </div>
     </div>

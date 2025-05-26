@@ -3,7 +3,7 @@ import { fetchFieldsData } from '../../services/api';
 import AnsweredQuestionsCountTable from './AnsweredQuestionsCountTable/AnsweredQuestionsCountTable';
 import AnsweredQuestionsDonutChart from './AnsweredQuestionsDonutChart/AnsweredQuestionsDonutChart';
 import QuestionList from './QuestionList/QuestionsList';
-import DocumentCard from '../../components/common/DocumentCard/DocumentCard';
+
 
 
 

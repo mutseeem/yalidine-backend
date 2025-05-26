@@ -17,7 +17,7 @@ const ContactUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
@@ -26,6 +26,13 @@ const ContactUs = () => {
       setTimeout(() => setSubmitSuccess(false), 3000);
     }, 1500);
   };
+
+  // IMPORTANT: Replace this with your actual Google Maps Embed API URL,
+  // including your API key and location query.
+  // For example: `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Alalia+cop+17,+Biskra,+Algeria`
+  // The URL `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.853737150717!2d77.64149631430445!3d12.971598718575877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b34a8d%3A0x21f430c6a6f5470!2sYour%20Building%20Name!5e0!3m2!1sen!2sin!4v1699887140700!5m2!1sen!2sin` is NOT a valid embed URL.
+  const googleMapsEmbedUrl = "https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Alalia+cop+17,+Biskra,+Algeria";
+
 
   return (
     <section className={styles.contactSection}>
@@ -40,49 +47,49 @@ const ContactUs = () => {
         </p>
       </div>
 
-      {/* Main Content Grid */}
+      {/* Main Content Grid (Form and Contact Info) */}
       <div className={styles.contentGrid}>
         {/* Contact Form with Floating Labels */}
         <div className={styles.formContainer}>
           <form className={styles.contactForm} onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required 
+                required
               />
               <label>Your Name</label>
               <span className={styles.inputBar}></span>
             </div>
-            
+
             <div className={styles.inputGroup}>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required 
+                required
               />
               <label>Your Email</label>
               <span className={styles.inputBar}></span>
             </div>
-            
+
             <div className={styles.inputGroup}>
-              <textarea 
+              <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                rows="5" 
+                rows="5"
                 required
               ></textarea>
               <label>Your Message</label>
               <span className={styles.inputBar}></span>
             </div>
-            
-            <button 
-              type="submit" 
+
+            <button
+              type="submit"
               className={`${styles.submitButton} ${isSubmitting ? styles.loading : ''}`}
               disabled={isSubmitting}
             >
@@ -92,7 +99,7 @@ const ContactUs = () => {
                 'Send Message'
               )}
             </button>
-            
+
             {submitSuccess && (
               <div className={styles.successMessage}>
                 <i className="fas fa-check-circle"></i>
@@ -102,9 +109,8 @@ const ContactUs = () => {
           </form>
         </div>
 
-        {/* Contact Info and Map */}
+        {/* Contact Info ONLY (Map moved below the grid) */}
         <div className={styles.infoContainer}>
-          {/* Contact Cards */}
           <div className={styles.contactCards}>
             <div className={styles.contactCard}>
               <div className={styles.cardIcon}>
@@ -112,45 +118,45 @@ const ContactUs = () => {
               </div>
               <div className={styles.cardContent}>
                 <h3>Our Location</h3>
-                <p>123 Business Avenue<br />Tech City, TC 10001</p>
+                <p>Alalia cop 17<br />Biskra, biskra 7001</p>
               </div>
             </div>
-            
+
             <div className={styles.contactCard}>
               <div className={styles.cardIcon}>
                 <i className="fas fa-phone-alt"></i>
               </div>
               <div className={styles.cardContent}>
                 <h3>Call Us</h3>
-                <p>+1 (555) 123-4567<br />Mon-Fri, 9am-5pm</p>
+                <p>+213 556 45 88 51<br />Digiqa, 9am-5pm</p>
               </div>
             </div>
-            
+
             <div className={styles.contactCard}>
               <div className={styles.cardIcon}>
                 <i className="fas fa-envelope"></i>
               </div>
               <div className={styles.cardContent}>
                 <h3>Email Us</h3>
-                <p>info@yourcompany.com<br />support@yourcompany.com</p>
+                <p>digiq.a@gmail.com<br />i.izemmouren@gmail.com</p>
               </div>
             </div>
           </div>
-
-          {/* Interactive Map */}
-          <div className={styles.mapContainer}>
-            <iframe
-              title="Google Maps Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.853737150717!2d77.64149631430445!3d12.971598718575877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b34a8d%3A0x21f430c6a6f5470!2sYour%20Building%20Name!5e0!3m2!1sen!2sin!4v1699887140700!5m2!1sen!2sin"
-              width="100%"
-              height="300"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
         </div>
+      </div> {/* End of .contentGrid */}
+
+      {/* Interactive Map - MOVED OUTSIDE OF contentGrid to make it full width */}
+      <div className={styles.mapContainer}>
+        <iframe
+          title="Google Maps Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.853737150717!2d77.64149631430445!3d12.971598718575877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b34a8d%3A0x21f430c6a6f5470!2sYour%20Building%20Name!5e0!3m2!1sen!2sin!4v1699887140700!5m2!1sen!2sin"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
 
       {/* Premium Footer */}
@@ -160,7 +166,7 @@ const ContactUs = () => {
             <span>DIGIQA</span>
             <span></span>
           </div>
-          
+
           <div className={styles.footerLinks}>
             <a href="/about">About Us</a>
             <a href="/services">Services</a>
@@ -168,25 +174,25 @@ const ContactUs = () => {
             <a href="/blog">Blog</a>
             <a href="/contact">Contact</a>
           </div>
-          
+
           <div className={styles.socialLinks}>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+            <a href="https://www.facebook.com/profile.php?id=61575305604191" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
               <i className="fab fa-facebook-f"></i>
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
               <i className="fab fa-twitter"></i>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+            <a href="https://www.linkedin.com/in/laid-kahloul-85768245/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
               <i className="fab fa-linkedin-in"></i>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+            <a href="https://www.instagram.com/digiq.a/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
               <i className="fab fa-instagram"></i>
             </a>
           </div>
         </div>
-        
+
         <div className={styles.footerBottom}>
-          <p>&copy; {new Date().getFullYear()} DIGIQA. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} DIGIQA. All rights reserved.</p>
           <div className={styles.legalLinks}>
             <a href="/privacy">Privacy Policy</a>
             <a href="/terms">Terms of Service</a>
