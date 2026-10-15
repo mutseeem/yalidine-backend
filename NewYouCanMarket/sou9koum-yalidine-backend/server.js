@@ -15,6 +15,7 @@ const API = 'https://api.yalidine.app/v1';
 const ZR_API_URL = 'https://api.zrexpress.app/api/v1';
 const ZR_HEADERS = {
   'tenantId': '37f4b436-aa6a-4e49-a667-55fa074cf531',
+  'secretKey': 'w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
   'Authorization': 'Bearer w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
   'Content-Type': 'application/json'
 };
@@ -134,7 +135,6 @@ app.get('/api/yalidine/centers', async (req, res, next) => {
 });
 
 app.get('/api/yalidine/fees', async (req, res, next) => {
-  // Yalidine wilaya ID for Biskra is 7.
   const from = req.query.from_wilaya_id || '7';
   const to = req.query.to_wilaya_id;
 
@@ -157,10 +157,10 @@ app.get('/api/yalidine/fees', async (req, res, next) => {
 });
 
 // ==========================================
-// ZR EXPRESS ROUTES
+// ZR EXPRESS ROUTES (WITH DEBUG LOGGING)
 // ==========================================
 
-app.get('/api/zr/rates', async (req, res, next) => {
+app.get('/api/zr/rates', async (req, res) => {
   try {
     const response = await fetch(`${ZR_API_URL}/delivery-pricing/rates`, {
       method: 'GET',
@@ -169,20 +169,20 @@ app.get('/api/zr/rates', async (req, res, next) => {
     });
     
     if (!response.ok) {
-      const error = new Error('ZR Express API request failed.');
-      error.status = 502;
-      error.upstreamStatus = response.status;
-      throw error;
+      const errText = await response.text();
+      console.error('[ZR Rates Error]', response.status, errText);
+      return res.status(502).json({ error: 'ZR API Error', details: errText });
     }
     
     const data = await response.json();
     res.json(data);
   } catch (e) {
-    next(e);
+    console.error('[ZR Rates Exception]', e.message);
+    res.status(502).json({ error: e.message });
   }
 });
 
-app.post('/api/zr/hubs', async (req, res, next) => {
+app.post('/api/zr/hubs', async (req, res) => {
   try {
     const { territoryId } = req.body;
     const response = await fetch(`${ZR_API_URL}/hubs/search`, {
@@ -193,16 +193,16 @@ app.post('/api/zr/hubs', async (req, res, next) => {
     });
     
     if (!response.ok) {
-      const error = new Error('ZR Express API request failed.');
-      error.status = 502;
-      error.upstreamStatus = response.status;
-      throw error;
+      const errText = await response.text();
+      console.error('[ZR Hubs Error]', response.status, errText);
+      return res.status(502).json({ error: 'ZR API Error', details: errText });
     }
     
     const data = await response.json();
     res.json(data);
   } catch (e) {
-    next(e);
+    console.error('[ZR Hubs Exception]', e.message);
+    res.status(502).json({ error: e.message });
   }
 });
 
@@ -212,7 +212,6 @@ app.post('/api/zr/hubs', async (req, res, next) => {
 
 app.use((err, req, res, next) => {
   if (res.headersSent) return next(err);
-
   console.error('Backend error:', err.message);
   res.status(err.status || 502).json({
     error: err.status === 500
