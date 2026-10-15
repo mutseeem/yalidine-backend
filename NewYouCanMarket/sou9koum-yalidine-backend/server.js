@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 
 const express = require('express');
@@ -8,7 +7,18 @@ const cors = require('cors');
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
 const HOST = '0.0.0.0';
+
+// Yalidine Config
 const API = 'https://api.yalidine.app/v1';
+
+// ZR Express Config
+const ZR_API_URL = 'https://api.zrexpress.app/api/v1';
+const ZR_HEADERS = {
+  'tenantId': '37f4b436-aa6a-4e49-a667-55fa074cf531',
+  'Authorization': 'Bearer w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
+  'Content-Type': 'application/json'
+};
+
 const CACHE_MS = 5 * 60 * 1000;
 const cache = new Map();
 
@@ -145,6 +155,60 @@ app.get('/api/yalidine/fees', async (req, res, next) => {
     next(e);
   }
 });
+
+// ==========================================
+// ZR EXPRESS ROUTES
+// ==========================================
+
+app.get('/api/zr/rates', async (req, res, next) => {
+  try {
+    const response = await fetch(`${ZR_API_URL}/delivery-pricing/rates`, {
+      method: 'GET',
+      headers: ZR_HEADERS,
+      signal: AbortSignal.timeout(12000)
+    });
+    
+    if (!response.ok) {
+      const error = new Error('ZR Express API request failed.');
+      error.status = 502;
+      error.upstreamStatus = response.status;
+      throw error;
+    }
+    
+    const data = await response.json();
+    res.json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
+app.post('/api/zr/hubs', async (req, res, next) => {
+  try {
+    const { territoryId } = req.body;
+    const response = await fetch(`${ZR_API_URL}/hubs/search`, {
+      method: 'POST',
+      headers: ZR_HEADERS,
+      body: JSON.stringify({ territoryId: territoryId || null }),
+      signal: AbortSignal.timeout(12000)
+    });
+    
+    if (!response.ok) {
+      const error = new Error('ZR Express API request failed.');
+      error.status = 502;
+      error.upstreamStatus = response.status;
+      throw error;
+    }
+    
+    const data = await response.json();
+    res.json(data);
+  } catch (e) {
+    next(e);
+  }
+});
+
+// ==========================================
+// ERROR HANDLING
+// ==========================================
 
 app.use((err, req, res, next) => {
   if (res.headersSent) return next(err);
