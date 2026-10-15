@@ -14,12 +14,14 @@ const API = 'https://api.yalidine.app/v1';
 // ZR Express Config
 const ZR_API_URL = 'https://api.zrexpress.app/api/v1';
 const ZR_HEADERS = {
-  // We send all standard variations to ensure ZR accepts the authentication
   'tenantId': '37f4b436-aa6a-4e49-a667-55fa074cf531',
   'X-Tenant-Id': '37f4b436-aa6a-4e49-a667-55fa074cf531',
-  'X-Api-Key': 'w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
   'Authorization': 'Bearer w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
-  'Content-Type': 'application/json'
+  'X-Api-Key': 'w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  // This line prevents Cloudflare/Firewalls from blocking Render
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'
 };
 
 const CACHE_MS = 5 * 60 * 1000;
@@ -159,7 +161,7 @@ app.get('/api/yalidine/fees', async (req, res, next) => {
 });
 
 // ==========================================
-// ZR EXPRESS ROUTES (WITH DEBUG LOGGING)
+// ZR EXPRESS ROUTES
 // ==========================================
 
 app.get('/api/zr/rates', async (req, res) => {
@@ -172,8 +174,9 @@ app.get('/api/zr/rates', async (req, res) => {
     
     if (!response.ok) {
       const errText = await response.text();
-      console.error('[ZR Rates Error]', response.status, errText);
-      return res.status(502).json({ error: 'ZR API Error', details: errText });
+      // Slice text to avoid massive HTML logs crashing the console
+      console.error('[ZR Rates Error]', response.status, errText.slice(0, 300));
+      return res.status(502).json({ error: 'ZR API Error', details: errText.slice(0, 300) });
     }
     
     const data = await response.json();
@@ -196,8 +199,8 @@ app.post('/api/zr/hubs', async (req, res) => {
     
     if (!response.ok) {
       const errText = await response.text();
-      console.error('[ZR Hubs Error]', response.status, errText);
-      return res.status(502).json({ error: 'ZR API Error', details: errText });
+      console.error('[ZR Hubs Error]', response.status, errText.slice(0, 300));
+      return res.status(502).json({ error: 'ZR API Error', details: errText.slice(0, 300) });
     }
     
     const data = await response.json();
