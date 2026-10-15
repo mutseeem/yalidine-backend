@@ -14,8 +14,10 @@ const API = 'https://api.yalidine.app/v1';
 // ZR Express Config
 const ZR_API_URL = 'https://api.zrexpress.app/api/v1';
 const ZR_HEADERS = {
+  // We send all standard variations to ensure ZR accepts the authentication
   'tenantId': '37f4b436-aa6a-4e49-a667-55fa074cf531',
-  'secretKey': 'w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
+  'X-Tenant-Id': '37f4b436-aa6a-4e49-a667-55fa074cf531',
+  'X-Api-Key': 'w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
   'Authorization': 'Bearer w1nCmIERd8Gcqtl9kImV7VE5FYXk8FxC71xCxtYsBvw94U8uUuGRscJ3Ep1XmJV1',
   'Content-Type': 'application/json'
 };
